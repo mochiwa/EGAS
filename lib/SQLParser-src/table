@@ -1,0 +1,8 @@
+CREATE TABLE climat(
+        id_climat       Int  Auto_increment  NOT NULL ,
+        name            Varchar (50) ,
+        humidity        Double NOT NULL ,
+        temperature_min Double NOT NULL ,
+        temperature_max Double NOT NULL
+	,CONSTRAINT climat_PK PRIMARY KEY (id_climat)
+)ENGINE=InnoDB;
