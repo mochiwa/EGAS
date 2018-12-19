@@ -115,6 +115,36 @@ public:
      * @date       19-Dec-2018
      */
     virtual bool isFileContainsForeignKey()=0;
+
+    /**
+     * @brief      Gets the primary key.
+     *
+     * @return     The primary key.
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    virtual std::string getPrimaryKey()=0;
+
+    /**
+     * @brief      Gets the foreign key.
+     *
+     * @return     The foreign key.
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    virtual std::string getForeignKey()=0;
+
+    /**
+     * @brief      Gets the foreign key reference.
+     *
+     * @return     The foreign key reference.
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    virtual std::string getForeignKeyReference()=0;
 };
 
 #endif

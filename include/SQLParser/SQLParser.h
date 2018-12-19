@@ -98,6 +98,20 @@ protected:
      */
 	void removeChar(std::string& word,char const c);
 
+    /**
+     * @brief      Removes a sequence.
+     *
+     * @param      word   The word
+     * @param[in]  begin  The begin character where cut
+     * @param[in]  end    The end character where cut
+     *
+     * @note       Remove everything beetween char begin and end
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    void removeSequence(std::string& word,char const begin,char const end);
+
 
     /**
      * @brief      Reads a word until.

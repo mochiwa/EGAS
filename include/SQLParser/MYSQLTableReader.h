@@ -125,6 +125,53 @@ public:
      */
     virtual bool isFileContainsForeignKey();
 
+    /**
+     * @brief      Gets the primary key.
+     *
+     * @return     The primary key.
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    virtual std::string getPrimaryKey();
+
+    /**
+     * @brief      Gets the first next foreign key.
+     *
+     * @return     The foreign key.
+     *
+     * @note       this fonction doesn't rewind the file !
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    virtual std::string getForeignKey();
+
+    /**
+     * @brief      Gets the foreign key reference.
+     *
+     * @return     The foreign key reference.
+     *
+     * @note       not rewind the file ! it must be call jsut after getForeignKey()
+     * @see        getForeignKey()
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    virtual std::string getForeignKeyReference();
+
+    /**
+     * @brief      Gets the foreign key reference.
+     *
+     * @param      key   The key
+     *
+     * @return     The foreign key reference.
+     *
+     * @note       rewind the file
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    //virtual std::string getForeignKeyReference(std::string const& key);
 };
 
 #endif

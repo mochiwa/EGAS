@@ -75,6 +75,21 @@ void SQLParser::removeChar(string& word,char const c)
 	word=tpm;
 }
 
+void  SQLParser::removeSequence(std::string& word,char const begin,char const end)
+{
+    string tmp="";
+    unsigned int i;
+
+    for(i=0;i<word.size() && word[i]!=begin;++i)
+        tmp+=word[i];
+    for(;i<word.size() && word[i]!=end;++i)
+        continue;
+    for(i++;i<word.size();++i)
+        tmp+=word[i];
+
+    word=tmp;
+}
+
 string SQLParser::readWordUntil(string const& sequence)
 {
 	string word="";

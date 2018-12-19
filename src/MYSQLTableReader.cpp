@@ -61,11 +61,72 @@ string MYSQLTableReader::getType(std::string const& attribute)
 bool MYSQLTableReader::isFileContainsPrimaryKey()
 {
     string word="";
-    return true;
+    rewind(); 
 
+    word=readWordUntil("PRIMARY");
+    if(word!="")
+        return true;
+    return false;
 }
 
 bool MYSQLTableReader::isFileContainsForeignKey()
 {
-    return true;
+    string word="";
+    rewind();
+
+    word=readWordUntil("FOREIGN");
+    if(word!="")
+        return true;
+    return false;
 }
+
+std::string  MYSQLTableReader::getPrimaryKey()
+{
+    string word="";
+    rewind();
+
+    readWordUntil("PRIMARY");
+    readWord();
+    word=readWord();
+    removeChar(word,'(');
+    removeChar(word,')');
+
+    return word;
+}
+
+std::string MYSQLTableReader::getForeignKey()
+{
+    string word;
+    
+    word=readWordUntil("FOREIGN");
+    if(word=="")
+        return "";
+    readWord();
+    word=readWord();
+    removeChar(word,'(');
+    removeChar(word,')');
+
+    return word;
+}
+
+std::string MYSQLTableReader::getForeignKeyReference()
+{
+    string word="";
+    readWord();
+    word=readWord();
+    removeSequence(word,'(',')');
+
+    return word;
+}
+
+/*
+std::string MYSQLTableReader::getForeignKeyReference(std::string  const& key)
+{
+    string word="";
+    string tmp="("+key+")";
+    rewind();
+
+    readWordUntil(tmp);
+    return getForeignKeyReference();
+}
+*/
