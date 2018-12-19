@@ -8,10 +8,10 @@
 
 #include "Directory.h"
 #include "own/own_input.h"
-#include "SQLParser/ReaderFactory.h"
-#include "SQLParser/MYSQLTableReader.h"
-#include "SQLParser/Table.h"
-#include "SQLParser/TableMaker.h"
+#include "ReaderFactory.h"
+#include "MYSQLTableReader.h"
+#include "Table.h"
+#include "TableMaker.h"
 
 
 #ifdef LINUX

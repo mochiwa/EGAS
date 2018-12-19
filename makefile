@@ -7,22 +7,18 @@ SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
 CFLAGS := -g -Wall
-LIB := -L./lib/ -lSQLParser
-INC := -I include
+INC := -I include -I include/SQLParser
+
+
 
 $(TARGET):	$(OBJECTS)
 	@echo " Linking..."
-	$(CC) $^ -o $(TARGET) $(LIB)
+	$(CC) $^ -o $(TARGET)
 
 $(BUILDDIR)/%.o:	$(SRCDIR)/%.$(SRCEXT)
 	@mkdir -p $(BUILDDIR)
 	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
-
-SQLParser-install:
-	@echo "------SQLParser begins to install-------"
-	@cd lib/SQLParser-src && make main-full
-	@echo "------SQLParser is installed------------"
 
 clean:
 	@echo " Cleaning..."; 
