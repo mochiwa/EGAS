@@ -91,6 +91,30 @@ public:
      * @date       09-Dec-2018
      */
     virtual std::string getType(std::string const& attribute)=0;
+
+    /**
+     * @brief      Determines if file contains primary key.
+     *
+     * @return     True if file contains primary key, False otherwise.
+     *
+     * @note       { paragraph }
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    virtual bool isFileContainsPrimaryKey()=0;
+
+    /**
+     * @brief      Determines if file contains foreign key.
+     *
+     * @return     True if file contains foreign key, False otherwise.
+     *
+     * @note       { paragraph }
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    virtual bool isFileContainsForeignKey()=0;
 };
 
 #endif

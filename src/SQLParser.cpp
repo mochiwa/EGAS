@@ -79,12 +79,15 @@ string SQLParser::readWordUntil(string const& sequence)
 {
 	string word="";
 	string tpm="";
-	while(tpm != sequence && tpm!=END_TABLE && tpm!=END_FILE)
+	while(tpm != sequence && tpm!=END_FILE && tpm!=END_TABLE )
 	{
 		word+=tpm;
 		tpm=readWord();
 	}
-	return word;
+    if(tpm==END_FILE || tpm==END_TABLE)
+        return "";
+    else
+	   return word;
 }
 
 string SQLParser::readWord()

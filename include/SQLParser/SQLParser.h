@@ -111,7 +111,7 @@ protected:
      * @author     mochiwa
      * @date       09-Dec-2018
      */
-	std::string readWordUntil(std::string const& sequence);
+	 std::string readWordUntil(std::string const& sequence);
 
     /**
      * @brief      Reads a word.
@@ -126,7 +126,7 @@ protected:
     std::string readWord();
 
 public:
-
+    
 	/**
      * @brief      Constructs the object.
      *

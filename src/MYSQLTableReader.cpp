@@ -45,7 +45,6 @@ string MYSQLTableReader::getNextAttribute()
 
 string MYSQLTableReader::getType(std::string const& attribute)
 {
-	int cursor=0;
 	string word="";
 	rewind();
 
@@ -57,4 +56,16 @@ string MYSQLTableReader::getType(std::string const& attribute)
 
 	word=readWord();
 	return word;
+}
+
+bool MYSQLTableReader::isFileContainsPrimaryKey()
+{
+    string word="";
+    return true;
+
+}
+
+bool MYSQLTableReader::isFileContainsForeignKey()
+{
+    return true;
 }
