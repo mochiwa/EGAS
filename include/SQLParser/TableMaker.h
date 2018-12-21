@@ -46,6 +46,18 @@ private:
      */
 	void setTypeOfAttribute(Attribute& attribute);
 
+    /**
+     * @brief      Sets the primary key table.
+     *
+     * @param      table  The table
+     *
+     * @note       { paragraph }
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    void setPrimaryKeyTable(Table &table);
+
 public:
 	
 	

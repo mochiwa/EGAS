@@ -36,6 +36,12 @@ void TableMaker::setAttributes(Table& table)
 	table.setAttributes(attributes);
 }
 
+void TableMaker::setPrimaryKeyTable(Table &table)
+{
+    if(reader->isFileContainsPrimaryKey())
+        table.setPrimaryKey(reader->getPrimaryKey());
+}
+
 void TableMaker::setTypeOfAttribute(Attribute& attribute)
 {
 	string word="";
@@ -50,6 +56,8 @@ Table TableMaker::getTable(TableReader* reader)
 	TableMaker maker(reader);
 
 	Table table=maker.getTable();
+    maker.setPrimaryKeyTable(table);
+    
 	return table;
 }
 //*******************************************************

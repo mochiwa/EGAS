@@ -30,6 +30,7 @@ void Attribute::init()
 	setId(lastId++);
 	setName("");
 	setType("");
+    setKeyType(other);
 	counter++;
 }
 //*******************************************************
@@ -55,7 +56,13 @@ Attribute const& Attribute::operator=(Attribute const& src)
 	setName(src.getName());
 	setType(src.getType());
 	return *this;
+}
 
+bool Attribute::operator==(KeyType keyType) const
+{
+    if(this->keyType==keyType)
+        return true;
+    return false;
 }
 //*******************************************************
 //***************  GETTER AND SETTER  *******************
@@ -63,6 +70,11 @@ Attribute const& Attribute::operator=(Attribute const& src)
 unsigned int Attribute::getId() const
 {
     return id;
+}
+
+KeyType Attribute::getKeyType() const
+{
+    return keyType;
 }
 
 string const& Attribute::getName() const
@@ -78,6 +90,11 @@ string const& Attribute::getType() const
 void Attribute::setId(unsigned int const id)
 {
     this->id=id;
+}
+
+void Attribute::setKeyType(KeyType type)
+{
+    this->keyType=type;
 }
 
 void Attribute::setName(string const& name)

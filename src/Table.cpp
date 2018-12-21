@@ -43,6 +43,19 @@ void Table::appendAttribute(Attribute const& attribute)
 	attributes.push_back(attribute);
 }
 
+void Table::appendForeignKey(string const& key,string const& table)
+{
+    foreignKeys.insert(foreignKey(key,table)); 
+}
+
+bool Table::hasForeignKey(std::string const& key)
+{
+    if(foreignKeys.find(key)==foreignKeys.end())
+        return false;
+    else
+        return true;
+}
+
 int Table::getCountAttributes() const
 {
 	return attributes.size();
@@ -78,7 +91,6 @@ string Table::toString() const
 	return str;
 }
 
-
 //*******************************************************
 //***************  GETTER AND SETTER  *******************
 //*******************************************************
@@ -98,6 +110,19 @@ vector<Attribute> const& Table::getAttributes() const
 	return attributes;
 }
 
+Attribute const* Table::getPrimaryKey() const
+{
+    for(Attribute const& att:attributes)
+        if(att==KeyType::primary)
+            return &att;
+    return nullptr;
+}
+
+map<string,string> const& Table::getForeignKeys() const
+{
+    return foreignKeys;
+}
+
 void Table::setId(unsigned int const id)
 {
     this->id=id;
@@ -111,4 +136,15 @@ void Table::setName(string const& name)
 void Table::setAttributes(vector<Attribute> attributes)
 {
 	this->attributes=attributes;
+}
+
+void Table::setPrimaryKey(std::string  const& key)
+{
+    for(Attribute & att:attributes)
+    {
+        if(!att.getName().compare(key))
+            att.setKeyType(KeyType::primary);
+        else if(att==KeyType::primary)
+            att.setKeyType(KeyType::other);
+    }
 }

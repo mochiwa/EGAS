@@ -108,23 +108,23 @@ void Directory::erase(string const& filename)
 
 void Directory::eraseContent()
 {
-    for(auto filename:files)
-        erase(filename);
+    for(string const& file:files)
+        erase(file);
     read();
 }
 
 bool Directory::isFileExist(string const& filename) const
 {
-    for(auto file:files)
-        if(file == filename)
+    for(string const& file:files)
+        if(!file.compare(filename))
             return true;
     return false;
 }
 
 string const Directory::getFilePath(string const& filename) const
 {
-    for(auto file:files)
-        if(file == filename)
+    for(string const& file:files)
+        if(file.compare(filename))
             return name+"/"+filename;
     return "";
 }
@@ -140,7 +140,7 @@ string const Directory::getFilePath(unsigned int index) const
 void Directory::printFiles() const
 {
     unsigned int i=1;
-    for(auto filename:files)
+    for(string const& file:files)
         cout<<i++<<") "<<filename<<endl;
 }
 

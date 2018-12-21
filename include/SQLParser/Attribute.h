@@ -12,6 +12,8 @@
 #include <iostream>
 #include <cstring>
 
+enum KeyType {primary,foreign,other}; /** < Describe the type of the attribute */
+
 /**
  * @brief      Class for attribute.
  *
@@ -27,6 +29,7 @@ private:
     static unsigned int lastId;/**< the last id will be attributed.*/
 
 	unsigned int id;/**< The unique ID.*/
+    KeyType keyType;
 	std::string name; /**< The name of the attribute.*/
 	std::string type; /**< The type of the attribute.*/
 
@@ -116,6 +119,18 @@ public:
      * @date       09-Dec-2018
      */
 	Attribute const& operator=(Attribute const& src);
+
+    /**
+     * @brief      test if the attribute has the same keytype
+     *
+     * @param[in]  keyType  The key type
+     *
+     * @return     true if same keyType , else other
+     *
+     * @author     mochiwa
+     * @date       20-Dec-2018
+     */
+    bool operator==(KeyType keyType) const;
 //*******************************************************
 //***************  GETTER AND SETTER  *******************
 //*******************************************************
@@ -129,6 +144,18 @@ public:
      * @date       09-Dec-2018
      */
     unsigned int getId() const;
+
+    /**
+     * @brief      Gets the key type.
+     *
+     * @return     The key type.
+     *
+     * @note       { paragraph }
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    KeyType getKeyType() const;
 
     /**
      * @brief      Gets the name.
@@ -161,6 +188,19 @@ public:
      * @date       09-Dec-2018
      */
     void setId(unsigned int const id);
+
+    /**
+     * @brief      Sets the key type.
+     *
+     * @param[in]  type  The type
+     *
+     * @note       set if the attribute is a key
+     * @see        keyType
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    void setKeyType(KeyType type);
 
 	/**
      * @brief      Sets the name.

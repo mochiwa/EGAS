@@ -81,7 +81,7 @@ void Application::sliceSQLFile(string const& filepath)
     int i=0;
 
     tables=parser.getTablesToString();
-    for(auto table:tables)
+    for(string const& table:tables)
     {
         outfile=ofstream((tmpdir.getDirName()+"/SQL-"+to_string(i++)));
         outfile<<table;
@@ -139,7 +139,7 @@ ReaderType Application::selectSQLType()
 
 void Application::run()
 {
-  /* string sqlFile="";
+   string sqlFile="";
 
     showTitle("EGAS");
 
@@ -149,20 +149,15 @@ void Application::run()
     while(!tmpdir.isEmpty())
         tmpdirManagement();
 
-    sliceSQLFile(sqlFile);*/
+    sliceSQLFile(sqlFile);
     readerType=selectSQLType();
 
     TableReader *reader=ReaderFactory::getReader(readerType);
 
     reader->openFile("tmp/SQL-2");
 
-    //Table table=TableMaker::getTable(reader);
-    string c="";
-    do
-    {
-        c=reader->getForeignKey();
-        cout<<c<<endl;
-    }while(c!="");
+    Table table=TableMaker::getTable(reader);
+    cout<<table.getPrimaryKey()->getName()<<endl;
     
 
     delete reader;
