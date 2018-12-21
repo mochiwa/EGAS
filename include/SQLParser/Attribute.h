@@ -103,6 +103,16 @@ public:
      * @date       09-Dec-2018
      */
 	std::string toString() const;
+
+    /**
+     * @brief      return the keyType into a string elegant
+     *
+     * @return     return primary|foreign|other
+     *
+     * @author     mochiwa
+     * @date       21-Dec-2018
+     */
+    std::string keyTypeToString() const;
 	
 //------------------ OPERATORS ----------------------/
 	
@@ -222,8 +232,5 @@ public:
      */
 	void setType(std::string const& type);
 };
-
-
-
 
 #endif

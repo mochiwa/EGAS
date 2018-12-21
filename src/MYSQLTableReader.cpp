@@ -72,9 +72,13 @@ bool MYSQLTableReader::isFileContainsPrimaryKey()
 bool MYSQLTableReader::isFileContainsForeignKey()
 {
     string word="";
-    rewind();
+    int pos=0;
 
+    pos=getCursorPos();
+    rewind();
     word=readWordUntil("FOREIGN");
+    setCursorAt(pos);
+
     if(word!="")
         return true;
     return false;

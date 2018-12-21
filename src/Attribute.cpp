@@ -48,7 +48,25 @@ std::string Attribute::toString() const
 	string str="Attribute("+to_string(id)+"):\n";
 	str+="  Name: "+getName();
 	str+="  Type: "+getType();
+    str+="  KeyType: "+ keyTypeToString();
 	return str;
+}
+
+std::string Attribute::keyTypeToString() const
+{
+    switch(keyType)
+    {
+        case primary:
+            return "primary";
+            break;
+        case foreign:
+            return "foreign";
+            break;
+        case other:
+            return "None";
+            break;
+    }
+    return "";
 }
 
 Attribute const& Attribute::operator=(Attribute const& src)

@@ -141,15 +141,15 @@ void Directory::printFiles() const
 {
     unsigned int i=1;
     for(string const& file:files)
-        cout<<i++<<") "<<filename<<endl;
+        cout<<i++<<") "<<file<<endl;
 }
 
 string Directory::toString() const
 {
     string str="";
 
-    for(auto filename:files)
-        str+="File: "+filename+"\n";
+    for(auto const& file:files)
+        str+="File: "+file+"\n";
     return str;
 }
 

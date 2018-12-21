@@ -58,6 +58,16 @@ private:
      */
     void setPrimaryKeyTable(Table &table);
 
+    /**
+     * @brief      Sets the foreign keys.
+     *
+     * @param      table  The table
+     *
+     * @author     mochiwa
+     * @date       21-Dec-2018
+     */
+    void setForeignKeys(Table &table);
+
 public:
 	
 	
@@ -109,29 +119,6 @@ public:
 //*******************************************************
 
     /**
-     * @brief      Counts the number of attributes.
-     *
-     * @return     Number of attributes.
-     *
-     * @note       Run through the file to seek how many attribute the file has
-     *
-     * @author     mochiwa
-     * @date       09-Dec-2018
-     */
-	int countAttributes();
-
-	/**
-	 * @fn         Table getTable()
-	 * @brief      Gets the table.
-	 *
-	 * @return     The table.
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
-
-    /**
      * @brief      Gets the table.
      *
      * @return     The table.
@@ -164,3 +151,13 @@ public:
 
 
 #endif
+
+
+
+/**
+ * 
+ * Probleme possible avec les tables qui hérite d'une autre table,
+ * ex( pere-> fils) le fils a la meme id (au sens de table) que le pere
+ * l'id fils est donc a la fois primay et foreign 
+ * 
+ */

@@ -46,6 +46,10 @@ void Table::appendAttribute(Attribute const& attribute)
 void Table::appendForeignKey(string const& key,string const& table)
 {
     foreignKeys.insert(foreignKey(key,table)); 
+    for(Attribute & att:attributes )
+        if(!att.getName().compare(key))
+            att.setKeyType(KeyType::foreign);
+
 }
 
 bool Table::hasForeignKey(std::string const& key)

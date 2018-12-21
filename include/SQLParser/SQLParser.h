@@ -210,13 +210,6 @@ public:
 	void closeFile();
 
     /**
-     * @fn         getTabletoString()
-     * @brief      Reads whole next table in the file.
-     *
-     * @return     the table
-     */
-
-    /**
      * @brief      Gets the table to string.
      *
      * @return     The table to string.

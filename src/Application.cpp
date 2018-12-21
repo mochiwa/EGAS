@@ -154,10 +154,10 @@ void Application::run()
 
     TableReader *reader=ReaderFactory::getReader(readerType);
 
-    reader->openFile("tmp/SQL-2");
+    reader->openFile("tmp/SQL-10");
 
     Table table=TableMaker::getTable(reader);
-    cout<<table.getPrimaryKey()->getName()<<endl;
+    cout<<table.toString()<<endl;
     
 
     delete reader;
