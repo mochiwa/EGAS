@@ -1,4 +1,3 @@
-*.sublime-*
 bin/*
 !bin/.gitkeep
 *.tar

@@ -1,0 +1,511 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"in",
+				"initial\tdisplay"
+			],
+			[
+				"mar",
+				"margin-right\tproperty"
+			],
+			[
+				"pad",
+				"padding-left\tproperty"
+			],
+			[
+				"bo",
+				"border-left\tproperty"
+			],
+			[
+				"fl",
+				"float\tproperty"
+			],
+			[
+				"wi",
+				"width\tproperty"
+			],
+			[
+				"margin",
+				"margin-top\tproperty"
+			],
+			[
+				"padd",
+				"padding-bottom\tproperty"
+			],
+			[
+				"box",
+				"box-sizing\tproperty"
+			],
+			[
+				"back",
+				"background-position\tproperty"
+			],
+			[
+				"bac",
+				"background\tproperty"
+			],
+			[
+				"ba",
+				"background-color\tproperty"
+			],
+			[
+				"backgr",
+				"background-color\tproperty"
+			],
+			[
+				"after",
+				"page-break-after\tproperty"
+			],
+			[
+				"backg",
+				"background\tproperty"
+			],
+			[
+				"text-deco",
+				"text-decoration\tproperty"
+			],
+			[
+				"ac",
+				"action\tAttr"
+			],
+			[
+				"op",
+				"option\tTag"
+			],
+			[
+				"da",
+				"datalist\tTag"
+			],
+			[
+				"mi",
+				"minlength\tAttr"
+			],
+			[
+				"max",
+				"maxlength\tAttr"
+			],
+			[
+				"l",
+				"legend\tTag"
+			],
+			[
+				"brea",
+				"bread-400"
+			],
+			[
+				"bd",
+				"body\tTag"
+			],
+			[
+				"oepra",
+				"operator=\tfunc"
+			],
+			[
+				"operator",
+				"operator=\tfunc"
+			],
+			[
+				"getCou",
+				"getCountWay"
+			],
+			[
+				"opera",
+				"operator=\tfunc"
+			],
+			[
+				"ope",
+				"operator\tfunc"
+			],
+			[
+				"open",
+				"open\tfunc"
+			],
+			[
+				"clo",
+				"close\tfunc"
+			],
+			[
+				"ma",
+				"main\tmain()"
+			],
+			[
+				"psu",
+				"push_back\tfunc"
+			],
+			[
+				"push",
+				"push_back\tfunc"
+			],
+			[
+				"iostr",
+				"I-iostream\tinc"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"theme",
+				"UI: Select Theme"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"sht",
+				"Set Syntax: HTML"
+			],
+			[
+				"set ht",
+				"Set Syntax: HTML"
+			],
+			[
+				"setht",
+				"Set Syntax: HTML"
+			],
+			[
+				"sethtml",
+				"Set Syntax: HTML"
+			],
+			[
+				"term",
+				"Terminus: List Shells"
+			],
+			[
+				"shell",
+				"Terminus: List Shells"
+			],
+			[
+				"ter",
+				"Terminus: List Shells"
+			],
+			[
+				"c++",
+				"Set Syntax: C++"
+			],
+			[
+				"tert",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"sql",
+				"Set Syntax: SQL"
+			],
+			[
+				"TERM",
+				"Terminus: List Shells"
+			],
+			[
+				"terminal",
+				"Terminality: Browse Commands..."
+			],
+			[
+				"tem",
+				"Terminus: List Shells"
+			],
+			[
+				"termin",
+				"Terminus: List Shells"
+			],
+			[
+				"package control: re",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"termiin",
+				"Terminus: Open Default Shell in Panel"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 157.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/mochiwa/Labs/programming/c++/EGAS"
+	],
+	"file_history":
+	[
+		"/home/mochiwa/Labs/programming/html/12-20-2018/chapter_15/exo/style.css",
+		"/home/mochiwa/Labs/programming/html/12-18-2018/chapter_14/index.html",
+		"/home/mochiwa/Labs/programming/html/12-18-2018/chapter_14/exo/style.css",
+		"/home/mochiwa/Labs/programming/html/12-18-2018/chapter_14/exo/index.html",
+		"/home/mochiwa/Labs/programming/html/12-13-2018/chapter_13/raimbow.html",
+		"/home/mochiwa/Labs/programming/html/12-13-2018/chapter_13/style.css",
+		"/home/mochiwa/Labs/programming/html/12-13-2018/chapter_13/color.html",
+		"/home/mochiwa/Labs/programming/html/12-13-2018/chapter_13/exo/index.html",
+		"/home/mochiwa/Labs/programming/html/12-13-2018/chapter_12/line.html",
+		"/home/mochiwa/Labs/programming/html/12-13-2018/chapter_12/exo/exo.html",
+		"/home/mochiwa/Labs/programming/html/12-13-2018/chapter_12/exo/style.css",
+		"/home/mochiwa/Labs/programming/html/12-11-2018/chapter_12/style.css",
+		"/home/mochiwa/Labs/programming/html/12-13-2018/chapter_12/style.css",
+		"/home/mochiwa/Labs/programming/html/12-11-2018/chapter_12/exo/menu.html",
+		"/home/mochiwa/Labs/programming/html/12-11-2018/chapter_12/exo/style.css",
+		"/home/mochiwa/Labs/programming/html/12-06-2018/chapter_9/exo-1/exo-1.html",
+		"/home/mochiwa/Labs/programming/html/12-06-2018/chapter_9/exo-1/style.css",
+		"/home/mochiwa/Labs/programming/html/12-06-2018/chapter_9/Form.html",
+		"/home/mochiwa/Labs/programming/html/12-04-2018/part_6/link.html",
+		"/home/mochiwa/Labs/programming/html/12-04-2018/part_7/responsivegallery/index.html",
+		"/home/mochiwa/Labs/programming/html/12-04-2018/part_8/table.html",
+		"/home/mochiwa/Labs/programming/html/12-04-2018/part_7/svg/blackgoosebistro.html",
+		"/home/mochiwa/Labs/programming/html/12-04-2018/part_7/image.html",
+		"/home/mochiwa/Labs/programming/html/12-04-2018/part_7/gallery/burgers.html",
+		"/home/mochiwa/Labs/programming/html/12-04-2018/part_7/gallery/index.html",
+		"/home/mochiwa/Labs/programming/html/12-04-2018/part_7/exo-1.html",
+		"/home/mochiwa/Labs/linux/html/network-Arch.html",
+		"/home/mochiwa/Labs/programming/html/11-27-2018/chapter_5/generic.html",
+		"/home/mochiwa/Labs/programming/html/LWD5e_materials/ch05/finished exercises/exercise_05-03.html",
+		"/home/mochiwa/Labs/programming/html/11-27-2018/chapter_5/exo-3.html",
+		"/home/mochiwa/Labs/programming/html/11-27-2018/chapter_5/inline-element.html",
+		"/home/mochiwa/Labs/programming/html/11-27-2018/chapter_5/OrganisePage.html",
+		"/home/mochiwa/Labs/programming/html/11-27-2018/chapter_5/exo-2.html",
+		"/home/mochiwa/Labs/linux/network-Arch.html",
+		"/home/mochiwa/Labs/linux/Network-Arch",
+		"/home/mochiwa/Labs/programming/html/11-27-2018/chapter_5/MakingUpText.html",
+		"/home/mochiwa/Labs/programming/html/11-27-2018/chapter_5/exo-1.html",
+		"/home/mochiwa/Labs/programming/html/11-27-2018/index.html",
+		"/home/mochiwa/Labs/OPS/index.html",
+		"/home/mochiwa/Labs/OPS/Docker",
+		"/home/mochiwa/Labs/OPS/DockerFile",
+		"/home/mochiwa/Labs/LINUX/Network-Arch",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/src/Toll.cpp",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/src/WayMaker.cpp",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/src/Application.cpp",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/include/VehicleRegister.h",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/src/VehicleRegister.cpp",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/include/Application.h",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/src/WayRegister.cpp",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/include/WayMaker.h",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/include/Way.h",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/src/Way.cpp",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/include/Vehicle.h",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/src/Vehicle.cpp",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/include/Type.h",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/src/Type.cpp",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/include/Toll.h",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/include/Price.h",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/src/Price.cpp",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/src/main.cpp",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/src/TypeRegister.cpp",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/src/TollRegister.cpp",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/include/WayRegister.h",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/include/TypeRegister.h",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/include/TollRegister.h",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/src/own_input.cpp",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/include/own_input.h",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/src/Engine.cpp",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/include/Engine.h",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/makefile",
+		"/home/mochiwa/Labs/programming/c++/EgaS/test/include/SQLParser.h",
+		"/home/mochiwa/Labs/programming/c++/EgaS/test/SQLParser.cpp",
+		"/home/mochiwa/Labs/programming/c++/EgaS/test/base",
+		"/home/mochiwa/Labs/programming/c++/EgaS/test/table",
+		"/home/mochiwa/Labs/programming/c++/EgaS/test/Table.h",
+		"/home/mochiwa/Labs/programming/c++/EgaS/makefile",
+		"/home/mochiwa/Labs/ECI/Programmation/home_work-01/Vehicle.cpp",
+		"/home/mochiwa/Labs/programming/c++/EgaS/test/Table/Attribute.cpp",
+		"/home/mochiwa/Labs/programming/c++/EgaS/test/Table/Attribute.h",
+		"/home/mochiwa/Labs/programming/c++/EgaS/test/Table/Table.h",
+		"/home/mochiwa/Labs/programming/c++/EgaS/test/Table/Table.cpp",
+		"/home/mochiwa/Labs/programming/c++/EgaS/test/SQLParser.h",
+		"/home/mochiwa/Labs/programming/c++/EgaS/test/TableReader.h",
+		"/home/mochiwa/Labs/programming/c++/EgaS/test/main.cpp",
+		"/home/mochiwa/Labs/programming/c++/EgaS/include/Variable.h",
+		"/home/mochiwa/Labs/programming/c++/EgaS/test/TableReader.cpp",
+		"/home/mochiwa/Labs/programming/c++/EgaS/src/main.cpp",
+		"/home/mochiwa/Labs/programming/c++/EgaS/include/Method.h",
+		"/home/mochiwa/Labs/programming/c++/EgaS/test/makefile",
+		"/home/mochiwa/Labs/programming/c++/EgaS/test/file",
+		"/home/mochiwa/Downloads/sql-parser-1.5/sql-parser-1.5/src/libout.a",
+		"/home/mochiwa/Labs/programming/c++/Egax/src/main.cpp",
+		"/home/mochiwa/Labs/programming/c++/Egax/src/Method.cpp",
+		"/home/mochiwa/Labs/programming/c++/Egax/src/Type.cpp",
+		"/home/mochiwa/Labs/programming/c++/Egax/include/Type.h",
+		"/home/mochiwa/Labs/programming/c++/Egax/include/Method.h",
+		"/home/mochiwa/Labs/programming/c++/Egax/src/Variable.cpp",
+		"/home/mochiwa/Labs/programming/c++/Egax/src/Word.cpp",
+		"/home/mochiwa/Labs/programming/c++/Egax/include/Word.h",
+		"/home/mochiwa/Labs/programming/c++/personal_learning/pattern/facade/main.cpp",
+		"/home/mochiwa/Labs/programming/c++/Egax/include/Class.h",
+		"/media/mochiwa/usb/prog/part_4/c++/register.h",
+		"/media/mochiwa/usb/prog/part_4/c++/register.cpp",
+		"/media/mochiwa/usb/prog/part_4/c++/person.h",
+		"/media/mochiwa/usb/prog/part_4/c++/person.cpp",
+		"/media/mochiwa/usb/prog/part_4/c++/makefile",
+		"/media/mochiwa/usb/prog/part_4/c++/main.cpp",
+		"/media/mochiwa/usb/prog/part_4/c++/main",
+		"/home/mochiwa/Labs/programming/c++/Egax/include/Variable.h",
+		"/home/mochiwa/Labs/programming/c++/Egax/src/Class.cpp",
+		"/home/mochiwa/Labs/programming/c++/Egax/Specifications",
+		"/home/mochiwa/Labs/programming/c++/Egax/.gitignore",
+		"/home/mochiwa/Labs/programming/c++/try/main.cpp",
+		"/home/mochiwa/Labs/programming/c++/Egax/makefile"
+	],
+	"find":
+	{
+		"height": 24.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 46.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.Terminus":
+	{
+		"height": 132.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 126.0
+	},
+	"pinned_build_system": "",
+	"project": "EGAS.sublime-project",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 245.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+		"max_columns": 2
+	}
+}
