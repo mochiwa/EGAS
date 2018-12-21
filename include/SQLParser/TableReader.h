@@ -97,24 +97,20 @@ public:
      *
      * @return     True if file contains primary key, False otherwise.
      *
-     * @note       { paragraph }
-     *
      * @author     mochiwa
      * @date       19-Dec-2018
      */
-    virtual bool isFileContainsPrimaryKey()=0;
+    virtual bool hasPrimaryKey()=0;
 
     /**
      * @brief      Determines if file contains foreign key.
      *
      * @return     True if file contains foreign key, False otherwise.
      *
-     * @note       { paragraph }
-     *
      * @author     mochiwa
      * @date       19-Dec-2018
      */
-    virtual bool isFileContainsForeignKey()=0;
+    virtual bool hasForeignKey()=0;
 
     /**
      * @brief      Gets the primary key.
@@ -134,7 +130,7 @@ public:
      * @author     mochiwa
      * @date       19-Dec-2018
      */
-    virtual std::string getForeignKey()=0;
+    virtual std::string getNextForeignKey()=0;
 
     /**
      * @brief      Gets the foreign key reference.

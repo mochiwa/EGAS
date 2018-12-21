@@ -28,7 +28,6 @@ void Directory::init()
     dir=nullptr;
     fileRead=nullptr;
     setDirName("");
-    countFile=0;
 }
 
 void Directory::open()
@@ -57,16 +56,10 @@ void Directory::close()
 
 void Directory::listFiles()
 {
-    if(isOpen())
-    {
-        files.clear();
-        while((fileRead=readdir(dir)) != NULL)
-            if(strcmp(fileRead->d_name,".") && strcmp(fileRead->d_name,".."))
-            {
-                files.push_back(fileRead->d_name);
-                countFile++;
-            }
-    }
+    files.clear();
+    while((fileRead=readdir(dir)) != NULL)
+        if(strcmp(fileRead->d_name,".") && strcmp(fileRead->d_name,".."))
+            files.push_back(fileRead->d_name);
 }
 
 void Directory::mkdir()
@@ -85,7 +78,6 @@ void Directory::mkdir()
 
 void Directory::read()
 {
-    countFile=0;
     try
     {
         open();
@@ -95,8 +87,8 @@ void Directory::read()
     {
         if(error==ERROR_DIR_NOT_EXIST)
             mkdir();
-        /*else if(error==ERROR_DIR_NAME_LENGTH)
-            setDirName(tmpnam(nullptr)); // A tester*/
+        if(error==ERROR_DIR_ALREADY_OPEN)
+            close();
         read();
     }
 }
@@ -124,14 +116,14 @@ bool Directory::isFileExist(string const& filename) const
 string const Directory::getFilePath(string const& filename) const
 {
     for(string const& file:files)
-        if(file.compare(filename))
+        if(!file.compare(filename))
             return name+"/"+filename;
     return "";
 }
 
 string const Directory::getFilePath(unsigned int index) const
 {
-    if(index<countFile)
+    if(index<getCountFile())
         return name+"/"+files[index];
     else
         throw BAD_INDEX;
@@ -147,9 +139,9 @@ void Directory::printFiles() const
 string Directory::toString() const
 {
     string str="";
-
-    for(auto const& file:files)
-        str+="File: "+file+"\n";
+    str+="Directory: "+getDirName()+"\n";
+    for(string const& file:files)
+        str+="-File: "+file+"\n";
     return str;
 }
 
@@ -166,14 +158,14 @@ bool Directory::isOpen() const
 
 bool Directory::isEmpty() const
 {
-    if(countFile>0)
+    if(getCountFile()>0)
         return false;
     return true;
 }
 
 unsigned int Directory::getCountFile() const
 {
-    return countFile;
+    return files.size();
 }
 
 string const& Directory::getDirName() const
@@ -183,7 +175,7 @@ string const& Directory::getDirName() const
 
 string const& Directory::getFile(unsigned int index) const
 {
-    if(index<countFile)
+    if(index<getCountFile())
         return files[index];
     else
         throw BAD_INDEX;
@@ -193,7 +185,6 @@ vector<string> const& Directory::getFiles() const
 {
     return files;
 }
-
 
 void Directory::setDirName(string const& name)
 {
@@ -209,7 +200,6 @@ Directory&  Directory::operator=(Directory const& src)
         return (*this);
     init();
     setDirName(src.name);
-    this->countFile=src.countFile;
     this->files=src.files;
     return *this;
 }

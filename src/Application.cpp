@@ -139,7 +139,7 @@ ReaderType Application::selectSQLType()
 
 void Application::run()
 {
-   string sqlFile="";
+   /*string sqlFile="";
 
     showTitle("EGAS");
 
@@ -149,15 +149,22 @@ void Application::run()
     while(!tmpdir.isEmpty())
         tmpdirManagement();
 
-    sliceSQLFile(sqlFile);
-    readerType=selectSQLType();
+    sliceSQLFile(sqlFile);*/
 
+    vector<Table> tables;
+    readerType=selectSQLType();
     TableReader *reader=ReaderFactory::getReader(readerType);
 
-    reader->openFile("tmp/SQL-10");
 
-    Table table=TableMaker::getTable(reader);
-    cout<<table.toString()<<endl;
+    int i=0;
+    for(string t:tmpdir.getFiles())
+    {
+        t=tmpdir.getFilePath(t);
+        reader->openFile(t);
+        tables.push_back(TableMaker::getTable(reader));
+
+        cout<<tables[i++].toString()<<endl<<"------------------------------"<<endl;
+    }
     
 
     delete reader;

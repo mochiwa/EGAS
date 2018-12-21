@@ -32,8 +32,6 @@ private:
 
     std::string name; /**< the name of the directory*/
     std::vector<std::string> files; /**< list of file in the directory*/
-    
-    unsigned int countFile; /**< counter of files in the directory*/
 
     /**
      * @brief      initialize variables of the Attribute

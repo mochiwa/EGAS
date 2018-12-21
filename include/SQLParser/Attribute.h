@@ -28,10 +28,10 @@ private:
 	static unsigned int counter;/**< count the number of Attribute is alive.*/
     static unsigned int lastId;/**< the last id will be attributed.*/
 
-	unsigned int id;/**< The unique ID.*/
-    KeyType keyType;
-	std::string name; /**< The name of the attribute.*/
-	std::string type; /**< The type of the attribute.*/
+	unsigned int id;   /**< The unique ID.*/
+    KeyType keyType;   /**< Define if the attribute is a key REMOVE ?<*/ 
+	std::string name;  /**< The name of the attribute.*/
+	std::string type;  /**< The type of the attribute.*/
 
 
     /**

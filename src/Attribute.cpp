@@ -30,7 +30,7 @@ void Attribute::init()
 	setId(lastId++);
 	setName("");
 	setType("");
-    setKeyType(other);
+    setKeyType(KeyType::other);
 	counter++;
 }
 //*******************************************************
@@ -73,6 +73,8 @@ Attribute const& Attribute::operator=(Attribute const& src)
 {
 	setName(src.getName());
 	setType(src.getType());
+    setKeyType(src.getKeyType());
+    
 	return *this;
 }
 

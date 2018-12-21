@@ -78,7 +78,7 @@ Attribute const& Table::getAttribute(string const& name)
 // TODO : ADD TRY/CATCH
 Attribute const& Table::getAttribute(unsigned int position)
 {
-	if(position>=0 && position<attributes.size())
+	if(position<attributes.size())
 		return attributes[position];
 	else
 		throw "BAD_INDEX";

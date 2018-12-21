@@ -37,22 +37,20 @@ void TableMaker::setAttributes(Table& table)
 
 void TableMaker::setPrimaryKeyTable(Table &table)
 {
-    if(reader->isFileContainsPrimaryKey())
+    if(reader->hasPrimaryKey())
         table.setPrimaryKey(reader->getPrimaryKey());
 }
 
 void TableMaker::setForeignKeys(Table &table)
 {
-    string key;
-    string reference;
+    string key="";
+    string reference="";
 
-    do
-    {   
-        key=reader->getForeignKey();
+    while((key=reader->getNextForeignKey())!="")
+    {
         reference=reader->getForeignKeyReference();
-        if(key!="")
-            table.appendForeignKey(key,reference);
-    }while(key!="");
+        table.appendForeignKey(key,reference);
+    }
 
 }
 
@@ -82,8 +80,11 @@ Table TableMaker::getTable()
 
 	setAttributes(table);
     setPrimaryKeyTable(table);
-    if(reader->isFileContainsForeignKey())
+
+    if(reader->hasForeignKey())
+    {
         setForeignKeys(table);
+    }
     
 	return table;
 }

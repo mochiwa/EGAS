@@ -23,23 +23,24 @@ string MYSQLTableReader::getTableName()
 {
 	string word="";
 	rewind();
-	while(word!="TABLE")
+
+	while(word.compare("TABLE"))
 		word=readWord();
 	word=readWord();
 	removeChar(word,'(');
+
 	return word;
 }
 
 string MYSQLTableReader::getNextAttribute()
 {
 	string word="";
+
 	word=readWord();
-	if(word==END_TABLE)
-	{
-		rewind();
+	if(!word.compare(END_TABLE))
 		return "";
-	}
 	readWordUntil(",");
+
 	return word;
 }
 
@@ -48,28 +49,28 @@ string MYSQLTableReader::getType(std::string const& attribute)
 	string word="";
 	rewind();
 
-	if(attribute=="")
+	if(!attribute.compare(""))
 		return "";
-
-	while(word!=attribute)
+	while(word.compare(attribute))
 		word=readWord();
-
 	word=readWord();
+
 	return word;
 }
 
-bool MYSQLTableReader::isFileContainsPrimaryKey()
+bool MYSQLTableReader::hasPrimaryKey()
 {
     string word="";
     rewind(); 
 
     word=readWordUntil("PRIMARY");
+
     if(word!="")
         return true;
     return false;
 }
 
-bool MYSQLTableReader::isFileContainsForeignKey()
+bool MYSQLTableReader::hasForeignKey()
 {
     string word="";
     int pos=0;
@@ -98,12 +99,12 @@ std::string  MYSQLTableReader::getPrimaryKey()
     return word;
 }
 
-std::string MYSQLTableReader::getForeignKey()
+std::string MYSQLTableReader::getNextForeignKey()
 {
     string word;
     
     word=readWordUntil("FOREIGN");
-    if(word=="")
+    if(!word.compare(""))
         return "";
     readWord();
     word=readWord();

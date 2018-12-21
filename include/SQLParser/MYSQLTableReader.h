@@ -106,29 +106,30 @@ public:
      *
      * @return     True if file contains primary key, False otherwise.
      *
-     * @note       { paragraph }
+     * @note       this function rewind the file before , not after
      *
      * @author     mochiwa
      * @date       19-Dec-2018
      */
-    virtual bool isFileContainsPrimaryKey();
+    virtual bool hasPrimaryKey();
 
     /**
      * @brief      Determines if file contains foreign key.
      *
      * @return     True if file contains foreign key, False otherwise.
      *
-     * @note       { paragraph }
+     * @note       don't move the cursor
      *
      * @author     mochiwa
      * @date       19-Dec-2018
      */
-    virtual bool isFileContainsForeignKey();
+    virtual bool hasForeignKey();
 
     /**
      * @brief      Gets the primary key.
      *
      * @return     The primary key.
+     * @note       this function rewind the file before
      *
      * @author     mochiwa
      * @date       19-Dec-2018
@@ -138,22 +139,24 @@ public:
     /**
      * @brief      Gets the first next foreign key.
      *
-     * @return     The foreign key.
+     * @return     The foreign key or "".
      *
-     * @note       this fonction doesn't rewind the file !
+     * @note       this fonction doesn't rewind the file! get the next
+     *              foreign key if exist else return ""
      *
      * @author     mochiwa
      * @date       19-Dec-2018
      */
-    virtual std::string getForeignKey();
+    virtual std::string getNextForeignKey();
 
     /**
      * @brief      Gets the foreign key reference.
      *
      * @return     The foreign key reference.
      *
-     * @note       not rewind the file ! it must be call jsut after getForeignKey()
+     * @note       not rewind the file ! it must be call just after getForeignKey()
      * @see        getForeignKey()
+     * 
      * @author     mochiwa
      * @date       19-Dec-2018
      */

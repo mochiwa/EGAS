@@ -7,7 +7,7 @@ using namespace std;
 <| /////////////////--Reading Function--////////////////// |>
   \*******************************************************/
 
-char readSingleChar(char const* cursor)
+char readSingleChar()
 {
 	char c;
 	cin.clear();
@@ -49,7 +49,7 @@ bool getBinaryAnswer(char const* output)
 	while(true)
 	{
 		cout<<output<<" (y/n) :";
-		answer=readSingleChar(output);
+		answer=readSingleChar();
 		if(answer=='y')
 			return true;
 		if(answer=='n')
