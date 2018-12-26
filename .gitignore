@@ -2,4 +2,4 @@
 bin/*
 !bin/.gitkeep
 *.tar
-*.o
+build/*.o
