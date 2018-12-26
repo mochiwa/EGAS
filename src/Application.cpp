@@ -75,8 +75,6 @@ void Application::tmpdirManagement()
     else
         tmpdir.eraseContent();
     tmpdir.read();
-    cout<<tmpdir.getCountFile()<<endl;
-    cin.get();
 }
 
 void Application::sliceSQLFile(string const& filepath)
@@ -191,7 +189,6 @@ void Application::run()
     loadTables();
 
     cout<<selectTable().toString();
-    
 
     delete reader;
 }
