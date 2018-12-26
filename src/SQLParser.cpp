@@ -68,11 +68,11 @@ void SQLParser::setCursorAt(int pos)
 
 void SQLParser::removeChar(string& word,char const c)
 {
-	string tpm="";
+	string tmp="";
 	for(unsigned int i=0;i<word.size();++i)
 		if(word[i]!=c)
-			tpm+=word[i];
-	word=tpm;
+			tmp+=word[i];
+	word=tmp;
 }
 
 void  SQLParser::removeSequence(std::string& word,char const begin,char const end)
@@ -93,13 +93,15 @@ void  SQLParser::removeSequence(std::string& word,char const begin,char const en
 string SQLParser::readWordUntil(string const& sequence)
 {
 	string word="";
-	string tpm="";
-	while(tpm != sequence && tpm!=END_FILE && tpm!=END_TABLE )
+	string tmp="";
+
+	while(tmp.compare(sequence) && tmp.compare(END_FILE) && tmp.compare(END_TABLE) )
 	{
-		word+=tpm;
-		tpm=readWord();
+		word+=tmp;
+		tmp=readWord();
 	}
-    if(tpm==END_FILE || tpm==END_TABLE)
+
+    if(!tmp.compare(END_FILE) || !tmp.compare(END_TABLE))
         return "";
     else
 	   return word;
@@ -108,7 +110,7 @@ string SQLParser::readWordUntil(string const& sequence)
 string SQLParser::readWord()
 {
 	string word="";
-	while( word!=END_TABLE && (word==" " || word==""))
+	while( word.compare(END_TABLE) && (!word.compare(" ") || !word.compare("")))
 		word=getSequence();
 	return word;
 }
@@ -152,10 +154,11 @@ string SQLParser::getTableToString()
     string key_table="";
     char c=0;
 
-    for(key_create="";key_create!=END_FILE && key_create!=BEGIN_TABLE;key_create=readWord()){}
+    while(key_create.compare(END_FILE) && key_create.compare(BEGIN_TABLE))
+        key_create=readWord();
 
     key_table=readWord();
-    if(key_table!="TABLE")
+    if(key_table.compare("TABLE"))
         return END_FILE;
 
     table=key_create+" "+key_table+" ";
@@ -174,7 +177,7 @@ vector<string> SQLParser::getTablesToString()
     string table="";
     vector<string> tables;
     rewind();
-    for(table=getTableToString();table!=END_FILE;table=getTableToString())
+    for(table=getTableToString();table.compare(END_FILE);table=getTableToString())
         tables.push_back(table);
     return tables;
 }

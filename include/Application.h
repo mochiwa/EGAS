@@ -29,9 +29,10 @@ private:
     Directory outputdir; /** < Describe the directory where the application put the file */
     Directory library; /** < Describe the directory where the application take data to... */
 
-    ReaderType readerType; /** < the type of SGBD used */ 
-
-    
+    ReaderType readerType; /** < the type of SGBD used */
+    TableReader *reader; /** < The reader that read a SQLFile (Abstract)*/
+    //TableWriter *writer; /** < The writer that write SQLFile (Abstract)*/
+    std::vector<Table> tables; /** < List of tables in the worked file */
 
     /**
      * @brief      initialize variables of the Attribute
@@ -52,7 +53,7 @@ private:
      * @author     mochiwa
      * @date       14-Dec-2018
      */
-    void showTitle(std::string const& str);
+    void showTitle(std::string const& str) const;
 
     /**
      * @brief      provides a menu to manage the tmpdir if is not empty
@@ -79,6 +80,18 @@ private:
     void sliceSQLFile(std::string const& filepath);
 
     /**
+     * @brief      Loads tables.
+     *
+     * @param      reader  The Table reader
+     *
+     * @note       Run through files into the tmpdir and load all tables into the Tables vector
+     *
+     * @author     mochiwa
+     * @date       26-Dec-2018
+     */
+    void loadTables();
+
+    /**
      * @brief      show a menu to select a file in the input directory
      *
      * @return     the relative path with name of the file selected
@@ -89,14 +102,26 @@ private:
     std::string selectInputFile();
 
     /**
-     * @brief     show a menu to select the tyep of SQL
+     * @brief     show a menu to select the type of SQL
      *
      * @return    the type
      *
      * @author     mochiwa
      * @date       17-Dec-2018
      */
-    ReaderType selectSQLType();
+    ReaderType selectSQLType() const;
+
+    /**
+     * @brief      show a menu to select the table 
+     *
+     * @return     the table to work
+     *
+     * @note       show all table name and ask to select one
+     *
+     * @author     mochiwa
+     * @date       26-Dec-2018
+     */
+    Table const& selectTable() const;
 
 
 public:

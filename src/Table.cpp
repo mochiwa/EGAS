@@ -68,13 +68,14 @@ int Table::getCountAttributes() const
 // TODO : ADD TRY/CATCH
 Attribute const& Table::getAttribute(string const& name)
 {
-	unsigned int i;
-	for(i=0;i<attributes.size();++i)
-		if(attributes[i].getName()==name)
-			return attributes[i];
+    for(Attribute const& att:attributes)
+    {
+        if(!att.getName().compare(name))
+            return att;
+    }
 	throw "NOT_FOUND"; 
-
 }
+
 // TODO : ADD TRY/CATCH
 Attribute const& Table::getAttribute(unsigned int position)
 {
@@ -86,12 +87,14 @@ Attribute const& Table::getAttribute(unsigned int position)
 
 string Table::toString() const
 {
-	unsigned int i;
 	string str="Table("+to_string(id)+"):\n";
 	str+=" Name: "+getName();
 	str+=" Have "+to_string(attributes.size())+" Attributes\n";
-	for(i=0;i<attributes.size();i++)
-		str+="    "+attributes[i].toString()+"\n";
+    for(Attribute const& att:attributes)
+    {
+        str+="    "+att.toString()+"\n";
+    }
+	
 	return str;
 }
 
