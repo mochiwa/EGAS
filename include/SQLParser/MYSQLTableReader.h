@@ -101,6 +101,80 @@ public:
      */
 	virtual std::string getType(std::string const& attribute);
 
+    /**
+     * @brief      Determines if file contains primary key.
+     *
+     * @return     True if file contains primary key, False otherwise.
+     *
+     * @note       this function rewind the file before , not after
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    virtual bool hasPrimaryKey();
+
+    /**
+     * @brief      Determines if file contains foreign key.
+     *
+     * @return     True if file contains foreign key, False otherwise.
+     *
+     * @note       don't move the cursor
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    virtual bool hasForeignKey();
+
+    /**
+     * @brief      Gets the primary key.
+     *
+     * @return     The primary key.
+     * @note       this function rewind the file before
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    virtual std::string getPrimaryKey();
+
+    /**
+     * @brief      Gets the first next foreign key.
+     *
+     * @return     The foreign key or "".
+     *
+     * @note       this fonction doesn't rewind the file! get the next
+     *              foreign key if exist else return ""
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    virtual std::string getNextForeignKey();
+
+    /**
+     * @brief      Gets the foreign key reference.
+     *
+     * @return     The foreign key reference.
+     *
+     * @note       not rewind the file ! it must be call just after getForeignKey()
+     * @see        getForeignKey()
+     * 
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    virtual std::string getForeignKeyReference();
+
+    /**
+     * @brief      Gets the foreign key reference.
+     *
+     * @param      key   The key
+     *
+     * @return     The foreign key reference.
+     *
+     * @note       rewind the file
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    //virtual std::string getForeignKeyReference(std::string const& key);
 };
 
 #endif

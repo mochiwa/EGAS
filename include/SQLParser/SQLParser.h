@@ -98,6 +98,20 @@ protected:
      */
 	void removeChar(std::string& word,char const c);
 
+    /**
+     * @brief      Removes a sequence.
+     *
+     * @param      word   The word
+     * @param[in]  begin  The begin character where cut
+     * @param[in]  end    The end character where cut
+     *
+     * @note       Remove everything beetween char begin and end
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    void removeSequence(std::string& word,char const begin,char const end);
+
 
     /**
      * @brief      Reads a word until.
@@ -111,7 +125,7 @@ protected:
      * @author     mochiwa
      * @date       09-Dec-2018
      */
-	std::string readWordUntil(std::string const& sequence);
+	 std::string readWordUntil(std::string const& sequence);
 
     /**
      * @brief      Reads a word.
@@ -126,7 +140,7 @@ protected:
     std::string readWord();
 
 public:
-
+    
 	/**
      * @brief      Constructs the object.
      *
@@ -194,13 +208,6 @@ public:
      * @date       09-Dec-2018
      */
 	void closeFile();
-
-    /**
-     * @fn         getTabletoString()
-     * @brief      Reads whole next table in the file.
-     *
-     * @return     the table
-     */
 
     /**
      * @brief      Gets the table to string.
