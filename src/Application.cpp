@@ -191,8 +191,6 @@ void Application::run()
     Table table=selectTable();
     for(int i=0;i<100;i++)
     {
-
-
         writer.initLine(table.getName());
 
         writer.appendAttributes(table.getAttributes());
