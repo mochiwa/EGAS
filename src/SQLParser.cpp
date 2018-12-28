@@ -66,7 +66,7 @@ void SQLParser::setCursorAt(int pos)
 	file.seekg(pos);
 }
 
-void SQLParser::removeChar(string& word,char const c)
+void SQLParser::removeChar(string& word,char const c) const
 {
 	string tmp="";
 	for(unsigned int i=0;i<word.size();++i)
@@ -75,7 +75,7 @@ void SQLParser::removeChar(string& word,char const c)
 	word=tmp;
 }
 
-void  SQLParser::removeSequence(std::string& word,char const begin,char const end)
+void  SQLParser::removeSequence(std::string& word,char const begin,char const end) const
 {
     string tmp="";
     unsigned int i;

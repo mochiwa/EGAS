@@ -64,14 +64,14 @@ void Application::tmpdirManagement()
 {   
     CLEAR()
     showTitle("TMP DIR MANAGEMENT");
-    cout<<"The tmp dir must be empty and it contens "<<tmpdir.getCountFile()<<" files :"<<endl;
+    cout<<"The tmp dir must be empty and it contends "<<tmpdir.getCountFile()<<" files :"<<endl;
     tmpdir.printFiles();
     cout<<"please move files or delete their "<<endl;
 
     if(!getBinaryAnswer("delete files ?"))
     {
-        cout<<"Please move files before to press Return...";
-        cin.get();
+        cout<<"Please move files before to press Return..."<<endl;
+        proceed();
     }
     else
         tmpdir.eraseContent();
@@ -106,30 +106,28 @@ void Application::loadTables()
     }
 }
 
-std::string Application::selectInputFile()
+string Application::selectInputFile()
 {
-    unsigned selected=-1;
-    do
+    unsigned int selected=-1;
+
+    while(selected>=inputdir.getCountFile())
     {
         CLEAR()
         showTitle("INPUT DIR FILE SELECTION");
+        inputdir.printFiles();
         if(inputdir.isEmpty())
         {
             cout<<"Your input directory is empty, insert files into and press Return"<<endl;
-            cin.get();
+            proceed();
             inputdir.read();
         }
         else
-        {
-            inputdir.printFiles();
             selected=readInteger("Select: ")-1;
-        }
-    }while(selected>=inputdir.getCountFile());
+    }
 
     return inputdir.getFilePath(selected);
 }
 
-//TODO def one begin and one last readerType
 ReaderType Application::selectSQLType() const
 {
     unsigned int selected=ReaderType::LAST;
@@ -138,6 +136,7 @@ ReaderType Application::selectSQLType() const
     {
         CLEAR()
         showTitle("SQL SELECTION");
+
         for(int i=0;i<ReaderType::LAST;i++)
             cout<<i+1<<") "<<static_cast<ReaderType>(i);
         selected=readInteger("Select: ")-1;
@@ -148,19 +147,24 @@ ReaderType Application::selectSQLType() const
 
 Table const& Application::selectTable() const
 {
-    unsigned int selected=0;
+    unsigned int selected=-1;
     unsigned int i=1;
 
-    do
+    while(selected>tables.size())
     {
         CLEAR()
         showTitle("SELECT A TABLE");
+
         for(Table const& table:this->tables)
             cout<<i++<<") "<<table.getName()<<endl;
         selected=readInteger("Select: ")-1;
-    }while(selected>tables.size());
-
+    }
     return tables[selected];
+}
+
+void Application::generateLines() const
+{
+
 }
 
 //*******************************************************

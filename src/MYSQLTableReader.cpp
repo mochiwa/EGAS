@@ -101,7 +101,7 @@ std::string  MYSQLTableReader::getPrimaryKey()
 
 std::string MYSQLTableReader::getNextForeignKey()
 {
-    string word;
+    string word="";
     
     word=readWordUntil("FOREIGN");
     if(!word.compare(""))
@@ -117,6 +117,7 @@ std::string MYSQLTableReader::getNextForeignKey()
 std::string MYSQLTableReader::getForeignKeyReference()
 {
     string word="";
+    
     readWord();
     word=readWord();
     removeSequence(word,'(',')');

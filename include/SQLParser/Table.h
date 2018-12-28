@@ -170,22 +170,22 @@ public:
      * @author     mochiwa
      * @date       09-Dec-2018
      */
-	Attribute const& getAttribute(std::string const& name);
+	Attribute const& getAttribute(std::string const& name) const;
 
     /**
      * @brief      Gets the attribute.
      *
-     * @param      position  The position
+     * @param[in]  index  The index
      *
      * @return     The attribute.
-     * @throws     BAD_INDEX the position provided in parameter is less 0 or upper list size
      *
-     * @note       Run through the list as far as the position provided in parameter
+     * @note       Run through the list as far as the position provided in
+     *             parameter
      *
      * @author     mochiwa
      * @date       09-Dec-2018
      */
-	Attribute const& getAttribute(unsigned int position);
+	Attribute const& getAttribute(unsigned int index)const ;
 
 
 
@@ -293,7 +293,7 @@ public:
      * @author     mochiwa
      * @date       20-Dec-2018
      */
-    void setPrimaryKey(std::string  const& key);
+    void setPrimaryKey(std::string  const& attribute);
 
 
 };

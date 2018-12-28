@@ -7,7 +7,7 @@ TableReader* ReaderFactory::getReader(ReaderType type)
     switch(type)
     {
         case MYSQL:
-            return new MYSQLTableReader;
+            return new MYSQLTableReader();
         case ORACLE:
             return nullptr;
         default:

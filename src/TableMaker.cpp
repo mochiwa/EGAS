@@ -26,7 +26,7 @@ void TableMaker::setAttributes(Table& table)
 	std::vector<Attribute> attributes;
 
 
-	while((word=reader->getNextAttribute())!="" && word!=END_FILE)
+	while((word=reader->getNextAttribute()).compare("") && word.compare(END_FILE))
 		attributes.push_back(Attribute(word));
     
     for(Attribute & att:attributes)
@@ -46,7 +46,7 @@ void TableMaker::setForeignKeys(Table &table)
     string key="";
     string reference="";
 
-    while((key=reader->getNextForeignKey())!="")
+    while((key=reader->getNextForeignKey()).compare(""))
     {
         reference=reader->getForeignKeyReference();
         table.appendForeignKey(key,reference);

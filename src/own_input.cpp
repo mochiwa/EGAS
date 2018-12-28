@@ -65,3 +65,9 @@ void resetChar(char *str,int size)
 	str[i]='\0';
 }
 
+
+void proceed(char const* str)
+{
+    cout<<str;
+    cin.get();   
+}

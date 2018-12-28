@@ -12,55 +12,75 @@
 #endif
 
 /**
- * @fn         char readSingleChar()
  * @brief      Reads a single character.
  *
  * @param      cursor  The cursor
  *
  * @return     the char
+ *
+ * @author     mochiwa
+ * @date       28-Dec-2018
  */
 char readSingleChar();
 
 /**
- * @fn         int readInteger()
  * @brief      Reads an integer.
  *
  * @param      cursor  The cursor
  *
  * @return     the integer or -1 if > high value of integer
+ * @author     mochiwa
+ * @date       28-Dec-2018
  */
 int readInteger(char const* cursor=">");
 
 /**
- * @fn         double readDouble()
  * @brief      Reads a double.
- * 
+ *
  * @param      cursor  The cursor
  *
  * @return     return double or -1 if > high value of double
+ *
+ * @author     mochiwa
+ * @date       28-Dec-2018
  */
 double readDouble(char const* cursor=">");
 
 /**
- * @fn         bool getBinaryAnswer(char const* output)
  * @brief      Gets a binary answer (true/false).
  *
  * @param      output  The output
  *
  * @return     true or false
+ *
+ * @author     mochiwa
+ * @date       28-Dec-2018
  */
 bool getBinaryAnswer(char const* output);
 
 /**
  * @fn         void resetChar(char *str,int size)
+ *
+ *
  * @brief      reset a char row.
  *
- * @param      char* the row
- * @param	   int size (last \0 not include)
+ * @param      str   The string
+ * @param      char*  the row
+ * @param      int    size (last \0 not include)
  *
+ * @author     mochiwa
+ * @date       28-Dec-2018
  */
 void resetChar(char *str,int size);
 
 
-void clearBuffer();
+/**
+ * @brief      Ask to press enter
+ *
+ * @param      str   The string
+ *
+ * @author     mochiwa
+ * @date       28-Dec-2018
+ */
+void proceed(char const* str=">>");
 #endif

@@ -49,18 +49,16 @@ void Table::appendForeignKey(string const& key,string const& table)
     for(Attribute & att:attributes )
         if(!att.getName().compare(key))
             att.setKeyType(KeyType::foreign);
-
 }
 
 bool Table::hasForeignKey(std::string const& key) const
 {
     if(foreignKeys.find(key)==foreignKeys.end())
         return false;
-    else
-        return true;
+    return true;
 }
 
-string const& Table::getReference(string const& foreignkey)const
+string const& Table::getReference(string const& foreignkey) const
 {
     return foreignKeys.at(foreignkey);
 }
@@ -70,8 +68,7 @@ int Table::getCountAttributes() const
 	return attributes.size();
 }
 
-// TODO : ADD TRY/CATCH
-Attribute const& Table::getAttribute(string const& name)
+Attribute const& Table::getAttribute(string const& name) const
 {
     for(Attribute const& att:attributes)
     {
@@ -81,13 +78,9 @@ Attribute const& Table::getAttribute(string const& name)
 	throw "NOT_FOUND"; 
 }
 
-// TODO : ADD TRY/CATCH
-Attribute const& Table::getAttribute(unsigned int position)
+Attribute const& Table::getAttribute(unsigned int index) const
 {
-	if(position<attributes.size())
-		return attributes[position];
-	else
-		throw "BAD_INDEX";
+	return attributes.at(index);
 }
 
 string Table::toString() const
@@ -99,7 +92,6 @@ string Table::toString() const
     {
         str+="    "+att.toString()+"\n";
     }
-	
 	return str;
 }
 
@@ -150,11 +142,11 @@ void Table::setAttributes(vector<Attribute> attributes)
 	this->attributes=attributes;
 }
 
-void Table::setPrimaryKey(std::string  const& key)
+void Table::setPrimaryKey(std::string  const& attribute)
 {
     for(Attribute & att:attributes)
     {
-        if(!att.getName().compare(key))
+        if(!att.getName().compare(attribute))
             att.setKeyType(KeyType::primary);
         else if(att==KeyType::primary)
             att.setKeyType(KeyType::other);

@@ -29,7 +29,7 @@ private:
     static unsigned int lastId;/**< the last id will be attributed.*/
 
 	unsigned int id;   /**< The unique ID.*/
-    KeyType keyType;   /**< Define if the attribute is a key REMOVE ?<*/ 
+    KeyType keyType;   /**< Define if the attribute is a key */ 
 	std::string name;  /**< The name of the attribute.*/
 	std::string type;  /**< The type of the attribute.*/
 

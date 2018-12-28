@@ -125,6 +125,16 @@ private:
      */
     Table const& selectTable() const;
 
+    /**
+     * @brief      generate all Lines to write
+     *
+     * @note       Run through every table to generate line
+     *
+     * @author     mochiwa
+     * @date       28-Dec-2018
+     */
+    void generateLines() const;
+
 
 public:
 
