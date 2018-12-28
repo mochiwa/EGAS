@@ -88,7 +88,7 @@ void Application::sliceSQLFile(string const& filepath)
     tables=parser.getTablesToString();
     for(string const& table:tables)
     {
-        outfile=ofstream((tmpdir.getDirName()+"/SQL-"+to_string(i++)));
+        outfile=ofstream((tmpdir.getName()+"/SQL-"+to_string(i++)));
         outfile<<table;
         outfile.close();
     }
@@ -182,14 +182,16 @@ void Application::run()
 
     sliceSQLFile(sqlFile);
 
-    readerType=selectSQLType();
-    reader=ReaderFactory::getReader(readerType);
+    reader=ReaderFactory::getReader(selectSQLType());
 
     loadTables();
 
+    //Table table=selectTable();
+    for(Table const& table:tables)
+    {
 
-    Table table=selectTable();
-    for(int i=0;i<100;i++)
+
+    for(int i=0;i<200;i++)
     {
         writer.initLine(table.getName());
 
@@ -209,7 +211,10 @@ void Application::run()
         }
         writer.closeQuerry();
 
-        writer.writeQuerry(outputdir.getDirName()+"/"+table.getName());
+        writer.writeQuerry(outputdir.getName()+"/SQLFILE.sql");
+    }
+
+
     }
     tmpdir.eraseContent();
     delete reader;

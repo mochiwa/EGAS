@@ -52,7 +52,7 @@ void Table::appendForeignKey(string const& key,string const& table)
 
 }
 
-bool Table::hasForeignKey(std::string const& key)
+bool Table::hasForeignKey(std::string const& key) const
 {
     if(foreignKeys.find(key)==foreignKeys.end())
         return false;
@@ -60,9 +60,9 @@ bool Table::hasForeignKey(std::string const& key)
         return true;
 }
 
-string const& Table::getReference(string const& foreignkey)
+string const& Table::getReference(string const& foreignkey)const
 {
-    return foreignKeys[foreignkey];
+    return foreignKeys.at(foreignkey);
 }
 
 int Table::getCountAttributes() const

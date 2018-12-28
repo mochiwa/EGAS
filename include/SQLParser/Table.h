@@ -133,7 +133,7 @@ public:
      * @author     mochiwa
      * @date       19-Dec-2018
      */
-    bool hasForeignKey(std::string const& key);
+    bool hasForeignKey(std::string const& key) const;
 
     /**
      * @brief      Gets the reference.
@@ -145,7 +145,7 @@ public:
      * @author     mochiwa
      * @date       28-Dec-2018
      */
-    std::string const& getReference(std::string const& foreignkey);
+    std::string const& getReference(std::string const& foreignkey)const;
 
 	/**
      * @brief      Gets the number of attributes alive.
