@@ -17,14 +17,20 @@ Application::~Application()
 //*******************************************************
 void Application::init()
 {   
+    reader=nullptr;
+
     inputdir=Directory("input");
     tmpdir=Directory("tmp");
+    outputdir=Directory("output");
+    library=Directory("library");
 
     inputdir.read();
     tmpdir.read();
+    outputdir.read();
+    library.read();
 }
 
-void Application::showTitle(string const& str)
+void Application::showTitle(string const& str) const
 {
     unsigned int i;
     unsigned int lineUp;
@@ -62,7 +68,6 @@ void Application::tmpdirManagement()
     tmpdir.printFiles();
     cout<<"please move files or delete their "<<endl;
 
-
     if(!getBinaryAnswer("delete files ?"))
     {
         cout<<"Please move files before to press Return...";
@@ -81,24 +86,34 @@ void Application::sliceSQLFile(string const& filepath)
     int i=0;
 
     tables=parser.getTablesToString();
-    for(auto table:tables)
+    for(string const& table:tables)
     {
         outfile=ofstream((tmpdir.getDirName()+"/SQL-"+to_string(i++)));
         outfile<<table;
         outfile.close();
     }
-
+    tmpdir.read();
 }
 
+void Application::loadTables()
+{
+    for(string file:tmpdir.getFiles())
+    {
+        file=tmpdir.getFilePath(file);
+        reader->openFile(file);
+        tables.push_back(TableMaker::getTable(reader));
+        reader->closeFile();
+    }
+}
 
 std::string Application::selectInputFile()
 {
-    unsigned selected;
+    unsigned selected=-1;
     do
     {
         CLEAR()
         showTitle("INPUT DIR FILE SELECTION");
-        if(inputdir.getCountFile()==0)
+        if(inputdir.isEmpty())
         {
             cout<<"Your input directory is empty, insert files into and press Return"<<endl;
             cin.get();
@@ -109,14 +124,14 @@ std::string Application::selectInputFile()
             inputdir.printFiles();
             selected=readInteger("Select: ")-1;
         }
-        
     }while(selected>=inputdir.getCountFile());
+
     return inputdir.getFilePath(selected);
 }
 
 
 //TODO def one begin and one last readerType
-ReaderType Application::selectSQLType()
+ReaderType Application::selectSQLType() const
 {
     unsigned int selected;
 
@@ -132,6 +147,23 @@ ReaderType Application::selectSQLType()
     return static_cast<ReaderType>(selected);
 }
 
+Table const& Application::selectTable() const
+{
+    unsigned int selected=0;
+    unsigned int i=1;
+
+    do
+    {
+        CLEAR()
+        showTitle("SELECT A TABLE");
+        for(Table const& table:this->tables)
+            cout<<i++<<") "<<table.getName()<<endl;
+        selected=readInteger("Select: ")-1;
+    }while(selected>tables.size());
+
+    return tables[selected];
+}
+
 //*******************************************************
 //********************  PUBLIC  *************************
 //*******************************************************
@@ -139,11 +171,11 @@ ReaderType Application::selectSQLType()
 
 void Application::run()
 {
-   string sqlFile="";
+    string sqlFile="";
 
     showTitle("EGAS");
 
-    while(sqlFile=="")
+    while(!sqlFile.compare(""))
         sqlFile=selectInputFile();
 
     while(!tmpdir.isEmpty())
@@ -152,13 +184,29 @@ void Application::run()
     sliceSQLFile(sqlFile);
 
     readerType=selectSQLType();
+    reader=ReaderFactory::getReader(readerType);
 
-    TableReader *reader=ReaderFactory::getReader(readerType);
+    loadTables();
 
-    reader->openFile("tmp/SQL-0");
 
-    Table table=TableMaker::getTable(reader);
-    cout<<table.toString();
+    Table table=selectTable();
+    for(int i=0;i<100;i++)
+    {
 
+
+        writer.initLine(table.getName());
+
+        writer.appendAttributes(table.getAttributes());
+
+        for(Attribute const& att:table.getAttributes())
+        {
+            writer.appendValue("abcd"); //here
+        }
+        writer.closeQuerry();
+
+        writer.writeQuerry(outputdir.getDirName()+"/"+table.getName());
+
+    }
+    tmpdir.eraseContent();
     delete reader;
 }

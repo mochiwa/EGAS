@@ -11,8 +11,11 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
+#include <map>
+
 #include "Attribute.h"
 
+typedef std::pair<std::string,std::string> foreignKey ;/** < This Typedef is a pair to append to the foreignkyes */
 
 /**
  * @brief      Class for table.
@@ -31,6 +34,9 @@ private:
 	unsigned int id;/**< The unique ID. */
 	std::string name; /**< The name of the table. */
 	std::vector<Attribute> attributes; /**< List of \p Attribute in the table. */
+
+   // std::string primaryKey; /**< Primary key of the map */
+    std::map<std::string, std::string> foreignKeys; /**< Map of foreign key  foreignKey - table*/
 
 	/**
      * @brief      initialize variables of the Table
@@ -104,6 +110,31 @@ public:
      */
 	void appendAttribute(Attribute const& attribute);
 
+    /**
+     * @brief      Appends a foreign key.
+     *
+     * @param      key    The key
+     * @param      value  The value
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    void appendForeignKey(std::string const& key,std::string const& table);
+
+    /**
+     * @brief      Determines if the key is a foreign key of the table.
+     *
+     * @param      key   The key
+     *
+     * @return     True if a is foreign key, False otherwise.
+     *
+     * @note       { paragraph }
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    bool hasForeignKey(std::string const& key);
+
 	/**
      * @brief      Gets the number of attributes alive.
      *
@@ -143,6 +174,7 @@ public:
      * @date       09-Dec-2018
      */
 	Attribute const& getAttribute(unsigned int position);
+
 
 
 	/**
@@ -189,6 +221,26 @@ public:
      */
 	std::vector<Attribute> const& getAttributes() const;
 
+    /**
+     * @brief      Gets the primary key.
+     *
+     * @return     The primary key.
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    Attribute const* getPrimaryKey() const;
+
+    /**
+     * @brief      Gets the foreign keys.
+     *
+     * @return     The foreign keys as a map 
+     *
+     * @author     mochiwa
+     * @date       19-Dec-2018
+     */
+    std::map<std::string,std::string> const& getForeignKeys() const;
+
 	/**
      * @brief      Sets the identifier.
      *
@@ -218,6 +270,19 @@ public:
      * @date       09-Dec-2018
      */
     void setAttributes(std::vector<Attribute> attributes);
+
+    /**
+     * @brief      Sets the primary key.
+     *
+     * @param      key   The key
+     *
+     * @note       set the primary key and try notify the attribute
+     *
+     * @author     mochiwa
+     * @date       20-Dec-2018
+     */
+    void setPrimaryKey(std::string  const& key);
+
 
 };
 #endif

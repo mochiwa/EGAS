@@ -30,6 +30,7 @@ void Attribute::init()
 	setId(lastId++);
 	setName("");
 	setType("");
+    setKeyType(KeyType::other);
 	counter++;
 }
 //*******************************************************
@@ -47,15 +48,41 @@ std::string Attribute::toString() const
 	string str="Attribute("+to_string(id)+"):\n";
 	str+="  Name: "+getName();
 	str+="  Type: "+getType();
+    str+="  KeyType: "+ keyTypeToString();
 	return str;
+}
+
+std::string Attribute::keyTypeToString() const
+{
+    switch(keyType)
+    {
+        case primary:
+            return "primary";
+            break;
+        case foreign:
+            return "foreign";
+            break;
+        case other:
+            return "None";
+            break;
+    }
+    return "";
 }
 
 Attribute const& Attribute::operator=(Attribute const& src)
 {
 	setName(src.getName());
 	setType(src.getType());
+    setKeyType(src.getKeyType());
+    
 	return *this;
+}
 
+bool Attribute::operator==(KeyType keyType) const
+{
+    if(this->keyType==keyType)
+        return true;
+    return false;
 }
 //*******************************************************
 //***************  GETTER AND SETTER  *******************
@@ -63,6 +90,11 @@ Attribute const& Attribute::operator=(Attribute const& src)
 unsigned int Attribute::getId() const
 {
     return id;
+}
+
+KeyType Attribute::getKeyType() const
+{
+    return keyType;
 }
 
 string const& Attribute::getName() const
@@ -78,6 +110,11 @@ string const& Attribute::getType() const
 void Attribute::setId(unsigned int const id)
 {
     this->id=id;
+}
+
+void Attribute::setKeyType(KeyType type)
+{
+    this->keyType=type;
 }
 
 void Attribute::setName(string const& name)

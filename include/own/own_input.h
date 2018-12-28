@@ -19,7 +19,7 @@
  *
  * @return     the char
  */
-char readSingleChar(char const* cursor=">");
+char readSingleChar();
 
 /**
  * @fn         int readInteger()
