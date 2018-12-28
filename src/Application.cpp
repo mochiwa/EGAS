@@ -129,20 +129,19 @@ std::string Application::selectInputFile()
     return inputdir.getFilePath(selected);
 }
 
-
 //TODO def one begin and one last readerType
 ReaderType Application::selectSQLType() const
 {
-    unsigned int selected;
+    unsigned int selected=ReaderType::LAST;
 
-    do
+    while(selected>=ReaderType::LAST)
     {
         CLEAR()
         showTitle("SQL SELECTION");
         for(int i=0;i<ReaderType::LAST;i++)
             cout<<i+1<<") "<<static_cast<ReaderType>(i);
         selected=readInteger("Select: ")-1;
-    }while(selected>=ReaderType::LAST);
+    }
 
     return static_cast<ReaderType>(selected);
 }
@@ -200,12 +199,19 @@ void Application::run()
 
         for(Attribute const& att:table.getAttributes())
         {
-            writer.appendValue("abcd"); //here
+            if(att.getKeyType()==KeyType::primary)
+                writer.appendValue((int)att.getId());
+            else if(att.getKeyType()==KeyType::foreign)
+            {
+                if(table.hasForeignKey(att.getName()))
+                    writer.appendValue(table.getReference(att.getName()));
+            }
+            else
+                writer.appendValue("A_RANDOM_VALUE"); //here
         }
         writer.closeQuerry();
 
         writer.writeQuerry(outputdir.getDirName()+"/"+table.getName());
-
     }
     tmpdir.eraseContent();
     delete reader;

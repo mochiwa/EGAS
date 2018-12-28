@@ -60,6 +60,11 @@ bool Table::hasForeignKey(std::string const& key)
         return true;
 }
 
+string const& Table::getReference(string const& foreignkey)
+{
+    return foreignKeys[foreignkey];
+}
+
 int Table::getCountAttributes() const
 {
 	return attributes.size();

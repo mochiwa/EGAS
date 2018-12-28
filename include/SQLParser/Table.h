@@ -135,6 +135,18 @@ public:
      */
     bool hasForeignKey(std::string const& key);
 
+    /**
+     * @brief      Gets the reference.
+     *
+     * @param[in]  key   The key
+     *
+     * @return     The table reference associated at the foreignkey .
+     *
+     * @author     mochiwa
+     * @date       28-Dec-2018
+     */
+    std::string const& getReference(std::string const& foreignkey);
+
 	/**
      * @brief      Gets the number of attributes alive.
      *
