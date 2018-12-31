@@ -162,9 +162,59 @@ Table const& Application::selectTable() const
     return tables[selected];
 }
 
-void Application::generateLines() const
+void Application::cleverGeneration(Attribute const& att)
 {
+    if(!att.getType().compare("Double"))
+        writer.appendValue(rand() % 50);
+    else if(!att.getType().compare("Int"))
+        writer.appendValue(rand() % 10);
+    else
+        writer.appendValue("DATA");
+}
 
+void Application::automaticGeneration(Table const& table,int i)
+{
+    writer.initLine(table.getName());
+    writer.appendAttributes(table.getAttributes());
+    for(Attribute const& att:table.getAttributes())
+    {
+        if(att.getKeyType()==KeyType::primary)
+            writer.appendValue(i);
+        else if(att.getKeyType()==KeyType::foreign)
+         writer.appendValue( rand() % tablereferences.at(table.getName()));
+        else
+            cleverGeneration(att);
+    }
+    writer.closeQuerry();
+    writer.writeQuerry(outputdir.getName()+"/SQLFILE.sql");
+}
+
+//TODO separer le code
+void Application::generateLines()
+{
+    int count=0;
+    bool random=true;
+
+    CLEAR()
+    showTitle("Lines generation");
+    cout<<"Maximal line will generate: ";
+    count=readInteger("");
+
+    srand(time(NULL));
+    for(Table const table:tables)
+    {
+        appendTableReference(table.getName(),count);
+        for(int i=0;i<count;i++)
+        {
+            automaticGeneration(table,i);
+            
+        }
+    }
+}
+
+void Application::appendTableReference(std::string const& table,int count)
+{
+    tablereferences.insert(reference(table,count));
 }
 
 //*******************************************************
@@ -190,36 +240,8 @@ void Application::run()
 
     loadTables();
 
-    //Table table=selectTable();
-    for(Table const& table:tables)
-    {
+    generateLines();
 
-
-    for(int i=0;i<200;i++)
-    {
-        writer.initLine(table.getName());
-
-        writer.appendAttributes(table.getAttributes());
-
-        for(Attribute const& att:table.getAttributes())
-        {
-            if(att.getKeyType()==KeyType::primary)
-                writer.appendValue((int)att.getId());
-            else if(att.getKeyType()==KeyType::foreign)
-            {
-                if(table.hasForeignKey(att.getName()))
-                    writer.appendValue(table.getReference(att.getName()));
-            }
-            else
-                writer.appendValue("A_RANDOM_VALUE"); //here
-        }
-        writer.closeQuerry();
-
-        writer.writeQuerry(outputdir.getName()+"/SQLFILE.sql");
-    }
-
-
-    }
     tmpdir.eraseContent();
     delete reader;
 }

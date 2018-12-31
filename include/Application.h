@@ -5,6 +5,8 @@
 #include <cstring>
 #include <vector>
 #include <fstream>
+#include <map>
+#include <cstdlib>
 
 #include "Directory.h"
 #include "own/own_input.h"
@@ -21,6 +23,8 @@
     #define CLEAR() system("cls");
 #endif
 
+typedef std::pair<std::string,int> reference;
+
 
 class Application
 {
@@ -35,6 +39,7 @@ private:
     SQLWriter writer; /** < The writer that write SQLFile*/
 
     std::vector<Table> tables; /** < List of tables in the worked file */
+    std::map<std::string,int> tablereferences; /** < a map of table name and count line */
 
     /**
      * @brief      initialize variables of the Attribute
@@ -133,7 +138,23 @@ private:
      * @author     mochiwa
      * @date       28-Dec-2018
      */
-    void generateLines() const;
+    void generateLines();
+
+    void cleverGeneration(Attribute const& att);
+
+    void automaticGeneration(Table const& table,int i);
+
+    /**
+     * @brief      Appends a table reference.
+     *
+     * @param      table  The table
+     * @param[in]  count  The count
+     *
+     * @author     mochiwa
+     * @date       28-Dec-2018
+     */
+    void appendTableReference(std::string const& table,int count);
+
 
 
 public:
