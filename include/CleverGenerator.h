@@ -14,10 +14,11 @@ public:
     /**
      * @brief      Constructs the object.
      *
+   
      * @author     mochiwa
      * @date       31-Dec-2018
      */
-    CleverGenerator();   
+    CleverGenerator();
     /**
      * @brief      Gets a random int
      *
@@ -43,6 +44,22 @@ public:
      * @date       31-Dec-2018
      */
     double getDouble(double min=0,double max=100);
+
+
+    /**
+     * @brief      Gets the clever value.
+     *
+     * @param      attribute  The attribute
+     *
+     * @return     The clever value.
+     *
+     * @note       this function try to find a coherence value for the attribute
+     *
+     * @author     mochiwa
+     * @date       31-Dec-2018
+     */
+    std::string getCleverValue(std::string const& name);
+
     
 };
 

@@ -4,8 +4,9 @@ using namespace std;
 
 CleverGenerator::CleverGenerator()
 {
-    
+    getInt();
 }
+
 
 int CleverGenerator::getInt(int min,int max)
 {
@@ -17,4 +18,9 @@ double CleverGenerator::getDouble(double min,double max)
 {
     uniform_real_distribution<double> distribution(min,max);
     return round(distribution(generator)*100)/100.0;
+}
+
+string CleverGenerator::getCleverValue(string const& name)
+{
+    return "tes";
 }

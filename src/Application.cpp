@@ -169,22 +169,29 @@ void Application::cleverGeneration(Attribute const& att)
     else if(!att.getType().compare("Int"))
         writer.appendValue(clever.getInt());
     else
-        writer.appendValue("DATA");
+        writer.appendValue(clever.getCleverValue(att.getName()));
 }
 
+
+//Deux option ou un nombre de lines fixe pour tout ou un trie dans le table en fonction des foreign
 void Application::automaticGeneration(Table const& table,int i)
 {
     writer.initLine(table.getName());
     writer.appendAttributes(table.getAttributes());
+
     for(Attribute const& att:table.getAttributes())
     {
         if(att.getKeyType()==KeyType::primary)
             writer.appendValue(i);
         else if(att.getKeyType()==KeyType::foreign)
-         writer.appendValue( clever.getInt(0,tablereferences.at(table.getName())));
+        {
+            //writer.appendValue( clever.getInt(0,tablereferences.at(table.getReference(att.getName()))));
+            writer.appendValue(5);
+        }
         else
             cleverGeneration(att);
     }
+
     writer.closeQuerry();
     writer.writeQuerry(outputdir.getName()+"/SQLFILE.sql");
 }
@@ -192,23 +199,23 @@ void Application::automaticGeneration(Table const& table,int i)
 //TODO separer le code
 void Application::generateLines()
 {
-    int count=0;
-    bool random=true;
+    int maxLinesGenerate=0;
+    int randomLines=0;
 
     CLEAR()
     showTitle("Lines generation");
-    cout<<"Maximal line will generate: ";
-    count=readInteger("");
 
-    
-    for(Table const table:tables)
+   
+    cout<<"Maximal line will generate: ";
+    maxLinesGenerate=readInteger("");
+
+
+    for(Table const& table:tables)
     {
-        appendTableReference(table.getName(),count);
-        for(int i=0;i<count;i++)
-        {
-            automaticGeneration(table,i);
-            
-        }
+        randomLines=clever.getInt(1,maxLinesGenerate);
+        appendTableReference(table.getName(),randomLines-1);
+        for(int line=0;line<randomLines;line++)
+            automaticGeneration(table,line);
     }
 }
 
