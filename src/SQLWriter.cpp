@@ -55,6 +55,22 @@ bool SQLWriter::isFileExist()
     f.close();
     return value;
 }
+
+
+string SQLWriter::setPricision(string const& value,unsigned int const precision)
+{
+    string str="";
+    unsigned int i=0;
+    unsigned int max=0;
+
+    while(value[i]!='.' &&  i<value.size())
+        str+=value[i++];
+
+    max=i+precision;
+    for(;i<value.size() && i<max;++i)
+        str+=value[i];
+    return str;
+}
 //*******************************************************
 //********************  PUBLIC  *************************
 //*******************************************************
@@ -82,9 +98,9 @@ void SQLWriter::appendValue(int value)
     querry+=to_string(value)+",";
 }
 
-void SQLWriter::appendValue(double value)
+void SQLWriter::appendValue(double value,unsigned int const precision)
 {
-    querry+=to_string(value)+",";
+    querry+=setPricision(to_string(value),precision)+",";
 }
 
 void SQLWriter::closeQuerry()

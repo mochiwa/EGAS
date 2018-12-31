@@ -6,7 +6,6 @@
 #include <vector>
 #include <fstream>
 #include <map>
-#include <cstdlib>
 
 #include "Directory.h"
 #include "own/own_input.h"
@@ -15,6 +14,7 @@
 #include "SQLWriter.h"
 #include "Table.h"
 #include "TableMaker.h"
+#include "CleverGenerator.h"
 
 
 #ifdef LINUX
@@ -41,6 +41,7 @@ private:
     std::vector<Table> tables; /** < List of tables in the worked file */
     std::map<std::string,int> tablereferences; /** < a map of table name and count line */
 
+    CleverGenerator clever; /** < Object respive to detect what kind of data generate*/
     /**
      * @brief      initialize variables of the Attribute
      *

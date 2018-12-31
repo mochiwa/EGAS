@@ -59,6 +59,19 @@ private:
      */
     bool isFileExist();
 
+    /**
+     * @brief      Sets the pricision of a double value.
+     *
+     * @param      value      The value
+     * @param[in]  precision  The precision
+     *
+     * @return     the new double in a string
+     *
+     * @author     mochiwa
+     * @date       31-Dec-2018
+     */
+    std::string setPricision(std::string const& value,unsigned int const precision);
+
 public:
     
     /**
@@ -140,14 +153,15 @@ public:
     /**
      * @brief      Appends a value.
      *
-     * @param[in]  value  The value
+     * @param[in]  value      The value
+     * @param[in]  pricision  The pricision after the time
      *
      * @note       Append the value as double to the querry : " value, "
      *
      * @author     mochiwa
      * @date       28-Dec-2018
      */
-    void appendValue(double value);
+    void appendValue(double value,unsigned int const precision=2);
 
     /**
      * @brief      Closes the querry.

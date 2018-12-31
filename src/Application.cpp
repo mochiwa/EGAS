@@ -165,9 +165,9 @@ Table const& Application::selectTable() const
 void Application::cleverGeneration(Attribute const& att)
 {
     if(!att.getType().compare("Double"))
-        writer.appendValue(rand() % 50);
+        writer.appendValue(clever.getDouble());
     else if(!att.getType().compare("Int"))
-        writer.appendValue(rand() % 10);
+        writer.appendValue(clever.getInt());
     else
         writer.appendValue("DATA");
 }
@@ -181,7 +181,7 @@ void Application::automaticGeneration(Table const& table,int i)
         if(att.getKeyType()==KeyType::primary)
             writer.appendValue(i);
         else if(att.getKeyType()==KeyType::foreign)
-         writer.appendValue( rand() % tablereferences.at(table.getName()));
+         writer.appendValue( clever.getInt(0,tablereferences.at(table.getName())));
         else
             cleverGeneration(att);
     }
@@ -200,7 +200,7 @@ void Application::generateLines()
     cout<<"Maximal line will generate: ";
     count=readInteger("");
 
-    srand(time(NULL));
+    
     for(Table const table:tables)
     {
         appendTableReference(table.getName(),count);
