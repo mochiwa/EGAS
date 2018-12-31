@@ -42,6 +42,30 @@ private:
     std::map<std::string,int> tablereferences; /** < a map of table name and count line */
 
     CleverGenerator clever; /** < Object respive to detect what kind of data generate*/
+    
+    /**
+     * @brief      swap table at posA to posB
+     *
+     * @param[in]  posA  The position a
+     * @param[in]  posB  The position b
+     *
+     * @author     mochiwa
+     * @date       31-Dec-2018
+     */
+    void swapTable(int posA,int posB); 
+
+    /**
+     * @brief      sort tables
+     *
+     * @note       this function sort the tables with
+     *              the foreign relations, tables without foreign
+     *              are at first.
+     *
+     * @author     mochiwa
+     * @date       31-Dec-2018
+     */
+    void sortTable();
+
     /**
      * @brief      initialize variables of the Attribute
      *

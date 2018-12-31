@@ -15,6 +15,45 @@ Application::~Application()
 //*******************************************************
 //*******************  PRIVATE  *************************
 //*******************************************************
+
+
+void Application::swapTable(int posA,int posB)
+{
+    Table tmp=tables.at(posA);
+
+    tables.at(posA)=tables.at(posB);
+    tables.at(posB)=tmp;
+}
+
+void Application::sortTable()
+{
+    unsigned int pos=0;
+    unsigned int i=0;
+    bool founded=false;
+    map<string,string> foreignKeys;
+
+    for(i=0;i<tables.size();++i)//placement of every table without foreignkey at first position
+        if(tables.at(i).getForeignKeys().size()==0)
+            swapTable(i,pos++);
+
+    for(;pos<tables.size();pos++)
+        for(i=pos+1;i<tables.size();++i)
+        {
+            foreignKeys=tables.at(pos).getForeignKeys();
+            for(auto const& ref:foreignKeys)
+                 if(!tables[i].getName().compare(ref.second))
+                 {
+                    swapTable(pos,i);
+                    founded=true;
+                 }
+            if(founded)
+            {
+                pos=0;
+                founded=false;
+            }
+        }
+}
+
 void Application::init()
 {   
     reader=nullptr;
@@ -185,8 +224,7 @@ void Application::automaticGeneration(Table const& table,int i)
             writer.appendValue(i);
         else if(att.getKeyType()==KeyType::foreign)
         {
-            //writer.appendValue( clever.getInt(0,tablereferences.at(table.getReference(att.getName()))));
-            writer.appendValue(5);
+            writer.appendValue( clever.getInt(0,tablereferences.at(table.getReference(att.getName()))));
         }
         else
             cleverGeneration(att);
@@ -213,6 +251,8 @@ void Application::generateLines()
     for(Table const& table:tables)
     {
         randomLines=clever.getInt(1,maxLinesGenerate);
+        cout<<randomLines;
+        cin.get();
         appendTableReference(table.getName(),randomLines-1);
         for(int line=0;line<randomLines;line++)
             automaticGeneration(table,line);
@@ -246,6 +286,8 @@ void Application::run()
     reader=ReaderFactory::getReader(selectSQLType());
 
     loadTables();
+
+    sortTable();
 
     generateLines();
 
