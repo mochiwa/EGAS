@@ -8,6 +8,7 @@
 class CleverGenerator
 {
 private:
+    std::random_device r;
     std::default_random_engine generator;
 public:
 

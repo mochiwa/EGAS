@@ -59,6 +59,16 @@ public:
      */
 	Table();
 
+    /**
+     * @brief      Constructs the object.
+     *
+     * @param      src   The source
+     *
+     * @author     mochiwa
+     * @date       01-Jan-2019
+     */
+    Table(Table const& src);
+
 	/**
      * @brief      Constructs the object.
      *
@@ -188,7 +198,6 @@ public:
 	Attribute const& getAttribute(unsigned int index)const ;
 
 
-
 	/**
      * @brief      Returns a string representation of the object.
      *
@@ -295,6 +304,15 @@ public:
      */
     void setPrimaryKey(std::string  const& attribute);
 
+    /**
+     * @brief      Sets the foreign keys.
+     *
+     * @param      foreignkeys  The foreignkeys
+     *
+     * @author     mochiwa
+     * @date       01-Jan-2019
+     */
+    void setForeignKeys(std::map<std::string,std::string> const& foreignKeys);
 
 };
 #endif

@@ -15,6 +15,15 @@ Table::Table(string const& name)
 	setName(name);
 }
 
+Table::Table(Table const& src)
+{
+    init();
+    setId(src.getId());
+    setName(src.getName());
+    setAttributes(src.getAttributes());
+    setForeignKeys(src.getForeignKeys());
+}
+
 Table::~Table()
 {
 	counter--;
@@ -151,4 +160,9 @@ void Table::setPrimaryKey(std::string  const& attribute)
         else if(att==KeyType::primary)
             att.setKeyType(KeyType::other);
     }
+}
+
+void Table::setForeignKeys(map<string,string> const& foreignKeys)
+{
+    this->foreignKeys=foreignKeys;
 }

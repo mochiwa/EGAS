@@ -4,7 +4,7 @@ using namespace std;
 
 CleverGenerator::CleverGenerator()
 {
-    getInt();
+    generator.seed(r());
 }
 
 
