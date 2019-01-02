@@ -25,8 +25,6 @@ class SQLWriter
 private:
     std::ofstream file;
     std::string filename;
-    std::string querry;
-
     /**
      * @brief      Opens a file.
      *
@@ -72,6 +70,9 @@ private:
      */
     std::string setPricision(std::string const& value,unsigned int const precision);
 
+protected:
+    std::string query;
+
 public:
     
     /**
@@ -100,14 +101,14 @@ public:
      * @author     mochiwa
      * @date       26-Dec-2018
      */
-    ~SQLWriter();
+    virtual ~SQLWriter();
     
     /**
-     * @brief      insert the initial querry keyword
+     * @brief      insert the initial query keyword
      *
      * @param      tableName  The table name
      *
-     * @note       init the querry with INSERT INTO <tableName>
+     * @note       init the query with INSERT INTO <tableName>
      *
      * @author     mochiwa
      * @date       26-Dec-2018
@@ -119,7 +120,7 @@ public:
      *
      * @param      attributes  The attributes
      *
-     * @note       insert into the begining of querry " (att1,att2,...) VALUES( "
+     * @note       insert into the begining of query " (att1,att2,...) VALUES( "
      *
      * @author     mochiwa
      * @date       26-Dec-2018
@@ -131,7 +132,7 @@ public:
      *
      * @param      value  The value
      *
-     * @note       Append the value as string to the querry : " 'value', "
+     * @note       Append the value as string to the query : " 'value', "
      *
      * @author     mochiwa
      * @date       26-Dec-2018
@@ -143,7 +144,7 @@ public:
      *
      * @param[in]  value  The value
      *
-     * @note       Append the value as integer to the querry : " value, "
+     * @note       Append the value as integer to the query : " value, "
      *
      * @author     mochiwa
      * @date       26-Dec-2018
@@ -156,7 +157,7 @@ public:
      * @param[in]  value      The value
      * @param[in]  pricision  The pricision after the time
      *
-     * @note       Append the value as double to the querry : " value, "
+     * @note       Append the value as double to the query : " value, "
      *
      * @author     mochiwa
      * @date       28-Dec-2018
@@ -164,9 +165,33 @@ public:
     void appendValue(double value,unsigned int const precision=2);
 
     /**
-     * @brief      Closes the querry.
+     * @brief      Appends a date.
      *
-     * @note       append the end of the querry ");"
+     * @param      value  The value
+     *
+     * @note       Append the date with the correct format of the SGBD
+     *
+     * @author     mochiwa
+     * @date       02-Jan-2019
+     */
+    virtual void appendDate(std::string const& value)=0;
+
+    /**
+     * @brief      Appends a date time.
+     *
+     * @param      value  The value
+     *
+     * @note       Append the date with the correct format of the SGBD
+     *
+     * @author     mochiwa
+     * @date       02-Jan-2019
+     */
+    virtual void appendDateTime(std::string const& value)=0;
+
+    /**
+     * @brief      Closes the query.
+     *
+     * @note       append the end of the query ");"
      *
      * @author     mochiwa
      * @date       26-Dec-2018
@@ -174,9 +199,9 @@ public:
     void closeQuerry();
 
     /**
-     * @brief      Writes a querry.
+     * @brief      Writes a query.
      *
-     * @note       write the querry into the file
+     * @note       write the query into the file
      *
      * @author     mochiwa
      * @date       26-Dec-2018
@@ -184,11 +209,11 @@ public:
     void writeQuerry();
 
     /**
-     * @brief      Writes a querry.
+     * @brief      Writes a query.
      *
      * @param      file  The file
      *
-     * @note       write the querry into the file
+     * @note       write the query into the file
      *
      * @author     mochiwa
      * @date       28-Dec-2018
@@ -196,13 +221,13 @@ public:
     void writeQuerry(std::string const& file);
 
     /**
-     * @brief      Gets the querry.
+     * @brief      Gets the query.
      *
-     * @return     The querry.
+     * @return     The query.
      *
      * @author     mochiwa
      * @date       26-Dec-2018
      */
-    std::string const& getQuerry();
+    std::string const& getQuerry() const;
 };
 #endif 

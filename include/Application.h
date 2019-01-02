@@ -9,7 +9,9 @@
 
 #include "Directory.h"
 #include "own/own_input.h"
+#include "SGBDType.h"
 #include "ReaderFactory.h"
+#include "WriterFactory.h"
 #include "MYSQLTableReader.h"
 #include "SQLWriter.h"
 #include "Table.h"
@@ -34,9 +36,9 @@ private:
     Directory outputdir; /** < Describe the directory where the application put the file */
     Directory library; /** < Describe the directory where the application take data to... */
 
-    ReaderType readerType; /** < the type of SGBD used */
+    SGBDType sgbd; /** < the type of SGBD used */
     TableReader *reader; /** < The reader that read a SQLFile (Abstract)*/
-    SQLWriter writer; /** < The writer that write SQLFile*/
+    SQLWriter *writer; /** < The writer that write SQLFile*/
 
     std::vector<Table> tables; /** < List of tables in the worked file */
     std::map<std::string,int> tablereferences; /** < a map of table name and count line */
@@ -157,7 +159,7 @@ private:
      * @author     mochiwa
      * @date       17-Dec-2018
      */
-    ReaderType selectSQLType() const;
+    SGBDType selectSQLType() const;
 
     /**
      * @brief      show a menu to select the table 

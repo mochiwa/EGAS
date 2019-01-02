@@ -167,21 +167,21 @@ string Application::selectInputFile()
     return inputdir.getFilePath(selected);
 }
 
-ReaderType Application::selectSQLType() const
+SGBDType Application::selectSQLType() const
 {
-    unsigned int selected=ReaderType::LAST;
+    unsigned int selected=SGBDType::LAST;
 
-    while(selected>=ReaderType::LAST)
+    while(selected>=SGBDType::LAST)
     {
         CLEAR()
         showTitle("SQL SELECTION");
 
-        for(int i=0;i<ReaderType::LAST;i++)
-            cout<<i+1<<") "<<static_cast<ReaderType>(i);
+        for(int i=0;i<SGBDType::LAST;i++)
+            cout<<i+1<<") "<<static_cast<SGBDType>(i)<<endl;
         selected=readInteger("Select: ")-1;
     }
 
-    return static_cast<ReaderType>(selected);
+    return static_cast<SGBDType>(selected);
 }
 
 Table const& Application::selectTable() const
@@ -204,34 +204,36 @@ Table const& Application::selectTable() const
 void Application::cleverGeneration(Attribute const& att)
 {
     if(!att.getType().compare("Double"))
-        writer.appendValue(clever.getDouble());
+        writer->appendValue(clever.getDouble());
     else if(!att.getType().compare("Int"))
-        writer.appendValue(clever.getInt());
+        writer->appendValue(clever.getInt());
+    else if(!att.getType().compare("Date"))
+        writer->appendDate(clever.getDate());
+    else if(!att.getType().compare("Datetime"))
+        writer->appendDateTime(clever.getDateTime());
     else
-        writer.appendValue(clever.getCleverValue(att.getName()));
+        writer->appendValue(clever.getCleverValue(att.getName()));
 }
 
 
 //Deux option ou un nombre de lines fixe pour tout ou un trie dans le table en fonction des foreign
 void Application::automaticGeneration(Table const& table,int i)
 {
-    writer.initLine(table.getName());
-    writer.appendAttributes(table.getAttributes());
+    writer->initLine(table.getName());
+    writer->appendAttributes(table.getAttributes());
 
     for(Attribute const& att:table.getAttributes())
     {
         if(att.getKeyType()==KeyType::primary)
-            writer.appendValue(i);
+            writer->appendValue(i);
         else if(att.getKeyType()==KeyType::foreign)
-        {
-            writer.appendValue( clever.getInt(0,tablereferences.at(table.getReference(att.getName()))));
-        }
+            writer->appendValue( clever.getInt(0,tablereferences.at(table.getReference(att.getName()))));
         else
             cleverGeneration(att);
     }
 
-    writer.closeQuerry();
-    writer.writeQuerry(outputdir.getName()+"/SQLFILE.sql");
+    writer->closeQuerry();
+    writer->writeQuerry(outputdir.getName()+"/SQLFILE.sql");
 }
 
 //TODO separer le code
@@ -281,12 +283,15 @@ void Application::run()
 
     sliceSQLFile(sqlFile);
 
-    reader=ReaderFactory::getReader(selectSQLType());
+    sgbd=selectSQLType();
+    reader=ReaderFactory::getReader(sgbd);
         
     loadTables();
 
+    writer=WriterFactory::getWriter(sgbd);
     generateLines();
 
     tmpdir.eraseContent();
     delete reader;
+    delete writer;
 }

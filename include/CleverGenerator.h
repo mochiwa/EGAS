@@ -46,6 +46,30 @@ public:
      */
     double getDouble(double min=0,double max=100);
 
+    /**
+     * @brief      Gets the date.
+     *
+     * @return     The date.
+     *
+     * @note       return date as YYYYMMDD
+     *
+     * @author     mochiwa
+     * @date       02-Jan-2019
+     */
+    std::string const getDate();
+
+    /**
+     * @brief      Gets the date time.
+     *
+     * @return     The date time.
+     *
+     * @note       return date time as YYYYMMDD HH:MM:SS AM/PM
+     *
+     * @author     mochiwa
+     * @date       02-Jan-2019
+     */
+    std::string const getDateTime();
+
 
     /**
      * @brief      Gets the clever value.

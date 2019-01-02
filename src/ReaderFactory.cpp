@@ -2,7 +2,7 @@
 
 using namespace std;
 
-TableReader* ReaderFactory::getReader(ReaderType type) 
+TableReader* ReaderFactory::getReader(SGBDType type) 
 {
     switch(type)
     {
@@ -14,15 +14,4 @@ TableReader* ReaderFactory::getReader(ReaderType type)
             break;
     }
     return nullptr;
-}
-
-std::ostream& operator<<(std::ostream& os,ReaderType reader)
-{
-    switch(reader)
-    {
-        case MYSQL   : os<<"MySQL"<<endl;   break;
-        case ORACLE  : os<<"Oracle"<<endl;  break;
-        default      : os.setstate(std::ios_base::failbit);
-    }
-    return os;
 }

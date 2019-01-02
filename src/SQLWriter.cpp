@@ -77,42 +77,42 @@ string SQLWriter::setPricision(string const& value,unsigned int const precision)
 
 void SQLWriter::initLine(string const& tableName)
 {
-    querry="INSERT INTO "+tableName+"(";
+    query="INSERT INTO "+tableName+"(";
 }
 
 void SQLWriter::appendAttributes(vector<Attribute> const& attributes)
 {
     for(Attribute const& att:attributes)
-        querry+=att.getName()+",";
-    querry.back()=')';
-    querry+=" VALUES (";
+        query+=att.getName()+",";
+    query.back()=')';
+    query+=" VALUES (";
 }
 
 void SQLWriter::appendValue(string const& value)
 {
-    querry+="'"+value+"',";
+    query+="'"+value+"',";
 }
 
 void SQLWriter::appendValue(int value)
 {
-    querry+=to_string(value)+",";
+    query+=to_string(value)+",";
 }
 
 void SQLWriter::appendValue(double value,unsigned int const precision)
 {
-    querry+=setPricision(to_string(value),precision)+",";
+    query+=setPricision(to_string(value),precision)+",";
 }
 
 void SQLWriter::closeQuerry()
 {
-    querry.back()=')';
-    querry+=";\n";
+    query.back()=')';
+    query+=";\n";
 }
 
 void SQLWriter::writeQuerry()
 {
     openFile();
-    file<<querry;
+    file<<query;
     closeFile();
 }
 
@@ -126,7 +126,7 @@ void SQLWriter::writeQuerry(string const& filename)
 //***************  GETTER AND SETTER  *******************
 //*******************************************************
 
-string const& SQLWriter::getQuerry()
+string const& SQLWriter::getQuerry() const
 {
-    return querry;
+    return query;
 }

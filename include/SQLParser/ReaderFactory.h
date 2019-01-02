@@ -5,6 +5,7 @@
 
 #include "TableReader.h"
 #include "MYSQLTableReader.h"
+#include "SGBDType.h"
 
 /**
  * @brief      describe all type of SQLReader are implemented
@@ -14,7 +15,7 @@
  * @author     mochiwa
  * @date       17-Dec-2018
  */
-enum ReaderType {MYSQL,ORACLE,LAST};
+//enum ReaderType {MYSQL,ORACLE,LAST};
 
 
 class ReaderFactory
@@ -29,23 +30,7 @@ public:
      * @author     mochiwa
      * @date       17-Dec-2018
      */
-    static TableReader* getReader(ReaderType type);
+    static TableReader* getReader(SGBDType const type);
 };
-
-
-/**
- * @brief      Show elegant type in string
- *
- * @param      os      The operating system
- * @param[in]  reader  The reader
- *
- * @return     std::ostream
- *
- * @note       just a cast to enum to a string
- *
- * @author     mochiwa
- * @date       17-Dec-2018
- */
-std::ostream& operator<<(std::ostream& os,ReaderType reader);
 
 #endif
