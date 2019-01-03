@@ -203,20 +203,18 @@ Table const& Application::selectTable() const
 
 void Application::cleverGeneration(Attribute const& att)
 {
-    if(!att.getType().compare("Double"))
+    if(!att.getType().compare("FLOAT"))//if(!att.getType().compare("Double"))
         writer->appendValue(clever.getDouble());
-    else if(!att.getType().compare("Int"))
+    else if(!att.getType().compare("NUMBER"))//else if(!att.getType().compare("Int"))
         writer->appendValue(clever.getInt());
-    else if(!att.getType().compare("Date"))
+    else if(!att.getType().compare("DATE"))//else if(!att.getType().compare("Date"))
         writer->appendDate(clever.getDate());
-    else if(!att.getType().compare("Datetime"))
+    else if(!att.getType().compare("DATETIME"))//else if(!att.getType().compare("Datetime"))
         writer->appendDateTime(clever.getDateTime());
     else
         writer->appendValue(clever.getCleverValue(att.getName()));
 }
 
-
-//Deux option ou un nombre de lines fixe pour tout ou un trie dans le table en fonction des foreign
 void Application::automaticGeneration(Table const& table,int i)
 {
     writer->initLine(table.getName());
@@ -292,6 +290,8 @@ void Application::run()
     generateLines();
 
     tmpdir.eraseContent();
+
+
     delete reader;
     delete writer;
 }

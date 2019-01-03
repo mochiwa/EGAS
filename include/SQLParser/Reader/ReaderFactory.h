@@ -5,6 +5,7 @@
 
 #include "TableReader.h"
 #include "MYSQLTableReader.h"
+#include "OracleReader.h"
 #include "SGBDType.h"
 
 /**

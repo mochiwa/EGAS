@@ -9,7 +9,7 @@ TableReader* ReaderFactory::getReader(SGBDType type)
         case MYSQL:
             return new MYSQLTableReader();
         case ORACLE:
-            return nullptr;
+            return new OracleReader();
         default:
             break;
     }
