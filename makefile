@@ -41,5 +41,6 @@ clean:
 	@echo " Cleaning..."; 
 	@$(RM) -r $(BUILD_DIRECTORY) $(TARGET)
 
-
+run:
+	cd bin && ./main
 	#@echo $(patsubst $(A),$(BUILD_DIRECTORY)/%,$(A)); 
