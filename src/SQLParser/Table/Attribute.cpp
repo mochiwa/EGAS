@@ -28,6 +28,7 @@ Attribute::~Attribute()
 void Attribute::init()
 {
 	setId(lastId++);
+    setSize(0);
 	setName("");
 	setType("");
     setKeyType(KeyType::other);
@@ -92,6 +93,11 @@ unsigned int Attribute::getId() const
     return id;
 }
 
+unsigned int Attribute::getSize() const
+{
+    return size;
+}
+
 KeyType Attribute::getKeyType() const
 {
     return keyType;
@@ -110,6 +116,11 @@ string const& Attribute::getType() const
 void Attribute::setId(unsigned int const id)
 {
     this->id=id;
+}
+
+void Attribute::setSize(unsigned int const size)
+{
+    this->size=size;
 }
 
 void Attribute::setKeyType(KeyType type)

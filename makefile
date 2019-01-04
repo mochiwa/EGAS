@@ -43,4 +43,3 @@ clean:
 
 run:
 	cd bin && ./main
-	#@echo $(patsubst $(A),$(BUILD_DIRECTORY)/%,$(A)); 

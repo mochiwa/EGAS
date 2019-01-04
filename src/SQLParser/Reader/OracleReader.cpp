@@ -52,9 +52,20 @@ string OracleReader::getType(std::string const& attribute)
     while(word.compare(attribute))
         word=readWord();
     word=readWord();
-
     return word;
 }
+
+unsigned int OracleReader::getAtttributeSize()
+{
+    string str=readWord();
+    if(str[0]!='(')
+        return 0;
+
+    removeChar(str,'(');
+    removeChar(str,')');
+    return stoi(str);
+}
+
 
 bool OracleReader::hasPrimaryKey()
 {

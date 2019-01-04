@@ -58,6 +58,18 @@ string MYSQLTableReader::getType(std::string const& attribute)
 	return word;
 }
 
+unsigned int MYSQLTableReader::getAtttributeSize()
+{
+    string str=readWord();
+    if(str[0]!='(')
+        return 0;
+
+    removeChar(str,'(');
+    removeChar(str,')');
+    return stoi(str);
+}
+
+
 bool MYSQLTableReader::hasPrimaryKey()
 {
     string word="";

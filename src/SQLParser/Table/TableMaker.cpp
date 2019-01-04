@@ -59,6 +59,7 @@ void TableMaker::setTypeOfAttribute(Attribute& attribute)
 	string word="";
 	word=reader->getType(attribute.getName());
 	attribute.setType(word);
+    attribute.setSize(reader->getAtttributeSize());
 }
 //*******************************************************
 //********************  STATIC  *************************

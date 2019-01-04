@@ -102,6 +102,18 @@ public:
 	virtual std::string getType(std::string const& attribute);
 
     /**
+     * @brief      Gets the atttribute size.
+     *
+     * @return     The atttribute size.
+     *
+     * @note        return the attribute size , or 0 if haven't
+     *
+     * @author     mochiwa
+     * @date       04-Jan-2019
+     */
+    virtual unsigned int getAtttributeSize();
+
+    /**
      * @brief      Determines if file contains primary key.
      *
      * @return     True if file contains primary key, False otherwise.

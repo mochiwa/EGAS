@@ -53,6 +53,18 @@ public:
 	virtual ~TableReader();
 
     /**
+     * @brief      Gets the att size.
+     *
+     * @return     The att size.
+     *
+     * @note       Provide a way to search the size of the attribute
+     *
+     * @author     mochiwa
+     * @date       04-Jan-2019
+     */
+    virtual unsigned int getAtttributeSize()=0;
+
+    /**
      * @brief      Gets the table name.
      *
      * @return     The table name.

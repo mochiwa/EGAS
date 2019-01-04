@@ -29,9 +29,11 @@ private:
     static unsigned int lastId;/**< the last id will be attributed.*/
 
 	unsigned int id;   /**< The unique ID.*/
+    unsigned int size; /**< the max size of data can be generated */ 
     KeyType keyType;   /**< Define if the attribute is a key */ 
 	std::string name;  /**< The name of the attribute.*/
 	std::string type;  /**< The type of the attribute.*/
+
 
 
     /**
@@ -156,6 +158,16 @@ public:
     unsigned int getId() const;
 
     /**
+     * @brief      Gets the size.
+     *
+     * @return     The size.
+     *
+     * @author     mochiwa
+     * @date       04-Jan-2019
+     */
+    unsigned int getSize() const;
+
+    /**
      * @brief      Gets the key type.
      *
      * @return     The key type.
@@ -198,6 +210,16 @@ public:
      * @date       09-Dec-2018
      */
     void setId(unsigned int const id);
+
+    /**
+     * @brief      Sets the size.
+     *
+     * @param[in]  size  The size
+     *
+     * @author     mochiwa
+     * @date       04-Jan-2019
+     */
+    void setSize(unsigned int const size);
 
     /**
      * @brief      Sets the key type.
