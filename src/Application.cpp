@@ -250,7 +250,7 @@ void Application::generateLines()
 
     for(Table const& table:tables)
     {
-        randomLines=clever.getInt(3,maxLinesGenerate);
+        randomLines=clever.getInt(1,maxLinesGenerate);
         appendTableReference(table.getName(),randomLines-1);
         for(int line=0;line<randomLines;line++)
             automaticGeneration(table,line);
