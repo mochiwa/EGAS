@@ -20,6 +20,11 @@ double CleverGenerator::getDouble(double min,double max)
     return round(distribution(generator)*100)/100.0;
 }
 
+int CleverGenerator::getBoolean()
+{
+    return (getInt()%2==0);
+}
+
 string CleverGenerator::getCleverValue(string const& name)
 {
     return "tes";

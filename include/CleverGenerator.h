@@ -47,6 +47,16 @@ public:
     double getDouble(double min=0,double max=100);
 
     /**
+     * @brief      Gets the boolean.
+     *
+     * @return     The boolean.
+     *
+     * @author     mochiwa
+     * @date       05-Jan-2019
+     */
+    int getBoolean();
+
+    /**
      * @brief      Gets the date.
      *
      * @return     The date.

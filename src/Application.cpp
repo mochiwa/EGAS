@@ -209,7 +209,7 @@ void Application::cleverGeneration(Attribute const& att)
     else if(typeDetector->isDouble(att))
         writer->appendValue(clever.getDouble());
     else if(typeDetector->isBoolean(att))
-        writer->appendValue(1);
+        writer->appendValue(clever.getBoolean());
     else if(typeDetector->isDate(att))
         writer->appendDate(clever.getDate());
     else if(typeDetector->isDateTime(att))
