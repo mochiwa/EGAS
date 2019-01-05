@@ -34,8 +34,6 @@ private:
 	unsigned int id;/**< The unique ID. */
 	std::string name; /**< The name of the table. */
 	std::vector<Attribute> attributes; /**< List of \p Attribute in the table. */
-
-   // std::string primaryKey; /**< Primary key of the map */
     std::map<std::string, std::string> foreignKeys; /**< Map of foreign key  foreignKey - table*/
 
 	/**
@@ -124,7 +122,10 @@ public:
      * @brief      Appends a foreign key.
      *
      * @param      key    The key
-     * @param      value  The value
+     * @param      table  The value
+     *
+     * @note       If a key is also the primarykey of the table (it can happen when there is an heritage),then
+     *              the key become not foreinkey but bothkey
      *
      * @author     mochiwa
      * @date       19-Dec-2018
@@ -148,7 +149,7 @@ public:
     /**
      * @brief      Determines if it has both key.
      *
-     * @return     True if has both key, False otherwise.
+     * @return     True if table has both key, False otherwise.
      *
      * @author     mochiwa
      * @date       05-Jan-2019

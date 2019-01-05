@@ -19,6 +19,8 @@ Application::~Application()
 void Application::init()
 {   
     reader=nullptr;
+    writer=nullptr;
+    typeDetector=nullptr;
 
     inputdir=Directory("input");
     tmpdir=Directory("tmp");
@@ -163,7 +165,6 @@ string Application::selectInputFile()
         else
             selected=readInteger("Select: ")-1;
     }
-
     return inputdir.getFilePath(selected);
 }
 
@@ -214,12 +215,12 @@ void Application::cleverGeneration(Attribute const& att)
     else if(typeDetector->isDateTime(att))
         writer->appendDateTime(clever.getDateTime());
     else if(typeDetector->isText(att))
-        writer->appendValue(clever.getCleverValue(att.getName()));//change
+        writer->appendValue("a long text that needs imagination to grow ...");//change
     else
         writer->appendValue(clever.getCleverValue(att.getName()));//change
 }
 
-void Application::automaticGeneration(Table const& table,int i)
+void Application::automaticGeneration(Table const& table,int id)
 {
     writer->initLine(table.getName());
     writer->appendAttributes(table.getAttributes());
@@ -227,11 +228,11 @@ void Application::automaticGeneration(Table const& table,int i)
     for(Attribute const& att:table.getAttributes())
     {
         if(att.getKeyType()==KeyType::primary)
-            writer->appendValue(i);
+            writer->appendValue(id);
         else if(att.getKeyType()==KeyType::foreign)
-            writer->appendValue(i);
+            writer->appendValue(id);//to change
         else if(att.getKeyType()==KeyType::both) 
-            writer->appendValue(i);
+            writer->appendValue(id);
         else
             cleverGeneration(att);
     }
@@ -253,28 +254,14 @@ void Application::generateLines()
     cout<<"Maximal line will generate: ";
     maxLinesGenerate=readInteger("");
 
-
     for(Table const& table:tables)
     {
         if(table.hasBothKey())
-            {
-                cout<<table.getName()<<"--"<<table.getPrimaryKey()->getName()<<endl;
-                cin.get();
-                randomLines=tablereferences.at(table.getReference(table.getPrimaryKey()->getName()));
-            }
+            randomLines=tablereferences.at(table.getReference(table.getPrimaryKey()->getName()));
         else
             randomLines=clever.getInt(1,maxLinesGenerate);
 
-        if(table.getForeignKeys().size())
-            for(auto const& v:table.getForeignKeys())
-            {
-
-                if(tablereferences.at(v.second)<randomLines)
-                {
-                    
-                    randomLines=tablereferences.at(v.second);
-                }
-            }
+        randomLines=getTinyReference(table,randomLines);
 
         appendTableReference(table.getName(),randomLines-1);
         for(int line=0;line<randomLines;line++)
@@ -285,6 +272,20 @@ void Application::generateLines()
 void Application::appendTableReference(std::string const& table,int count)
 {
     tablereferences.insert(reference(table,count));
+}
+
+int Application::getTinyReference(Table const& table,unsigned int baseValue) const
+{
+    int count=baseValue;
+
+    if(!table.getForeignKeys().size())
+        return count;
+
+    for(auto const& v:table.getForeignKeys())
+        if(tablereferences.at(v.second)<count)
+            count=tablereferences.at(v.second);
+
+    return count;
 }
 
 //*******************************************************
@@ -314,11 +315,9 @@ void Application::run()
 
     writer=WriterFactory::getWriter(sgbd);
 
-   
     generateLines();
 
     tmpdir.eraseContent();
-
 
     delete reader;
     delete writer;

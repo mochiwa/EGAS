@@ -195,9 +195,33 @@ private:
      */
     void generateLines();
 
+
+    /**
+     * @brief      Write a data according by type
+     *
+     * @param      att   The att
+     *
+     * @note       ask to TypeDector the type and ask the CleverGenerator to generate according its
+     *
+     * @author     mochiwa
+     * @date       05-Jan-2019
+     */
     void cleverGeneration(Attribute const& att);
 
-    void automaticGeneration(Table const& table,int i);
+
+    /**
+     * @brief      detecte what will be generated
+     *
+     * @param      table  The table
+     * @param[in]  id      the id
+     *
+     * @note       detecte if the attribute is primary,foreign , both or other
+     *              and set the best way to generate data
+     *
+     * @author     mochiwa
+     * @date       05-Jan-2019
+     */
+    void automaticGeneration(Table const& table,int id);
 
     /**
      * @brief      Appends a table reference.
@@ -209,6 +233,21 @@ private:
      * @date       28-Dec-2018
      */
     void appendTableReference(std::string const& table,int count);
+
+    /**
+     * @brief      Gets the tiny reference.
+     *
+     * @param      table      The table
+     * @param[in]  baseValue  The base value
+     *
+     * @return     The tiny reference.
+     *
+     * @note       if a table have many foreign then search the tiny count of line generated
+     *
+     * @author     mochiwa
+     * @date       05-Jan-2019
+     */
+    int getTinyReference(Table const& table,unsigned int baseValue) const;
 
 
 

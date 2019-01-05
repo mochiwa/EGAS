@@ -49,18 +49,20 @@ string OracleReader::getType(std::string const& attribute)
 
     if(!attribute.compare(""))
         return "";
+
     while(word.compare(attribute))
         word=readWord();
     word=readWord();
 
     if(isSizeAttached(word))
         removeSequence(word,'(',')');
+
     return word;
 }
 
  bool OracleReader::isSizeAttached(std::string const& type)
  {
-    for(char c:type)
+    for(unsigned char c:type)
         if(c=='(')
             return true;
     return false;
@@ -69,11 +71,13 @@ string OracleReader::getType(std::string const& attribute)
 unsigned int OracleReader::getAtttributeSize()
 {
     string str=readWord();
+
     if(str[0]!='(')
         return 0;
 
     removeChar(str,'(');
     removeChar(str,')');
+
     return stoi(str);
 }
 
@@ -116,7 +120,8 @@ std::string  OracleReader::getPrimaryKey()
 
     removeChar(word,'(');
     removeChar(word,')');
-    removeChar(word, ','); //bad but work , case where (id_att),
+    removeChar(word, ',');
+
     return word;
 }
 

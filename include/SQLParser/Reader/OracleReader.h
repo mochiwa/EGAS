@@ -89,9 +89,12 @@ public:
      *
      * @note       rewind the file and looking for the attribute provided in
      *             parameter through the file, if it's found then return the
-     *             next word.
+     *             next word. Also if an attribute is \e sizeAttached() remove 
+     *             the size to just have the name of the type  
+     *     
      * @see        readWord()
      * @see        rewind()
+     * @see        isSizeAttached(std::string const& type)
      * 
      * @author     mochiwa
      * @date       09-Dec-2018
@@ -99,13 +102,13 @@ public:
     virtual std::string getType(std::string const& attribute);
 
     /**
-     * @brief      Determines if type attached.
+     * @brief      Determines if a type is attached.
      *
      * @param      attribute  The attribute
      *
      * @return     True if type attached, False otherwise.
      *
-     * @note       for some attribute oracle define they type as NUMBER(1,10),
+     * @note       for some attribute oracle defines they type as NUMBER(1,10) ,
      *              this function remove these parenthese.
      *
      * @author     mochiwa
@@ -118,7 +121,7 @@ public:
      *
      * @return     The atttribute size.
      *
-     * @note        return the attribute size , or 0 if haven't
+     * @note        return the attribute size , or 0 if it haven't
      *
      * @author     mochiwa
      * @date       04-Jan-2019
@@ -153,7 +156,8 @@ public:
      * @brief      Gets the primary key.
      *
      * @return     The primary key.
-     * @note       this function rewind the file before
+     * @note       this function rewind the file before. In particular case the ')' is next to an ','
+     *              in any case the function try to remove it.
      *
      * @author     mochiwa
      * @date       19-Dec-2018
