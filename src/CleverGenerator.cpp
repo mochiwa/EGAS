@@ -34,15 +34,15 @@ string const CleverGenerator::getDate()
     if(month==2)
         day=getInt(1,28); // in my world, february doesn't have 29 days ! ;)
     else
-        day=getInt(1,31);
+        day=getInt(1,28);
 
     return to_string(year)+"-"+to_string(month)+"-"+to_string(day);
 }
 
 string const CleverGenerator::getDateTime()
 {
-    int hour=getInt(0,11);
-    int minute=getInt(0,59);
+    int hour=getInt(1,12);
+    int minute=getInt(1,59);
     int second=getInt(1,59);
     string period="";
 

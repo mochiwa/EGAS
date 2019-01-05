@@ -12,7 +12,7 @@
 #include <iostream>
 #include <cstring>
 
-enum KeyType {primary,foreign,other}; /** < Describe the type of the attribute */
+enum KeyType {primary,foreign,both,other}; /** < Describe the type of the attribute */
 
 /**
  * @brief      Class for attribute.

@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 TypeDetector::TypeDetector(){}
 
 TypeDetector::~TypeDetector(){}

@@ -57,7 +57,12 @@ void Table::appendForeignKey(string const& key,string const& table)
     foreignKeys.insert(foreignKey(key,table)); 
     for(Attribute & att:attributes )
         if(!att.getName().compare(key))
-            att.setKeyType(KeyType::foreign);
+        {
+            if(att.getKeyType()==KeyType::primary)
+                att.setKeyType(KeyType::both);
+            else
+                att.setKeyType(KeyType::foreign);
+        }
 }
 
 bool Table::hasForeignKey(std::string const& key) const
@@ -65,6 +70,14 @@ bool Table::hasForeignKey(std::string const& key) const
     if(foreignKeys.find(key)==foreignKeys.end())
         return false;
     return true;
+}
+
+bool Table::hasBothKey() const
+{
+    for(Attribute const& att:attributes)
+        if(att.getKeyType()==KeyType::both)
+            return true; 
+    return false;
 }
 
 string const& Table::getReference(string const& foreignkey) const
@@ -126,7 +139,7 @@ vector<Attribute> const& Table::getAttributes() const
 Attribute const* Table::getPrimaryKey() const
 {
     for(Attribute const& att:attributes)
-        if(att==KeyType::primary)
+        if(att==KeyType::primary || att==KeyType::both)
             return &att;
     return nullptr;
 }

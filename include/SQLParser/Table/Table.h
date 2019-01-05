@@ -146,6 +146,16 @@ public:
     bool hasForeignKey(std::string const& key) const;
 
     /**
+     * @brief      Determines if it has both key.
+     *
+     * @return     True if has both key, False otherwise.
+     *
+     * @author     mochiwa
+     * @date       05-Jan-2019
+     */
+    bool hasBothKey() const;
+
+    /**
      * @brief      Gets the reference.
      *
      * @param[in]  key   The key

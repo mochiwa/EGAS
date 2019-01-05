@@ -99,6 +99,21 @@ public:
     virtual std::string getType(std::string const& attribute);
 
     /**
+     * @brief      Determines if type attached.
+     *
+     * @param      attribute  The attribute
+     *
+     * @return     True if type attached, False otherwise.
+     *
+     * @note       for some attribute oracle define they type as NUMBER(1,10),
+     *              this function remove these parenthese.
+     *
+     * @author     mochiwa
+     * @date       05-Jan-2019
+     */
+    bool isSizeAttached(std::string const& type);
+
+    /**
      * @brief      Gets the atttribute size.
      *
      * @return     The atttribute size.

@@ -7,16 +7,27 @@
 #include <fstream>
 #include <map>
 
-#include "Directory.h"
 #include "own/own_input.h"
-#include "SGBDType.h"
+
+#include "Directory.h"
+
+
+
 #include "ReaderFactory.h"
 #include "WriterFactory.h"
+#include "TypeDetectorFactory.h"
+
+#include "SGBDType.h"
+#include "TypeDetector.h"
+
 #include "MYSQLTableReader.h"
 #include "SQLWriter.h"
+
 #include "Table.h"
 #include "TableMaker.h"
+
 #include "CleverGenerator.h"
+
 
 
 #ifdef LINUX
@@ -39,6 +50,7 @@ private:
     SGBDType sgbd; /** < the type of SGBD used */
     TableReader *reader; /** < The reader that read a SQLFile (Abstract)*/
     SQLWriter *writer; /** < The writer that write SQLFile*/
+    TypeDetector * typeDetector; /** < The detector that detecte which type of attribute */
 
     std::vector<Table> tables; /** < List of tables in the worked file */
     std::map<std::string,int> tablereferences; /** < a map of table name and count line */

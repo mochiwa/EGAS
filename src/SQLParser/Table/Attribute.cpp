@@ -63,6 +63,9 @@ std::string Attribute::keyTypeToString() const
         case foreign:
             return "foreign";
             break;
+        case both:
+            return "both";
+            break;
         case other:
             return "None";
             break;

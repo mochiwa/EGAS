@@ -15,7 +15,7 @@ public:
      * @author     mochiwa
      * @date       04-Jan-2019
      */
-    virtual bool isString(Attribute const& attribute);
+    virtual bool isString(Attribute const& attribute) const;
 
     /**
      * @brief      Determines if the attribute is a text.
@@ -27,7 +27,7 @@ public:
      * @author     mochiwa
      * @date       04-Jan-2019
      */
-    bool isText(Attribute const& attribute);
+    bool isText(Attribute const& attribute) const ;
 
     /**
      * @brief      Determines if the attribute is an integer.
@@ -39,7 +39,7 @@ public:
      * @author     mochiwa
      * @date       04-Jan-2019
      */
-    bool isInteger(Attribute const& attribute);
+    bool isInteger(Attribute const& attribute) const ;
 
     /**
      * @brief      Determines if the attribute is a double.
@@ -51,7 +51,7 @@ public:
      * @author     mochiwa
      * @date       04-Jan-2019
      */
-    bool isDouble(Attribute const& attribute);
+    bool isDouble(Attribute const& attribute) const ;
 
     /**
      * @brief      Determines if the attribute is a boolean.
@@ -63,7 +63,7 @@ public:
      * @author     mochiwa
      * @date       04-Jan-2019
      */
-    bool isBoolean(Attribute const& attribute);
+    bool isBoolean(Attribute const& attribute) const ;
 
     /**
      * @brief      Determines if the attribute is a date.
@@ -76,7 +76,7 @@ public:
      * @author     mochiwa
      * @date       04-Jan-2019
      */
-    bool isDate(Attribute const& attribute);
+    bool isDate(Attribute const& attribute) const ;
 
     /**
      * @brief      Determines if the attribute is a datetime.
@@ -88,7 +88,7 @@ public:
      * @author     mochiwa
      * @date       04-Jan-2019
      */
-    bool isDateTime(Attribute const& attribute);
+    bool isDateTime(Attribute const& attribute) const ;
 };
 
 #endif

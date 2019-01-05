@@ -203,16 +203,20 @@ Table const& Application::selectTable() const
 
 void Application::cleverGeneration(Attribute const& att)
 {
-    if(!att.getType().compare("FLOAT"))//if(!att.getType().compare("Double"))
-        writer->appendValue(clever.getDouble());
-    else if(!att.getType().compare("NUMBER"))//else if(!att.getType().compare("Int"))
+    if(typeDetector->isInteger(att))
         writer->appendValue(clever.getInt());
-    else if(!att.getType().compare("DATE"))//else if(!att.getType().compare("Date"))
+    else if(typeDetector->isDouble(att))
+        writer->appendValue(clever.getDouble());
+    else if(typeDetector->isBoolean(att))
+        writer->appendValue(1);
+    else if(typeDetector->isDate(att))
         writer->appendDate(clever.getDate());
-    else if(!att.getType().compare("DATETIME"))//else if(!att.getType().compare("Datetime"))
+    else if(typeDetector->isDateTime(att))
         writer->appendDateTime(clever.getDateTime());
+    else if(typeDetector->isText(att))
+        writer->appendValue(clever.getCleverValue(att.getName()));//change
     else
-        writer->appendValue(clever.getCleverValue(att.getName()));
+        writer->appendValue(clever.getCleverValue(att.getName()));//change
 }
 
 void Application::automaticGeneration(Table const& table,int i)
@@ -225,7 +229,9 @@ void Application::automaticGeneration(Table const& table,int i)
         if(att.getKeyType()==KeyType::primary)
             writer->appendValue(i);
         else if(att.getKeyType()==KeyType::foreign)
-            writer->appendValue( clever.getInt(0,tablereferences.at(table.getReference(att.getName()))));
+            writer->appendValue(i);
+        else if(att.getKeyType()==KeyType::both) 
+            writer->appendValue(i);
         else
             cleverGeneration(att);
     }
@@ -250,7 +256,26 @@ void Application::generateLines()
 
     for(Table const& table:tables)
     {
-        randomLines=clever.getInt(1,maxLinesGenerate);
+        if(table.hasBothKey())
+            {
+                cout<<table.getName()<<"--"<<table.getPrimaryKey()->getName()<<endl;
+                cin.get();
+                randomLines=tablereferences.at(table.getReference(table.getPrimaryKey()->getName()));
+            }
+        else
+            randomLines=clever.getInt(1,maxLinesGenerate);
+
+        if(table.getForeignKeys().size())
+            for(auto const& v:table.getForeignKeys())
+            {
+
+                if(tablereferences.at(v.second)<randomLines)
+                {
+                    
+                    randomLines=tablereferences.at(v.second);
+                }
+            }
+
         appendTableReference(table.getName(),randomLines-1);
         for(int line=0;line<randomLines;line++)
             automaticGeneration(table,line);
@@ -283,10 +308,13 @@ void Application::run()
 
     sgbd=selectSQLType();
     reader=ReaderFactory::getReader(sgbd);
+    typeDetector=TypeDetectorFactory::getDetector(sgbd);
         
     loadTables();
 
     writer=WriterFactory::getWriter(sgbd);
+
+   
     generateLines();
 
     tmpdir.eraseContent();

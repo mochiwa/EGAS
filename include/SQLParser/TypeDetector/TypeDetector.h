@@ -6,19 +6,6 @@
 
 #include "Attribute.h"
 
-enum Type_attribute
-{
-    STRING,
-    TEXT,
-    INTEGER,
-    DOUBLE,
-    BOOLEAN,
-    DATE,
-    DATETIME,
-
-};
-
-
 class TypeDetector
 {
 public:
