@@ -33,6 +33,18 @@ public:
      * @date       02-Jan-2019
      */
     virtual void appendDateTime(std::string const& value);
+
+    /**
+     * @brief      format a word to escape special character
+     *
+     * @param      string  The string
+     *
+     * @return     the formated word
+     *
+     * @author     mochiwa
+     * @date       07-Jan-2019
+     */
+    virtual std::string formatedWord(std::string const& word);
 };
 
 #endif

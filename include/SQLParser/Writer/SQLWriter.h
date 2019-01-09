@@ -7,6 +7,11 @@
 
 #include "Attribute.h"
 
+
+#define RESERVED_CHAR {'\'','"',',','&','?','{','}','\\','(',')', \
+                        '[',']','-',';','~','|','$','!','>','*', \
+                        '%','_'}
+
 /**
  * @brief      Class for sql writer.
  *
@@ -187,6 +192,18 @@ public:
      * @date       02-Jan-2019
      */
     virtual void appendDateTime(std::string const& value)=0;
+
+    /**
+     * @brief      format a word to escape special character
+     *
+     * @param      string  The string
+     *
+     * @return    the formated word
+     *
+     * @author     mochiwa
+     * @date       07-Jan-2019
+     */
+    virtual std::string formatedWord(std::string const& word)=0;
 
     /**
      * @brief      Closes the query.

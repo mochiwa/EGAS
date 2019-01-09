@@ -4,30 +4,27 @@ using namespace std;
 
 CleverGenerator::CleverGenerator()
 {
-    generator.seed(r());
-}
 
+}
 
 int CleverGenerator::getInt(int min,int max)
 {
-    uniform_int_distribution<int> distribution(min,max);
-    return distribution(generator);
+    return generator.randomInt(min,max);
 }
 
 double CleverGenerator::getDouble(double min,double max)
 {
-    uniform_real_distribution<double> distribution(min,max);
-    return round(distribution(generator)*100)/100.0;
+    return generator.randomDouble(min,max);
 }
 
 int CleverGenerator::getBoolean()
 {
-    return (getInt()%2==0);
+    return generator.randomBool();
 }
 
 string CleverGenerator::getCleverValue(string const& name)
 {
-    return "tes";
+    return name;
 }
 
 string const CleverGenerator::getDate()
@@ -37,7 +34,7 @@ string const CleverGenerator::getDate()
     int day=0;
 
     if(month==2)
-        day=getInt(1,28); // in my world, february doesn't have 29 days ! ;)
+        day=getInt(1,27); // in my world, february doesn't have 29 days ! ;)
     else
         day=getInt(1,28);
 

@@ -7,10 +7,10 @@
 #include <fstream>
 #include <map>
 
-#include "own/own_input.h"
+#include "own_input.h"
 
 #include "Directory.h"
-
+#include "WordGetter.h"
 
 
 #include "ReaderFactory.h"

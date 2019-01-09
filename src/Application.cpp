@@ -1,7 +1,7 @@
 #include "Application.h"
 
 using namespace std;
-
+using namespace own;
 Application::Application()
 {
     init();
@@ -217,7 +217,7 @@ void Application::cleverGeneration(Attribute const& att)
     else if(typeDetector->isText(att))
         writer->appendValue("a long text that needs imagination to grow ...");//change
     else
-        writer->appendValue(clever.getCleverValue(att.getName()));//change
+        writer->appendValue(WordGetter::getWord("library/file"));//change
 }
 
 void Application::automaticGeneration(Table const& table,int id)
@@ -247,13 +247,14 @@ void Application::generateLines()
     int maxLinesGenerate=0;
     int randomLines=0;
 
-    CLEAR()
-    showTitle("Lines generation");
-
-   
-    cout<<"Maximal line will generate: ";
-    maxLinesGenerate=readInteger("");
-
+    do
+    {
+        CLEAR()
+        showTitle("Lines generation");
+        cout<<"Maximal line will generate: ";
+        maxLinesGenerate=readInteger("");
+    }while(!maxLinesGenerate);
+    
     for(Table const& table:tables)
     {
         if(table.hasBothKey())
@@ -295,6 +296,7 @@ int Application::getTinyReference(Table const& table,unsigned int baseValue) con
 
 void Application::run()
 {
+
     string sqlFile="";
 
     showTitle("EGAS");

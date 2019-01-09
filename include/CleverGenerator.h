@@ -3,13 +3,13 @@
 
 #include <iostream>
 #include <cstdlib>
-#include <random>
+
+#include "own_random.h"
 
 class CleverGenerator
 {
 private:
-    std::random_device r;
-    std::default_random_engine generator;
+    own_random generator;
 public:
 
     /**

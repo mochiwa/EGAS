@@ -90,7 +90,7 @@ void SQLWriter::appendAttributes(vector<Attribute> const& attributes)
 
 void SQLWriter::appendValue(string const& value)
 {
-    query+="'"+value+"',";
+    query+="'"+formatedWord(value)+"',";
 }
 
 void SQLWriter::appendValue(int value)
