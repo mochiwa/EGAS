@@ -72,7 +72,10 @@ std::string WordGetter::selectWord()
     }
     catch(ifstream::failure e){}
     
-    return str;      
+    if(str.size()>=1)
+        return str;
+    else
+        return selectWord();      
 }
 
 

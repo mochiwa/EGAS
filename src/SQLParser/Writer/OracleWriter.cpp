@@ -18,11 +18,8 @@ string OracleWriter::formatedWord(string const& word)
 
     for(char c:word)
     {
-        for(char reserved:RESERVED_CHAR)
-        {
-            if(reserved==c)
-                cpy+="\\";
-        }
+        if(c=='\'')
+            cpy+="'";
         cpy+=c;
     }
     return cpy;

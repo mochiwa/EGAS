@@ -63,6 +63,32 @@ void Application::showTitle(string const& str) const
     cout<<endl;
 }
 
+void Application::showAttributeFiles(Table const& table)
+{
+    showTitle(("Table: "+table.getName()));
+    for(Attribute const& att:table.getAttributes())
+    {
+        if(!typeDetector->isText(att) && !typeDetector->isString(att))
+        {
+            cout<<"# "<<att.getName()<<"...............";
+            if(typeDetector->isInteger(att))
+                cout<<"random_integer 0 to 100"<<endl;
+            else if(typeDetector->isDouble(att))
+                cout<<"random_double 0 to 100"<<endl;
+            else if(typeDetector->isBoolean(att))
+                cout<<"random_boolean 0 to 100"<<endl;
+            else if(typeDetector->isDate(att))
+                cout<<"random_date"<<endl;
+            else if(typeDetector->isDateTime(att))
+                cout<<"random_dateTime"<<endl;
+        }
+    }
+    for(auto it=attributeFiles.begin(); it != attributeFiles.end();++it)
+        cout<<"# "<<it->first->getName()<<"..............."<<it->second<<endl;
+    cout<<"####################################"<<endl;
+}
+
+
 void Application::tmpdirManagement()
 {   
     CLEAR()
@@ -168,6 +194,25 @@ string Application::selectInputFile()
     return inputdir.getFilePath(selected);
 }
 
+string Application::selectLibraryFile()
+{
+    unsigned int selected=-1;
+
+    while(selected>=library.getCountFile())
+    {
+        library.printFiles();
+        if(library.isEmpty())
+        {
+            cout<<"Your library directory is empty, insert files into and press Return"<<endl;
+            proceed();
+            library.read();
+        }
+        else
+            selected=readInteger("Select: ")-1;
+    }
+    return library.getFilePath(selected);
+}
+
 SGBDType Application::selectSQLType() const
 {
     unsigned int selected=SGBDType::LAST;
@@ -181,7 +226,6 @@ SGBDType Application::selectSQLType() const
             cout<<i+1<<") "<<static_cast<SGBDType>(i)<<endl;
         selected=readInteger("Select: ")-1;
     }
-
     return static_cast<SGBDType>(selected);
 }
 
@@ -214,10 +258,8 @@ void Application::cleverGeneration(Attribute const& att)
         writer->appendDate(clever.getDate());
     else if(typeDetector->isDateTime(att))
         writer->appendDateTime(clever.getDateTime());
-    else if(typeDetector->isText(att))
-        writer->appendValue("a long text that needs imagination to grow ...");//change
-    else
-        writer->appendValue(WordGetter::getWord("library/file"));//change
+    else 
+        writer->appendValue(WordGetter::getWord(attributeFiles.at(&att)));
 }
 
 void Application::automaticGeneration(Table const& table,int id)
@@ -236,7 +278,6 @@ void Application::automaticGeneration(Table const& table,int id)
         else
             cleverGeneration(att);
     }
-
     writer->closeQuerry();
     writer->writeQuerry(outputdir.getName()+"/SQLFILE.sql");
 }
@@ -257,6 +298,9 @@ void Application::generateLines()
     
     for(Table const& table:tables)
     {
+
+        fillAttributeFiles(table);
+
         if(table.hasBothKey())
             randomLines=tablereferences.at(table.getReference(table.getPrimaryKey()->getName()));
         else
@@ -267,12 +311,33 @@ void Application::generateLines()
         appendTableReference(table.getName(),randomLines-1);
         for(int line=0;line<randomLines;line++)
             automaticGeneration(table,line);
+        attributeFiles.clear();
     }
 }
 
 void Application::appendTableReference(std::string const& table,int count)
 {
     tablereferences.insert(reference(table,count));
+}
+
+void Application::appendAttributeFile(Attribute const& att,std::string const& file)
+{
+    attributeFiles.insert(att_file(&att,file));
+}
+
+void Application::fillAttributeFiles(Table const& table)
+{
+    for(Attribute const& att:table.getAttributes())
+    {
+        CLEAR();
+        showAttributeFiles(table);
+
+        if(typeDetector->isString(att) ||typeDetector->isText(att))
+        {
+            cout<<"Select a file for "+att.getName()<<":"<<endl;
+            appendAttributeFile(att,selectLibraryFile());
+        }
+    }
 }
 
 int Application::getTinyReference(Table const& table,unsigned int baseValue) const
@@ -288,7 +353,6 @@ int Application::getTinyReference(Table const& table,unsigned int baseValue) con
 
     return count;
 }
-
 //*******************************************************
 //********************  PUBLIC  *************************
 //*******************************************************

@@ -37,6 +37,7 @@
 #endif
 
 typedef std::pair<std::string,int> reference;
+typedef std::pair<Attribute const*,std::string> att_file;
 
 
 class Application
@@ -51,11 +52,13 @@ private:
     TableReader *reader; /** < The reader that read a SQLFile (Abstract)*/
     SQLWriter *writer; /** < The writer that write SQLFile*/
     TypeDetector * typeDetector; /** < The detector that detecte which type of attribute */
+    CleverGenerator clever; /** < Object respive to detect what kind of data generate*/
+
 
     std::vector<Table> tables; /** < List of tables in the worked file */
     std::map<std::string,int> tablereferences; /** < a map of table name and count line */
-
-    CleverGenerator clever; /** < Object respive to detect what kind of data generate*/
+    std::map<Attribute const*,std::string> attributeFiles; /** a map where varchar attribute use file */
+    
     
 
     /**
@@ -164,6 +167,16 @@ private:
     std::string selectInputFile();
 
     /**
+     * @brief      show a menu to select a file in the input directory
+     *
+     * @return     the relative path with name of the file selected
+     *
+     * @author     mochiwa
+     * @date       09-Jan-2019
+     */
+    std::string selectLibraryFile();
+
+    /**
      * @brief     show a menu to select the type of SQL
      *
      * @return    the type
@@ -233,6 +246,41 @@ private:
      * @date       28-Dec-2018
      */
     void appendTableReference(std::string const& table,int count);
+
+    /**
+     * @brief      Appends an <attribute, file>. into the map
+     *
+     * @param      att   The att
+     * @param      file  The file
+     * @param      att   The att
+     *
+     * @author     mochiwa
+     * @date       09-Jan-2019
+     */
+    void appendAttributeFile(Attribute const& att,std::string const& file);
+
+    /**
+     * @brief      Shows the attribute files.
+     *
+     * @param      table  The table
+     *
+     * @author     mochiwa
+     * @date       09-Jan-2019
+     */
+    void showAttributeFiles(Table const& table);
+
+    /**
+     * @brief      fill the list of files for attribute
+     *
+     * @param      table  The table
+     *
+     * @note       run through the table to find varchar attribute
+     *              ans ask to the user which file link to the attribute
+     *
+     * @author     mochiwa
+     * @date       09-Jan-2019
+     */
+    void fillAttributeFiles(Table const& table);
 
     /**
      * @brief      Gets the tiny reference.
