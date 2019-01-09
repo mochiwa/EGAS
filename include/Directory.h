@@ -66,17 +66,6 @@ private:
      */
     void close();
 
-    
-    /**
-     * @brief      make a directory
-     *
-     * @note       use attribute @p name to create a directory
-     * @TODO        Append check is dire already exist
-     * @author     mochiwa
-     * @date       10-Dec-2018
-     */
-    void mkdir();
-
     /**
      * @brief      list all files in the directory
      *
@@ -86,6 +75,16 @@ private:
      * @date       12-Dec-2018
      */
     void listFiles();
+
+    /**
+     * @brief      make a directory
+     *
+     * @note       use attribute @p name to create a directory
+     * @TODO        Append check is dire already exist
+     * @author     mochiwa
+     * @date       10-Dec-2018
+     */
+    void mkdir() const;
 
 public:
 
@@ -148,7 +147,7 @@ public:
      * @author     mochiwa
      * @date       10-Dec-2018
      */
-    void erase(std::string const& filename);
+    void erase(std::string const& filename) const;
 
     /**
      * @brief      erase everythings in the directory
@@ -274,7 +273,7 @@ public:
      * @author     mochiwa
      * @date       11-Dec-2018
      */
-    std::string const& getDirName() const;
+    std::string const& getName() const;
 
     /**
      * @brief      Gets the file.
@@ -308,7 +307,7 @@ public:
      * @author     mochiwa
      * @date       11-Dec-2018
      */
-    void setDirName(std::string const& filename);
+    void setName(std::string const& filename);
 
 };
 

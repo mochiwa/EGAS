@@ -5,14 +5,29 @@
 #include <cstring>
 #include <vector>
 #include <fstream>
+#include <map>
+
+#include "own_input.h"
 
 #include "Directory.h"
-#include "own/own_input.h"
+#include "WordGetter.h"
+
+
 #include "ReaderFactory.h"
+#include "WriterFactory.h"
+#include "TypeDetectorFactory.h"
+
+#include "SGBDType.h"
+#include "TypeDetector.h"
+
 #include "MYSQLTableReader.h"
 #include "SQLWriter.h"
+
 #include "Table.h"
 #include "TableMaker.h"
+
+#include "CleverGenerator.h"
+
 
 
 #ifdef LINUX
@@ -20,6 +35,9 @@
 #else
     #define CLEAR() system("cls");
 #endif
+
+typedef std::pair<std::string,int> reference;
+typedef std::pair<Attribute const*,std::string> att_file;
 
 
 class Application
@@ -30,11 +48,18 @@ private:
     Directory outputdir; /** < Describe the directory where the application put the file */
     Directory library; /** < Describe the directory where the application take data to... */
 
-    ReaderType readerType; /** < the type of SGBD used */
+    SGBDType sgbd; /** < the type of SGBD used */
     TableReader *reader; /** < The reader that read a SQLFile (Abstract)*/
-    SQLWriter writer; /** < The writer that write SQLFile*/
+    SQLWriter *writer; /** < The writer that write SQLFile*/
+    TypeDetector * typeDetector; /** < The detector that detecte which type of attribute */
+    CleverGenerator clever; /** < Object respive to detect what kind of data generate*/
+
 
     std::vector<Table> tables; /** < List of tables in the worked file */
+    std::map<std::string,int> tablereferences; /** < a map of table name and count line */
+    std::map<Attribute const*,std::string> attributeFiles; /** a map where varchar attribute use file */
+    
+    
 
     /**
      * @brief      initialize variables of the Attribute
@@ -81,6 +106,44 @@ private:
      */
     void sliceSQLFile(std::string const& filepath);
 
+     /**
+     * @brief      Arrange tables that have foreign key
+     *
+     * @param[in]  current      The current
+     * @param[in]  foreignKeys  The foreign keys
+     *
+     * @return     0 if current table is moved , the current pos else
+     *
+     * @note       if the current table moves then all vector have to check .
+     *
+     * @author     mochiwa
+     * @date       01-Jan-2019
+     */
+    int ArrangeForeignTable(int current,std::map<std::string,std::string> const& foreignKeys );
+
+    /**
+     * @brief      swap table at posA to posB
+     *
+     * @param[in]  posA  The position a
+     * @param[in]  posB  The position b
+     *
+     * @author     mochiwa
+     * @date       31-Dec-2018
+     */
+    void swapTable(int posA,int posB); 
+
+    /**
+     * @brief      sort tables
+     *
+     * @note       this function sort the tables with
+     *              the foreign relations, tables without foreign
+     *              are at first.
+     *
+     * @author     mochiwa
+     * @date       31-Dec-2018
+     */
+    void sortTable();
+
     /**
      * @brief      Loads tables.
      *
@@ -104,6 +167,16 @@ private:
     std::string selectInputFile();
 
     /**
+     * @brief      show a menu to select a file in the input directory
+     *
+     * @return     the relative path with name of the file selected
+     *
+     * @author     mochiwa
+     * @date       09-Jan-2019
+     */
+    std::string selectLibraryFile();
+
+    /**
      * @brief     show a menu to select the type of SQL
      *
      * @return    the type
@@ -111,7 +184,7 @@ private:
      * @author     mochiwa
      * @date       17-Dec-2018
      */
-    ReaderType selectSQLType() const;
+    SGBDType selectSQLType() const;
 
     /**
      * @brief      show a menu to select the table 
@@ -124,6 +197,106 @@ private:
      * @date       26-Dec-2018
      */
     Table const& selectTable() const;
+
+    /**
+     * @brief      generate all Lines to write
+     *
+     * @note       Run through every table to generate line
+     *
+     * @author     mochiwa
+     * @date       28-Dec-2018
+     */
+    void generateLines();
+
+
+    /**
+     * @brief      Write a data according by type
+     *
+     * @param      att   The att
+     *
+     * @note       ask to TypeDector the type and ask the CleverGenerator to generate according its
+     *
+     * @author     mochiwa
+     * @date       05-Jan-2019
+     */
+    void cleverGeneration(Attribute const& att);
+
+
+    /**
+     * @brief      detecte what will be generated
+     *
+     * @param      table  The table
+     * @param[in]  id      the id
+     *
+     * @note       detecte if the attribute is primary,foreign , both or other
+     *              and set the best way to generate data
+     *
+     * @author     mochiwa
+     * @date       05-Jan-2019
+     */
+    void automaticGeneration(Table const& table,int id);
+
+    /**
+     * @brief      Appends a table reference.
+     *
+     * @param      table  The table
+     * @param[in]  count  The count
+     *
+     * @author     mochiwa
+     * @date       28-Dec-2018
+     */
+    void appendTableReference(std::string const& table,int count);
+
+    /**
+     * @brief      Appends an <attribute, file>. into the map
+     *
+     * @param      att   The att
+     * @param      file  The file
+     * @param      att   The att
+     *
+     * @author     mochiwa
+     * @date       09-Jan-2019
+     */
+    void appendAttributeFile(Attribute const& att,std::string const& file);
+
+    /**
+     * @brief      Shows the attribute files.
+     *
+     * @param      table  The table
+     *
+     * @author     mochiwa
+     * @date       09-Jan-2019
+     */
+    void showAttributeFiles(Table const& table);
+
+    /**
+     * @brief      fill the list of files for attribute
+     *
+     * @param      table  The table
+     *
+     * @note       run through the table to find varchar attribute
+     *              ans ask to the user which file link to the attribute
+     *
+     * @author     mochiwa
+     * @date       09-Jan-2019
+     */
+    void fillAttributeFiles(Table const& table);
+
+    /**
+     * @brief      Gets the tiny reference.
+     *
+     * @param      table      The table
+     * @param[in]  baseValue  The base value
+     *
+     * @return     The tiny reference.
+     *
+     * @note       if a table have many foreign then search the tiny count of line generated
+     *
+     * @author     mochiwa
+     * @date       05-Jan-2019
+     */
+    int getTinyReference(Table const& table,unsigned int baseValue) const;
+
 
 
 public:

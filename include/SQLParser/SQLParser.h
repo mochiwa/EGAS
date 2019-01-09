@@ -96,7 +96,7 @@ protected:
      * @author     mochiwa
      * @date       09-Dec-2018
      */
-	void removeChar(std::string& word,char const c);
+	void removeChar(std::string& word,char const c) const;
 
     /**
      * @brief      Removes a sequence.
@@ -110,7 +110,7 @@ protected:
      * @author     mochiwa
      * @date       19-Dec-2018
      */
-    void removeSequence(std::string& word,char const begin,char const end);
+    void removeSequence(std::string& word,char const begin,char const end) const;
 
 
     /**

@@ -11,7 +11,7 @@ Directory::Directory()
 Directory::Directory(string const& name)
 {
     init();
-    setDirName(name);
+    setName(name);
 }
 
 Directory::~Directory()
@@ -27,7 +27,7 @@ void Directory::init()
 
     dir=nullptr;
     fileRead=nullptr;
-    setDirName("");
+    setName("");
 }
 
 void Directory::open()
@@ -48,10 +48,8 @@ void Directory::open()
 void Directory::close()
 {
     if(isOpen())
-    {
         closedir(dir);
-        dir=nullptr;
-    }
+    dir=nullptr;
 }
 
 void Directory::listFiles()
@@ -62,13 +60,13 @@ void Directory::listFiles()
             files.push_back(fileRead->d_name);
 }
 
-void Directory::mkdir()
+void Directory::mkdir() const
 {
     string str;
     if(name.length()<1)
         throw ERROR_DIR_NAME_LENGTH;
 
-    str="mkdir "+getDirName();
+    str="mkdir "+getName();
     system(str.c_str());
 }
 
@@ -93,7 +91,7 @@ void Directory::read()
     }
 }
 
-void Directory::erase(string const& filename)
+void Directory::erase(string const& filename) const
 {
     remove((name+"/"+filename).c_str());
 }
@@ -123,10 +121,7 @@ string const Directory::getFilePath(string const& filename) const
 
 string const Directory::getFilePath(unsigned int index) const
 {
-    if(index<getCountFile())
-        return name+"/"+files[index];
-    else
-        throw BAD_INDEX;
+    return name+"/"+files.at(index);
 }
 
 void Directory::printFiles() const
@@ -139,7 +134,7 @@ void Directory::printFiles() const
 string Directory::toString() const
 {
     string str="";
-    str+="Directory: "+getDirName()+"\n";
+    str+="Directory: "+getName()+"\n";
     for(string const& file:files)
         str+="-File: "+file+"\n";
     return str;
@@ -168,17 +163,14 @@ unsigned int Directory::getCountFile() const
     return files.size();
 }
 
-string const& Directory::getDirName() const
+string const& Directory::getName() const
 {
     return this->name;
 }
 
 string const& Directory::getFile(unsigned int index) const
 {
-    if(index<getCountFile())
-        return files[index];
-    else
-        throw BAD_INDEX;
+    return files.at(index);
 }
 
 vector<string> const& Directory::getFiles() const
@@ -186,7 +178,7 @@ vector<string> const& Directory::getFiles() const
     return files;
 }
 
-void Directory::setDirName(string const& name)
+void Directory::setName(string const& name)
 {
     this->name=name;
 }
@@ -199,7 +191,7 @@ Directory&  Directory::operator=(Directory const& src)
     if(&src==this)
         return (*this);
     init();
-    setDirName(src.name);
+    setName(src.name);
     this->files=src.files;
     return *this;
 }
