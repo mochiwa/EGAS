@@ -33,35 +33,6 @@ void Application::init()
     library.read();
 }
 
-void Application::showTitle(string const& str) const
-{
-    unsigned int i;
-    unsigned int lineUp;
-    unsigned int lineDown;
-
-    if(str.length()%2==0)
-        lineUp=lineDown=43;
-    else
-        lineUp=lineDown=42;
-    for(i=0;i<lineUp;++i)
-        cout<<"#";
-
-    cout<<endl<<"##";
-    lineUp-=2;
-    for(i=0;i<((lineUp-str.length())/2);++i)
-        cout<<" ";
-
-    cout<<str;
-
-    lineUp-=3;
-    for(i=0;i<((lineUp-str.length())/2);++i)
-        cout<<" ";
-    cout<<"##"<<endl;
-
-    for(i=0;i<lineDown;++i)
-        cout<<"#";
-    cout<<endl;
-}
 
 void Application::showAttributeFiles(Table const& table)
 {

@@ -63,6 +63,17 @@ bool getBinaryAnswer(std::string const& output);
  */
 void proceed(std::string const& str=">>");
 
+/**
+ * @brief      Shows the title.
+ *
+ * @param[in]  str       The string
+ * @param[in]  lineSize  Tcount of # 42/43by default
+ *
+ * @author     mochiwa
+ * @date       14-Jan-2019
+ */
+void showTitle(std::string str,unsigned int lineSize=43);
+
 }//end namespace
 
 #endif

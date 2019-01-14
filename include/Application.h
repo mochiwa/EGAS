@@ -73,16 +73,6 @@ private:
     void init();
 
     /**
-     * @brief      Shows an elegant  title.
-     *
-     * @param      str   The string
-     *
-     * @author     mochiwa
-     * @date       14-Dec-2018
-     */
-    void showTitle(std::string const& str) const;
-
-    /**
      * @brief      provides a menu to manage the tmpdir if is not empty
      *
      * @note       if the tmpdir , asks to the user what to do with the file

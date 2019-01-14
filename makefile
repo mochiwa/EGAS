@@ -22,7 +22,7 @@ CC := g++
 CFLAGS := -g -Wall -Wextra
 INCLUDE_DIRECTIVE := $(addprefix -I , $(HEADER_DIRECTORIES))
 
-main : build_tree $(TARGET)
+main : build_bin build_tree $(TARGET)
 
 $(TARGET):	$(OBJECT_FILES)
 	@echo " Linking..."
@@ -33,6 +33,9 @@ $(BUILD_DIRECTORY)/%.o:	$(SOURCE_DIRECTORY)/%.cpp
 	@echo "Compiling of " $@
 	@$(CC) $(CFLAGS) $(INCLUDE_DIRECTIVE) -c -o $@ $<
 
+build_bin :
+	@echo "Making build directory"; 
+	@mkdir -p bin
 build_tree:
 	@echo "Making builder tree directory"; 
 	@mkdir -p $(patsubst include%,$(BUILD_DIRECTORY)%,$(HEADER_DIRECTORIES)); 
