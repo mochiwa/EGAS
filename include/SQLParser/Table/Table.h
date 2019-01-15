@@ -105,6 +105,46 @@ public:
      */
     static unsigned int getCounter();
 
+    /**
+     * @brief      swap table at posA to posB
+     *
+     * @param      tables  The tables
+     * @param[in]  posA    The position a
+     * @param[in]  posB    The position b
+     *
+     * @author     mochiwa
+     * @date       31-Dec-2018
+     */
+    static void swap(std::vector<Table>& tables,int posA,int posB);
+
+    /**
+     * @brief      Arrange tables that have foreign key
+     *
+     * @param[in]  current      The current
+     * @param      tables       The tables
+     * @param[in]  foreignKeys  The foreign keys
+     *
+     * @return     0 if current table is moved , the current pos else
+     *
+     * @note       if the current table moves then all vector have to check .
+     *
+     * @author     mochiwa
+     * @date       01-Jan-2019
+     */
+    static int ArrangeForeignTable(int current,std::vector<Table>& tables,std::map<std::string,std::string> const& foreignKeys);
+
+    /**
+     * @brief      sort tables
+     *
+     * @param      tables  The tables
+     *
+     * @note       this function sort the tables with the foreign relations,
+     *             tables without foreign are at first position.
+     *
+     * @author     mochiwa
+     * @date       31-Dec-2018
+     */
+    static void sortTable(std::vector<Table>& tables);
 //*******************************************************
 //********************  PUBLIC  *************************
 //*******************************************************

@@ -45,6 +45,55 @@ unsigned int Table::getCounter()
 	return counter;
 }
 
+
+void Table::swap(vector<Table>& tables,int posA,int posB)
+{
+    Table tmp=tables.at(posA);
+
+    tables.at(posA)=tables.at(posB);
+    tables.at(posB)=tmp;
+}
+
+int Table::ArrangeForeignTable(int current,vector<Table>& tables,map<string,string> const& foreignKeys)
+{
+    unsigned int target=0;
+    string tableName="";
+
+    for(target=current+1; target<tables.size();++target)
+    {
+        for(auto const& ref:foreignKeys)
+        {
+            tableName=tables.at(target).getName();
+            if(!tableName.compare(ref.second))
+            {
+                swap(tables,current,target);
+                return 0;
+            }
+        }
+    }
+    return current;
+}
+
+void Table::sortTable(vector<Table> & tables)
+{
+    unsigned int pos=0;
+    unsigned int i=0;
+    map<string,string> const* foreignKeys;
+
+    //placement of every table without foreignkey at first position
+    for(i=0;i<tables.size();++i)
+        if(tables.at(i).getForeignKeys().size()==0)
+            swap(tables,i,pos++);
+
+    //Looking for tables that have foreign keys  
+    for(;pos<tables.size();pos++)
+    {
+        foreignKeys=&tables.at(pos).getForeignKeys();
+        pos=ArrangeForeignTable(pos,tables,*foreignKeys);     
+    }
+}
+
+
 //*******************************************************
 //********************  PUBLIC  *************************
 //*******************************************************

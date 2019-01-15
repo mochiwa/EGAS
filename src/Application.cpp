@@ -9,6 +9,7 @@ Application::Application()
 
 Application::~Application()
 {
+    
 }
 
 //*******************************************************
@@ -94,43 +95,6 @@ void Application::sliceSQLFile(string const& filepath)
     tmpdir.read();
 }
 
-void Application::swapTable(int posA,int posB)
-{
-    Table tmp=tables.at(posA);
-
-    tables.at(posA)=tables.at(posB);
-    tables.at(posB)=tmp;
-}
-
-int Application::ArrangeForeignTable(int current,map<string,string> const& foreignKeys)
-{
-    unsigned int target;
-
-    for(target=current+1; target<tables.size();++target)
-        for(auto const& ref:foreignKeys)
-            if(!tables[target].getName().compare(ref.second))
-            {
-                swapTable(current,target);
-                return 0;
-            }
-    return current;
-}
-
-void Application::sortTable()
-{
-    unsigned int pos=0;
-    unsigned int i=0;
-
-    //placement of every table without foreignkey at first position
-    for(i=0;i<tables.size();++i)
-        if(tables.at(i).getForeignKeys().size()==0)
-            swapTable(i,pos++);
-
-    //Looking for tables that have foreign keys  
-    for(;pos<tables.size();pos++)
-        pos=ArrangeForeignTable(pos,tables[pos].getForeignKeys());     
-}
-
 void Application::loadTables()
 {
     for(string file:tmpdir.getFiles())
@@ -140,7 +104,7 @@ void Application::loadTables()
         tables.push_back(TableMaker::getTable(reader));
         reader->closeFile();
     }
-    sortTable();
+    Table::sortTable(tables);
 }
 
 string Application::selectInputFile()
@@ -430,6 +394,7 @@ void Application::run()
 
     tmpdir.eraseContent();
 
+    delete typeDetector;
     delete reader;
     delete writer;
 }
