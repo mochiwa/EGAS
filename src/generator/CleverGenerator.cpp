@@ -4,17 +4,16 @@ using namespace std;
 
 CleverGenerator::CleverGenerator()
 {
-
 }
 
 int CleverGenerator::getInt(int min,int max)
 {
-    return generator.randomInt(min,max);
+    return generator.randomInt(min,max-1);
 }
 
 double CleverGenerator::getDouble(double min,double max)
 {
-    return generator.randomDouble(min,max);
+    return generator.randomDouble(min,max-1);
 }
 
 int CleverGenerator::getBoolean()

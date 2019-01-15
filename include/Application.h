@@ -38,7 +38,7 @@
 
 typedef std::pair<std::string,int> reference;
 typedef std::pair<Attribute const*,std::string> att_file;
-
+typedef std::pair<int,int> uniqueRelation;
 
 class Application
 {
@@ -56,9 +56,9 @@ private:
 
 
     std::vector<Table> tables; /** < List of tables in the worked file */
-    std::map<std::string,int> tablereferences; /** < a map of table name and count line */
+    std::map<std::string,int> tableReferences; /** < a map of table name and count line */
     std::map<Attribute const*,std::string> attributeFiles; /** a map where varchar attribute use file */
-    
+    std::vector<uniqueRelation> uniqueRelations; /** */
     
 
     /**
@@ -273,22 +273,65 @@ private:
     void fillAttributeFiles(Table const& table);
 
     /**
-     * @brief      Gets the tiny reference.
+     * @brief      reduce the count of line for relation table
      *
-     * @param      table      The table
-     * @param[in]  baseValue  The base value
+     * @param[in]  countLines  The count lines
+     * @param[in]  max         The maximum
      *
-     * @return     The tiny reference.
+     * @return     a number less than 3 * max
      *
-     * @note       if a table have many foreign then search the tiny count of line generated
      *
      * @author     mochiwa
-     * @date       05-Jan-2019
+     * @date       15-Jan-2019
      */
-    int getTinyReference(Table const& table,unsigned int baseValue) const;
+    unsigned int reduceRelationCount(unsigned int countLines,int max);
 
+    /**
+     * @brief      initialize the parameters of table that type is Type
+     *
+     * @note       auto define the max line will generated and the file where take word
+     *
+     * @author     mochiwa
+     * @date       14-Jan-2019
+     */
+    void initTypeTable(Table const& table);
 
+    /**
+     * @brief      initialize the parameters of table that type is Relation
+     *
+     * @param      table     The table
+     * @param[in]  maxLines  The maximum lines
+     *
+     * @note       auto define the max line will be generated ;
+     *
+     * @author     mochiwa
+     * @date       14-Jan-2019
+     */
+    void initRelationTable(Table const& table,unsigned int maxLines);
 
+    /**
+     * @brief      initialize the parameters of table that type is Normal
+     *
+     * @param      table  The table
+     * @param[in]  lines  The lines
+     *
+     * @note       auto define the max line will be generated and ask user the
+     *             file
+     *
+     * @author     mochiwa
+     * @date       14-Jan-2019
+     */
+    void initTable(Table const& table,unsigned int lines);
+
+    /**
+     * @brief      Gets a unique relation.
+     *
+     * @author     mochiwa
+     * @date       14-Jan-2019
+     */
+    uniqueRelation getUniqueRelation(Table const& table);
+
+    bool alreadyCreate(uniqueRelation r);
 public:
 
     /**
@@ -327,5 +370,7 @@ public:
 //***************  GETTER AND SETTER  *******************
 //*******************************************************
 };
+
+bool operator==(uniqueRelation a,uniqueRelation b);
 
 #endif

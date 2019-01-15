@@ -3,13 +3,32 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <map>
 
 #include "own_random.h"
+#include "Directory.h"
+#include "WordGetter.h"
 
+#include "Table.h"
+#include "Attribute.h"
+
+
+/**
+ * @brief      The purpose of this class is to give random data
+ *
+ * @author     mochiwa
+ * @date       10-Jan-2019
+ */
 class CleverGenerator
 {
 private:
-    own_random generator;
+    own_random generator; /** < the number generator */
+    //WordGetter wordGetter; /** < the file manager */
+   // Directory *library; /** < Directory where take file*/
+
+    //std::map<Table const*,int> lineMax; /** < table and count line max will generated*/
+    //std::map<Attribute const*,std::string> attFiles; /** < attribute and file where take */
+
 public:
 
     /**
@@ -20,6 +39,7 @@ public:
      * @date       31-Dec-2018
      */
     CleverGenerator();
+
     /**
      * @brief      Gets a random int
      *

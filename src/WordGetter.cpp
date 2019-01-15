@@ -100,3 +100,10 @@ string WordGetter::getWord(string const& filename)
     return "A_Word";
 }
 
+int WordGetter::getMaxWord(std::string const& filename)
+{
+    WordGetter getter;
+    getter.openFile(filename);
+    getter.countLine();
+    return getter.getCountLine();
+}

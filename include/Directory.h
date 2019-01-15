@@ -6,12 +6,19 @@
 #include <vector>
 #include <dirent.h>
 
+#include "own_input.h"
 
 #define ERROR_DIR_NOT_EXIST 1
 #define ERROR_DIR_UNKNOW 2
 #define ERROR_DIR_ALREADY_OPEN 3
 #define ERROR_DIR_NAME_LENGTH 4
 #define BAD_INDEX 5
+
+#ifdef LINUX
+    #define CLEAR() system("clear");
+#else
+    #define CLEAR() system("cls");
+#endif
 
 /**
  * @brief      Class for directory.
@@ -205,6 +212,14 @@ public:
      * @date       14-Dec-2018
      */
     void printFiles() const;
+
+    /**
+     * @brief      return the file with the path of the file
+     *
+     * @author     mochiwa
+     * @date       10-Jan-2019
+     */
+    std::string selectFile();    
 
     /**
      * @brief      Returns a string representation of the object.

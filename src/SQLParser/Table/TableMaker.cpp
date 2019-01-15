@@ -51,7 +51,6 @@ void TableMaker::setForeignKeys(Table &table)
         reference=reader->getForeignKeyReference();
         table.appendForeignKey(key,reference);
     }
-
 }
 
 void TableMaker::setTypeOfAttribute(Attribute& attribute)
@@ -60,6 +59,23 @@ void TableMaker::setTypeOfAttribute(Attribute& attribute)
 	word=reader->getType(attribute.getName());
 	attribute.setType(word);
     attribute.setSize(reader->getAtttributeSize());
+}
+
+bool TableMaker::isTypeTable(Table const& table) const
+{
+    string name=table.getName();
+    if(name.find("Type_")!=string::npos || name.find("type_")!=string::npos || name.find("TYPE_")!=string::npos)
+        if(!isRelationTable(table))
+            return true;
+    return false;
+}
+
+bool TableMaker::isRelationTable(Table const& table) const
+{
+    for(Attribute const& att:table.getAttributes())
+        if(att.getKeyType()==KeyType::primary || att.getKeyType()==KeyType::both)
+            return false;
+    return true;
 }
 //*******************************************************
 //********************  STATIC  *************************
@@ -83,8 +99,19 @@ Table TableMaker::getTable()
     setPrimaryKeyTable(table);
 
     if(reader->hasForeignKey())
-    {
         setForeignKeys(table);
+
+    if(isTypeTable(table))
+    {
+        table.setType(TypeTable::TYPE);
+    }
+    else if(isRelationTable(table))
+    {
+        table.setType(TypeTable::RELATION);
+    }
+    else
+    {
+        table.setType(TypeTable::NORMAL);
     }
     
 	return table;

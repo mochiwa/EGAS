@@ -17,6 +17,8 @@
 
 typedef std::pair<std::string,std::string> foreignKey ;/** < This Typedef is a pair to append to the foreignkyes */
 
+enum TypeTable{NORMAL,TYPE,RELATION}; /**< define the type of a table */
+
 /**
  * @brief      Class for table.
  *
@@ -32,6 +34,7 @@ private:
     static unsigned int lastId;/**< The last id will be attributed. */
 
 	unsigned int id;/**< The unique ID. */
+    TypeTable type; /**< define the type of the table */
 	std::string name; /**< The name of the table. */
 	std::vector<Attribute> attributes; /**< List of \p Attribute in the table. */
     std::map<std::string, std::string> foreignKeys; /**< Map of foreign key  foreignKey - table*/
@@ -233,6 +236,16 @@ public:
      */
     unsigned int getId() const;
 
+    /**
+     * @brief      Gets the type.
+     *
+     * @return     The type.
+     *
+     * @author     mochiwa
+     * @date       14-Jan-2019
+     */
+    TypeTable getType() const;
+
 	/**
      * @brief      Gets the name.
      *
@@ -282,6 +295,16 @@ public:
      * @date       09-Dec-2018
      */
     void setId(unsigned int const id);
+
+    /**
+     * @brief      Sets the type.
+     *
+     * @param[in]  type  The type
+     *
+     * @author     mochiwa
+     * @date       14-Jan-2019
+     */
+    void setType(TypeTable type);
 
 	/**
      * @brief      Sets the name.

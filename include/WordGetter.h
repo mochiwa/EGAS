@@ -91,6 +91,17 @@ public:
      */
     static std::string getWord(std::string const& filename);
     
+    /**
+     * @brief      Gets the maximum word in a file.
+     *
+     * @param      filename  The filename
+     *
+     * @return     The maximum word.
+     *
+     * @author     mochiwa
+     * @date       11-Jan-2019
+     */
+    static int getMaxWord(std::string const& filename);
 };
 
 #endif

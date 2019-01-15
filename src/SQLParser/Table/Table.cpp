@@ -22,6 +22,7 @@ Table::Table(Table const& src)
     setName(src.getName());
     setAttributes(src.getAttributes());
     setForeignKeys(src.getForeignKeys());
+    setType(src.getType());
 }
 
 Table::~Table()
@@ -126,6 +127,11 @@ unsigned int Table::getId() const
     return id;
 }
 
+TypeTable Table::getType() const
+{
+    return type;
+}
+
 string const& Table::getName() const
 {
 	return name;
@@ -152,6 +158,11 @@ map<string,string> const& Table::getForeignKeys() const
 void Table::setId(unsigned int const id)
 {
     this->id=id;
+}
+
+void Table::setType(TypeTable type)
+{
+    this->type=type;
 }
 
 void Table::setName(string const& name)

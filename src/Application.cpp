@@ -9,7 +9,6 @@ Application::Application()
 
 Application::~Application()
 {
-
 }
 
 //*******************************************************
@@ -233,21 +232,64 @@ void Application::cleverGeneration(Attribute const& att)
         writer->appendValue(WordGetter::getWord(attributeFiles.at(&att)));
 }
 
+bool operator==(uniqueRelation a,uniqueRelation b)
+{
+    if(a.first==b.first && a.second==b.second)
+        return true;
+    return false;
+}
+
+uniqueRelation Application::getUniqueRelation(Table const& table)
+{
+    int a;
+    int b;
+    uniqueRelation relation;
+    string tableA=table.getAttributes()[0].getName();
+    string tableB=table.getAttributes()[1].getName();
+    do
+    {
+        a=clever.getInt(0,tableReferences.at(table.getReference(tableA)));
+        b=clever.getInt(0,tableReferences.at(table.getReference(tableB)));
+        relation.first=a;
+        relation.second=b;
+   }while(alreadyCreate(relation));
+
+    uniqueRelations.push_back(relation);
+    return relation;
+}
+
+bool Application::alreadyCreate(uniqueRelation r)
+{
+    for(auto const& relation:uniqueRelations)
+        if(r==relation)
+            return true;
+    return false;
+}
+
 void Application::automaticGeneration(Table const& table,int id)
 {
+    uniqueRelation relation;
     writer->initLine(table.getName());
     writer->appendAttributes(table.getAttributes());
+
+    if(table.getType()==TypeTable::RELATION)
+    {
+        relation=getUniqueRelation(table);
+        writer->appendValue(relation.first);
+        writer->appendValue(relation.second);
+    }
 
     for(Attribute const& att:table.getAttributes())
     {
         if(att.getKeyType()==KeyType::primary)
             writer->appendValue(id);
-        else if(att.getKeyType()==KeyType::foreign)
-            writer->appendValue(id);//to change
+        else if(att.getKeyType()==KeyType::foreign && table.getType()!=TypeTable::RELATION)
+            writer->appendValue(clever.getInt(1,tableReferences.at(table.getReference(att.getName())))-1);
         else if(att.getKeyType()==KeyType::both) 
             writer->appendValue(id);
         else
-            cleverGeneration(att);
+            if(att.getKeyType()!=KeyType::foreign)
+                cleverGeneration(att);
     }
     writer->closeQuerry();
     writer->writeQuerry(outputdir.getName()+"/SQLFILE.sql");
@@ -257,8 +299,6 @@ void Application::automaticGeneration(Table const& table,int id)
 void Application::generateLines()
 {
     int maxLinesGenerate=0;
-    int randomLines=0;
-
     do
     {
         CLEAR()
@@ -270,25 +310,29 @@ void Application::generateLines()
     for(Table const& table:tables)
     {
 
-        fillAttributeFiles(table);
-
-        if(table.hasBothKey())
-            randomLines=tablereferences.at(table.getReference(table.getPrimaryKey()->getName()));
+        if(table.getType()==TypeTable::TYPE && library.isFileExist(table.getName()))
+        {
+            initTypeTable(table);
+        }
+        else if(table.getType()==TypeTable::RELATION)
+        {
+            initRelationTable(table,maxLinesGenerate);
+        }
         else
-            randomLines=clever.getInt(1,maxLinesGenerate);
-
-        randomLines=getTinyReference(table,randomLines);
-
-        appendTableReference(table.getName(),randomLines-1);
-        for(int line=0;line<randomLines;line++)
+        {
+            initTable(table,maxLinesGenerate);
+        }
+        
+        for(int line=0;line<tableReferences.at(table.getName());line++)
             automaticGeneration(table,line);
         attributeFiles.clear();
+        uniqueRelations.clear();
     }
 }
 
 void Application::appendTableReference(std::string const& table,int count)
 {
-    tablereferences.insert(reference(table,count));
+    tableReferences.insert(reference(table,count));
 }
 
 void Application::appendAttributeFile(Attribute const& att,std::string const& file)
@@ -311,18 +355,48 @@ void Application::fillAttributeFiles(Table const& table)
     }
 }
 
-int Application::getTinyReference(Table const& table,unsigned int baseValue) const
+unsigned int Application::reduceRelationCount(unsigned int countLines,int max)
 {
-    int count=baseValue;
+    double lines=pow(2,countLines);
+    if(lines<(max*3))
+        return (unsigned int)lines;
+    return reduceRelationCount(countLines-1,max);
+}
 
-    if(!table.getForeignKeys().size())
-        return count;
+void Application::initTypeTable(Table const& table)
+{
+    int countLines=0;
+    countLines=WordGetter::getMaxWord(library.getFilePath(table.getName()));
+    for(Attribute const& att:table.getAttributes())
+        if(typeDetector->isString(att))
+            appendAttributeFile(att,library.getFilePath(table.getName()));
+    appendTableReference(table.getName(),countLines);
+}
 
-    for(auto const& v:table.getForeignKeys())
-        if(tablereferences.at(v.second)<count)
-            count=tablereferences.at(v.second);
+void Application::initRelationTable(Table const& table,unsigned int maxLines)
+{
+    unsigned int countLines=0;
+    unsigned int ref=0;
+    for(auto const& att:table.getForeignKeys())
+    {
+        ref=tableReferences.at(att.second);
+        if(ref>countLines)
+            countLines=ref;
+    }
+    countLines=reduceRelationCount(countLines,maxLines);
+    countLines=clever.getInt(1,countLines);
+    appendTableReference(table.getName(),countLines);
+}
 
-    return count;
+void Application::initTable(Table const& table,unsigned int lines)
+{
+    unsigned int countLine=0;
+    fillAttributeFiles(table);
+    if(table.hasBothKey())
+        countLine=tableReferences.at(table.getReference(table.getPrimaryKey()->getName()));//cas heritage
+    else
+        countLine=lines;
+    appendTableReference(table.getName(),countLine);
 }
 //*******************************************************
 //********************  PUBLIC  *************************

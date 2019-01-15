@@ -131,6 +131,30 @@ void Directory::printFiles() const
         cout<<i++<<") "<<file<<endl;
 }
 
+string Directory::selectFile()
+{
+    unsigned int selected=-1;
+
+    while(selected>=getCountFile())
+    {
+        CLEAR();
+        cout<<"##############################"<<endl;
+        cout<<"        "<<name<<endl;
+        cout<<"##############################"<<endl;
+
+        printFiles();
+        if(isEmpty())
+        {
+            cout<<"Your input directory is empty, insert files into and press Return"<<endl;
+            own::proceed();
+            read();
+        }
+        else
+            selected=own::readInteger("Select: ")-1;
+    }
+    return getFilePath(selected);
+}
+
 string Directory::toString() const
 {
     string str="";

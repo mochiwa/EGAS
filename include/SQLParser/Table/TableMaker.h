@@ -68,6 +68,29 @@ private:
      */
     void setForeignKeys(Table &table);
 
+    /**
+     * @brief      Determines if type table.
+     *
+     * @return     True if type table, False otherwise.
+     *
+     * @note       if the name table contain type_ or Type_ or TYPE_
+     *
+     * @author     mochiwa
+     * @date       14-Jan-2019
+     */
+    bool isTypeTable(Table const& table) const;
+
+    /**
+     * @brief      Determines if relation table.
+     *
+     * @return     True if relation table, False otherwise.
+     *
+     * @note       if the table doesn't have primary ou both key
+     *
+     * @author     mochiwa
+     * @date       14-Jan-2019
+     */
+    bool isRelationTable(Table const& table) const;
 public:
 	
 	
