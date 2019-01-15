@@ -9,7 +9,7 @@ Application::Application()
 
 Application::~Application()
 {
-    
+
 }
 
 //*******************************************************
@@ -177,7 +177,7 @@ Table const& Application::selectTable() const
             cout<<i++<<") "<<table.getName()<<endl;
         selected=readInteger("Select: ")-1;
     }
-    return tables[selected];
+    return tables.at(selected);
 }
 
 void Application::cleverGeneration(Attribute const& att)
@@ -256,13 +256,14 @@ void Application::automaticGeneration(Table const& table,int id)
                 cleverGeneration(att);
     }
     writer->closeQuerry();
-    writer->writeQuerry(outputdir.getName()+"/SQLFILE.sql");
+    writer->writeQuerry();
 }
 
 //TODO separer le code
 void Application::generateLines()
 {
     int maxLinesGenerate=0;
+    int lines=0;
     do
     {
         CLEAR()
@@ -286,8 +287,10 @@ void Application::generateLines()
         {
             initTable(table,maxLinesGenerate);
         }
-        
-        for(int line=0;line<tableReferences.at(table.getName());line++)
+        lines=tableReferences.at(table.getName());
+        writer->initTable(table.getName(),lines);
+
+        for(int line=0;line<lines;line++)
             automaticGeneration(table,line);
         attributeFiles.clear();
         uniqueRelations.clear();
@@ -348,6 +351,7 @@ void Application::initRelationTable(Table const& table,unsigned int maxLines)
             countLines=ref;
     }
     countLines=reduceRelationCount(countLines,maxLines);
+    cout<<countLines;cin.get();
     countLines=clever.getInt(1,countLines);
     appendTableReference(table.getName(),countLines);
 }
@@ -389,6 +393,8 @@ void Application::run()
     loadTables();
 
     writer=WriterFactory::getWriter(sgbd);
+    writer->setFileName((outputdir.getName()+"/file.sql"));
+    writer->initFile();
 
     generateLines();
 

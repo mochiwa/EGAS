@@ -114,6 +114,7 @@ void SQLWriter::writeQuerry()
     openFile();
     file<<query;
     closeFile();
+    query="";
 }
 
 void SQLWriter::writeQuerry(string const& filename)
@@ -129,4 +130,9 @@ void SQLWriter::writeQuerry(string const& filename)
 string const& SQLWriter::getQuerry() const
 {
     return query;
+}
+
+void SQLWriter::setFileName(string const& filename)
+{
+    this->filename=filename;
 }

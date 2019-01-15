@@ -12,6 +12,7 @@
 #include "Table.h"
 #include "Attribute.h"
 
+typedef std::pair<int,int> uniqueRelation;
 
 /**
  * @brief      The purpose of this class is to give random data
@@ -114,8 +115,6 @@ public:
      * @date       31-Dec-2018
      */
     std::string getCleverValue(std::string const& name);
-
-    
 };
 
 #endif

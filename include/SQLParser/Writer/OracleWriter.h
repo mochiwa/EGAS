@@ -10,6 +10,26 @@
 class OracleWriter:public SQLWriter
 {
 public:
+
+    /**
+     * @brief      writer the header of the file
+     *
+     * @author     mochiwa
+     * @date       15-Jan-2019
+     */
+    virtual void initFile();    
+
+    /**
+     * @brief      write comment with the table name into the file
+     *
+     * @param[in]  tableName  The table name
+     * @param[in]  lines      The lines
+     *
+     * @author     mochiwa
+     * @date       15-Jan-2019
+     */
+    virtual void initTable(std::string tableName,unsigned int lines);
+
     /**
      * @brief      Appends a date.
      *

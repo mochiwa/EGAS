@@ -30,6 +30,7 @@ class SQLWriter
 private:
     std::ofstream file;
     std::string filename;
+
     /**
      * @brief      Opens a file.
      *
@@ -107,6 +108,14 @@ public:
      * @date       26-Dec-2018
      */
     virtual ~SQLWriter();
+
+    /**
+     * @brief      writer the header of the file
+     *
+     * @author     mochiwa
+     * @date       15-Jan-2019
+     */
+    virtual void initFile()=0;
     
     /**
      * @brief      insert the initial query keyword
@@ -119,6 +128,17 @@ public:
      * @date       26-Dec-2018
      */
     void initLine(std::string const& tableName);
+
+    /**
+     * @brief      write comment with the table name into the file
+     *
+     * @param[in]  tableName  The table name
+     * @param[in]  lines      The lines
+     *
+     * @author     mochiwa
+     * @date       15-Jan-2019
+     */
+    virtual void initTable(std::string tableName,unsigned int lines)=0;
 
     /**
      * @brief      Appends attributes that will generated .
@@ -246,5 +266,15 @@ public:
      * @date       26-Dec-2018
      */
     std::string const& getQuerry() const;
+
+    /**
+     * @brief      Sets the file name.
+     *
+     * @param      filename  The filename
+     *
+     * @author     mochiwa
+     * @date       15-Jan-2019
+     */
+    void setFileName(std::string const& filename);
 };
 #endif 
