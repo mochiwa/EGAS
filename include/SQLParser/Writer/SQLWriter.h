@@ -150,7 +150,7 @@ public:
      * @author     mochiwa
      * @date       26-Dec-2018
      */
-    void appendAttributes(std::vector<Attribute> const& attributes);
+    virtual void appendAttributes(std::vector<Attribute> const& attributes)=0;
 
     /**
      * @brief      Appends a value.

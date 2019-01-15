@@ -31,6 +31,16 @@ public:
     virtual void initTable(std::string tableName,unsigned int lines);
 
     /**
+     * @brief      Appends attributes.
+     *
+     * @param      attributes  The attributes
+     *
+     * @author     mochiwa
+     * @date       15-Jan-2019
+     */
+    virtual void appendAttributes(std::vector<Attribute> const& attributes);
+
+    /**
      * @brief      Appends a date.
      *
      * @param      value  The value

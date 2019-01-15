@@ -80,14 +80,6 @@ void SQLWriter::initLine(string const& tableName)
     query="INSERT INTO "+tableName+"(";
 }
 
-void SQLWriter::appendAttributes(vector<Attribute> const& attributes)
-{
-    for(Attribute const& att:attributes)
-        query+=att.getName()+",";
-    query.back()=')';
-    query+=" VALUES (";
-}
-
 void SQLWriter::appendValue(string const& value)
 {
     query+="'"+formatedWord(value)+"',";

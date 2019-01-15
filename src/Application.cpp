@@ -246,7 +246,10 @@ void Application::automaticGeneration(Table const& table,int id)
     for(Attribute const& att:table.getAttributes())
     {
         if(att.getKeyType()==KeyType::primary)
-            writer->appendValue(id);
+            if(sgbd!=SGBDType::MYSQL)
+                writer->appendValue(id);
+            else
+                continue;
         else if(att.getKeyType()==KeyType::foreign && table.getType()!=TypeTable::RELATION)
             writer->appendValue(clever.getInt(1,tableReferences.at(table.getReference(att.getName())))-1);
         else if(att.getKeyType()==KeyType::both) 
@@ -270,7 +273,7 @@ void Application::generateLines()
         showTitle("Lines generation");
         cout<<"Maximal line will generate: ";
         maxLinesGenerate=readInteger("");
-    }while(!maxLinesGenerate);
+    }while(maxLinesGenerate <=2);
     
     for(Table const& table:tables)
     {
@@ -309,15 +312,21 @@ void Application::appendAttributeFile(Attribute const& att,std::string const& fi
 
 void Application::fillAttributeFiles(Table const& table)
 {
+
+
     for(Attribute const& att:table.getAttributes())
     {
         CLEAR();
         showAttributeFiles(table);
-
         if(typeDetector->isString(att) ||typeDetector->isText(att))
         {
-            cout<<"Select a file for "+att.getName()<<":"<<endl;
-            appendAttributeFile(att,selectLibraryFile());
+            if(library.isFileExist(att.getName()))
+                appendAttributeFile(att,library.getFilePath(att.getName()));
+            else
+            {
+                cout<<"Select a file for "+att.getName()<<":"<<endl;
+                appendAttributeFile(att,selectLibraryFile());
+            }       
         }
     }
 }
