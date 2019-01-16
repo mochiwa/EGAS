@@ -9,6 +9,7 @@
 #include "Directory.h"
 #include "WordGetter.h"
 
+#include "SGBDType.h"
 #include "Table.h"
 #include "Attribute.h"
 
@@ -24,6 +25,7 @@ class CleverGenerator
 {
 private:
     own_random generator; /** < the number generator */
+    int minimal; /** < set the minimal return value for random */
     //WordGetter wordGetter; /** < the file manager */
    // Directory *library; /** < Directory where take file*/
 
@@ -47,12 +49,24 @@ public:
      * @param[in]  min   The minimum
      * @param[in]  max   The maximum
      *
-     * @return     The int.
+     * @return     The int between min max include.
      *
      * @author     mochiwa
      * @date       31-Dec-2018
      */
     int getInt(int min=0,int max=100);
+
+    /**
+     * @brief      Gets the random identifier.
+     *
+     * @param[in]  max   The maximum
+     *
+     * @return     The random identifier.
+     *
+     * @author     mochiwa
+     * @date       16-Jan-2019
+     */
+    int getRandomId(unsigned int max);
 
     /**
      * @brief      Gets a random double.
@@ -115,6 +129,18 @@ public:
      * @date       31-Dec-2018
      */
     std::string getCleverValue(std::string const& name);
+
+    /**
+     * @brief      Sets the minimal value.
+     *
+     * @param[in]  sgbd  The sgbd
+     *
+     * @note       define the miniam value 
+     *
+     * @author     mochiwa
+     * @date       16-Jan-2019
+     */
+    void setMinimalId(SGBDType sgbd);
 };
 
 #endif

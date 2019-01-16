@@ -212,8 +212,8 @@ uniqueRelation Application::getUniqueRelation(Table const& table)
     string tableB=table.getAttributes()[1].getName();
     do
     {
-        a=clever.getInt(0,tableReferences.at(table.getReference(tableA)));
-        b=clever.getInt(0,tableReferences.at(table.getReference(tableB)));
+        a=clever.getRandomId(tableReferences.at(table.getReference(tableA)));
+        b=clever.getRandomId(tableReferences.at(table.getReference(tableB)));
         relation.first=a;
         relation.second=b;
    }while(alreadyCreate(relation));
@@ -251,7 +251,7 @@ void Application::automaticGeneration(Table const& table,int id)
             else
                 continue;
         else if(att.getKeyType()==KeyType::foreign && table.getType()!=TypeTable::RELATION)
-            writer->appendValue(clever.getInt(1,tableReferences.at(table.getReference(att.getName())))-1);
+            writer->appendValue(clever.getRandomId(tableReferences.at(table.getReference(att.getName()))));
         else if(att.getKeyType()==KeyType::both) 
             writer->appendValue(id);
         else
@@ -398,7 +398,7 @@ void Application::run()
     sgbd=selectSQLType();
     reader=ReaderFactory::getReader(sgbd);
     typeDetector=TypeDetectorFactory::getDetector(sgbd);
-        
+    clever.setMinimalId(sgbd);
     loadTables();
 
     writer=WriterFactory::getWriter(sgbd);

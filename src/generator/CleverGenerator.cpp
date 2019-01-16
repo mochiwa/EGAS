@@ -8,7 +8,15 @@ CleverGenerator::CleverGenerator()
 
 int CleverGenerator::getInt(int min,int max)
 {
-    return generator.randomInt(min,max-1);
+    return generator.randomInt(min,max);
+}
+
+int CleverGenerator::getRandomId(unsigned int max)
+{
+    if(minimal==1)
+        return generator.randomInt(minimal,max);
+    else
+        return generator.randomInt(minimal,max-1);
 }
 
 double CleverGenerator::getDouble(double min,double max)
@@ -52,4 +60,14 @@ string const CleverGenerator::getDateTime()
     else
         period="PM";
     return getDate()+" "+to_string(hour)+":"+to_string(minute)+":"+to_string(second)+" "+period;
+}
+
+void CleverGenerator::setMinimalId(SGBDType sgbd)
+{
+    switch(sgbd)
+    {
+        case MYSQL: minimal=1;break;
+        case ORACLE: minimal=0;break;
+        default:cout<<"WTF !";break;
+    }
 }
