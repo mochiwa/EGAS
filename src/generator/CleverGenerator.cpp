@@ -68,6 +68,7 @@ void CleverGenerator::setMinimalId(SGBDType sgbd)
     {
         case MYSQL: minimal=1;break;
         case ORACLE: minimal=0;break;
+        case POSTGRES: minimal=1;break;
         default:cout<<"WTF !";break;
     }
 }

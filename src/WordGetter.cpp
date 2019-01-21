@@ -46,7 +46,7 @@ void WordGetter::countLine()
 }
 
 
-std::string WordGetter::selectWord()
+string WordGetter::selectWord()
 {
     own_random gen;
     string str="";
@@ -78,6 +78,36 @@ std::string WordGetter::selectWord()
         return selectWord();      
 }
 
+string WordGetter::selectWord(unsigned int line)
+{
+    string str="";
+    char c=0;
+    unsigned int count=0;
+
+    file.clear();
+    file.seekg(0);
+
+    try
+    {
+        while(count != line)
+            if(file.get()=='\n')
+                count++;
+    }
+    catch(ifstream::failure e){}
+
+    try
+    {
+        while((c=file.get())!='\n')
+            str+=c;
+    }
+    catch(ifstream::failure e){}
+    
+    if(str.size()>=1)
+        return str;
+    else
+        return selectWord();
+}
+
 
 void WordGetter::setCountLine(unsigned int count)
 {
@@ -97,6 +127,16 @@ string WordGetter::getWord(string const& filename)
     getter.countLine();
     if(getter.getCountLine())
         return getter.selectWord();
+    return "A_Word";
+}
+
+string WordGetter::getWord(string const& filename,unsigned int line)
+{
+    WordGetter getter;
+    getter.openFile(filename);
+    getter.countLine();
+    if(getter.getCountLine())
+        return getter.selectWord(line);
     return "A_Word";
 }
 

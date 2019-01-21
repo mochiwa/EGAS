@@ -7,6 +7,7 @@
 #include "TypeDetector.h"
 #include "MYSQLTypeDetector.h"
 #include "OracleTypeDetector.h"
+#include "PostgresTypeDetector.h"
 
 class TypeDetectorFactory
 {

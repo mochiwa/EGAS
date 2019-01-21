@@ -6,6 +6,7 @@
 #include "TableReader.h"
 #include "MYSQLTableReader.h"
 #include "OracleReader.h"
+#include "PostgresReader.h"
 #include "SGBDType.h"
 
 /**

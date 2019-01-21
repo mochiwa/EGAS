@@ -6,6 +6,7 @@
 #include "SGBDType.h"
 #include "SQLWriter.h"
 #include "OracleWriter.h"
+#include "PostgresWriter.h"
 #include "MYSQLWriter.h"
 
 class WriterFactory

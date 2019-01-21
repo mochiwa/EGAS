@@ -187,7 +187,10 @@ void Application::cleverGeneration(Attribute const& att)
     else if(typeDetector->isDouble(att))
         writer->appendValue(clever.getDouble());
     else if(typeDetector->isBoolean(att))
-        writer->appendValue(clever.getBoolean());
+        if(sgbd==SGBDType::POSTGRES)
+            writer->appendValue(to_string(clever.getBoolean()));
+        else
+            writer->appendValue(clever.getBoolean());
     else if(typeDetector->isDate(att))
         writer->appendDate(clever.getDate());
     else if(typeDetector->isDateTime(att))
@@ -246,7 +249,7 @@ void Application::automaticGeneration(Table const& table,int id)
     for(Attribute const& att:table.getAttributes())
     {
         if(att.getKeyType()==KeyType::primary)
-            if(sgbd!=SGBDType::MYSQL)
+            if(sgbd!=SGBDType::MYSQL && sgbd!=SGBDType::POSTGRES)
                 writer->appendValue(id);
             else
                 continue;
@@ -255,7 +258,9 @@ void Application::automaticGeneration(Table const& table,int id)
         else if(att.getKeyType()==KeyType::both) 
             writer->appendValue(id);
         else
-            if(att.getKeyType()!=KeyType::foreign)
+            if(table.getType()==TypeTable::TYPE)
+                writer->appendValue(WordGetter::getWord(attributeFiles.at(&att),id));
+            else if(att.getKeyType()!=KeyType::foreign)
                 cleverGeneration(att);
     }
     writer->closeQuerry();
@@ -277,7 +282,6 @@ void Application::generateLines()
     
     for(Table const& table:tables)
     {
-
         if(table.getType()==TypeTable::TYPE && library.isFileExist(table.getName()))
         {
             initTypeTable(table);
@@ -334,7 +338,7 @@ void Application::fillAttributeFiles(Table const& table)
 unsigned int Application::reduceRelationCount(unsigned int countLines,int max)
 {
     double lines=pow(2,countLines);
-    if(lines<(max*3))
+    if(lines<(max*10))
         return (unsigned int)lines;
     return reduceRelationCount(countLines-1,max);
 }
@@ -347,6 +351,7 @@ void Application::initTypeTable(Table const& table)
         if(typeDetector->isString(att))
             appendAttributeFile(att,library.getFilePath(table.getName()));
     appendTableReference(table.getName(),countLines);
+
 }
 
 void Application::initRelationTable(Table const& table,unsigned int maxLines)
@@ -360,7 +365,6 @@ void Application::initRelationTable(Table const& table,unsigned int maxLines)
             countLines=ref;
     }
     countLines=reduceRelationCount(countLines,maxLines);
-    cout<<countLines;cin.get();
     countLines=clever.getInt(1,countLines);
     appendTableReference(table.getName(),countLines);
 }
@@ -402,11 +406,20 @@ void Application::run()
     loadTables();
 
     writer=WriterFactory::getWriter(sgbd);
-    writer->setFileName((outputdir.getName()+"/file.sql"));
+
+    do
+    {
+        CLEAR();
+        showTitle("Output Name");
+        cout<<"Output name:";
+        cin>>sqlFile;
+    }while(!sqlFile.size());
+    writer->setFileName((outputdir.getName()+"/"+sqlFile));
+
     writer->initFile();
-
     generateLines();
-
+    
+    
     tmpdir.eraseContent();
 
     delete typeDetector;

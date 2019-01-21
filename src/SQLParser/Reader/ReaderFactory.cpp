@@ -10,6 +10,8 @@ TableReader* ReaderFactory::getReader(SGBDType type)
             return new MYSQLTableReader();
         case ORACLE:
             return new OracleReader();
+        case POSTGRES:
+            return new PostgresReader();
         default:
             break;
     }

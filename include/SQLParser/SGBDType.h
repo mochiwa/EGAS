@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-enum SGBDType {MYSQL,ORACLE,LAST};
+enum SGBDType {MYSQL,ORACLE,POSTGRES,LAST};
 
 
 std::ostream& operator<<(std::ostream& stream,SGBDType const type);

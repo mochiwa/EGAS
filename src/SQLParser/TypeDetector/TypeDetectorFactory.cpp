@@ -10,6 +10,8 @@ TypeDetector* TypeDetectorFactory::getDetector(SGBDType type)
            return new MYSQLTypeDetector();
         case ORACLE:
             return new OracleTypeDetector();
+        case POSTGRES:
+            return new PostgresTypeDetector();
         default: 
             break;
     }
