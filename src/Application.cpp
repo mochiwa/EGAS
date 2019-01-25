@@ -224,6 +224,37 @@ uniqueRelation Application::getUniqueRelation(Table const& table)
     uniqueRelations.push_back(relation);
     return relation;
 }
+void Application::existingGeneration(Attribute const& att)
+{
+    string data=WordGetter::getWord(attributeFiles.at(&att));
+    try
+    {
+        if(typeDetector->isInteger(att))
+            writer->appendValue(stoi(data));
+        else if(typeDetector->isDouble(att))
+            writer->appendValue(stod(data));
+        else if(typeDetector->isBoolean(att))
+        {
+            if(sgbd!=SGBDType::POSTGRES)
+                writer->appendValue(stoi(data));
+
+        }
+        else if(typeDetector->isDate(att))
+            writer->appendDate(data);
+        else if(typeDetector->isDateTime(att))
+            writer->appendDateTime(data);
+        else 
+            writer->appendValue(data);
+    }catch(invalid_argument e)
+    {
+        writer->appendValue(data);
+    }
+    catch(out_of_range e)
+    {
+      writer->appendValue(0);  
+    }
+
+}
 
 bool Application::alreadyCreate(uniqueRelation r)
 {
@@ -260,6 +291,8 @@ void Application::automaticGeneration(Table const& table,int id)
         else
             if(table.getType()==TypeTable::TYPE)
                 writer->appendValue(WordGetter::getWord(attributeFiles.at(&att),id));
+            else if(hasAttribute(&att))
+                 existingGeneration(att);
             else if(att.getKeyType()!=KeyType::foreign)
                 cleverGeneration(att);
     }
@@ -316,21 +349,17 @@ void Application::appendAttributeFile(Attribute const& att,std::string const& fi
 
 void Application::fillAttributeFiles(Table const& table)
 {
-
-
     for(Attribute const& att:table.getAttributes())
     {
         CLEAR();
         showAttributeFiles(table);
-        if(typeDetector->isString(att) ||typeDetector->isText(att))
+
+        if(library.isFileExist(att.getName()))
+            appendAttributeFile(att,library.getFilePath(att.getName()));
+        else if(typeDetector->isString(att) ||typeDetector->isText(att))
         {
-            if(library.isFileExist(att.getName()))
-                appendAttributeFile(att,library.getFilePath(att.getName()));
-            else
-            {
-                cout<<"Select a file for "+att.getName()<<":"<<endl;
-                appendAttributeFile(att,selectLibraryFile());
-            }       
+            cout<<"Select a file for "+att.getName()<<":"<<endl;
+            appendAttributeFile(att,selectLibraryFile());       
         }
     }
 }
@@ -338,7 +367,7 @@ void Application::fillAttributeFiles(Table const& table)
 unsigned int Application::reduceRelationCount(unsigned int countLines,int max)
 {
     double lines=pow(2,countLines);
-    if(lines<(max*10))
+    if(lines<(max*10)&&lines<pow(2,max))
         return (unsigned int)lines;
     return reduceRelationCount(countLines-1,max);
 }
@@ -378,6 +407,14 @@ void Application::initTable(Table const& table,unsigned int lines)
     else
         countLine=lines;
     appendTableReference(table.getName(),countLine);
+}
+
+bool Application::hasAttribute(Attribute const* att)
+{
+    for(auto const& data: attributeFiles)
+        if(data.first==att)
+            return true;
+    return false;
 }
 //*******************************************************
 //********************  PUBLIC  *************************

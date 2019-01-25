@@ -147,6 +147,32 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "src/Application.cpp",
+			"settings":
+			{
+				"buffer_size": 12579,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/SQLParser/Writer/SQLWriter.cpp",
+			"settings":
+			{
+				"buffer_size": 2548,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/Application.h",
+			"settings":
+			{
+				"buffer_size": 9626,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -159,6 +185,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"shell",
+				"Terminus: List Shells"
+			],
+			[
+				"ter",
+				"Terminus: List Shells"
+			],
 			[
 				"theme",
 				"UI: Select Theme"
@@ -185,14 +219,6 @@
 			],
 			[
 				"term",
-				"Terminus: List Shells"
-			],
-			[
-				"shell",
-				"Terminus: List Shells"
-			],
-			[
-				"ter",
 				"Terminus: List Shells"
 			],
 			[
@@ -260,10 +286,19 @@
 	},
 	"expanded_folders":
 	[
-		"/home/mochiwa/Labs/programming/c++/EGAS"
+		"/home/mochiwa/Labs/eci/analyse/EGAS",
+		"/home/mochiwa/Labs/eci/analyse/EGAS/bin",
+		"/home/mochiwa/Labs/eci/analyse/EGAS/bin/input",
+		"/home/mochiwa/Labs/eci/analyse/EGAS/bin/output",
+		"/home/mochiwa/Labs/eci/analyse/EGAS/src",
+		"/home/mochiwa/Labs/eci/analyse/EGAS/src/SQLParser",
+		"/home/mochiwa/Labs/eci/analyse/EGAS/src/SQLParser/Writer"
 	],
 	"file_history":
 	[
+		"/home/mochiwa/Labs/eci/analyse/EGAS/bin/library/wings",
+		"/home/mochiwa/Labs/eci/analyse/EGAS/bin/output/a",
+		"/home/mochiwa/Labs/eci/analyse/EGAS/bin/output/teste",
 		"/home/mochiwa/Labs/programming/html/12-20-2018/chapter_15/exo/style.css",
 		"/home/mochiwa/Labs/programming/html/12-18-2018/chapter_14/index.html",
 		"/home/mochiwa/Labs/programming/html/12-18-2018/chapter_14/exo/style.css",
@@ -381,7 +416,7 @@
 	],
 	"find":
 	{
-		"height": 24.0
+		"height": 30.0
 	},
 	"find_in_files":
 	{
@@ -412,6 +447,105 @@
 	"groups":
 	[
 		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/Application.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12579,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10622,
+								10622
+							]
+						],
+						"settings":
+						{
+							"markdonw_live_preview_last_run": 1548355981.0,
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 6800.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/SQLParser/Writer/SQLWriter.cpp",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 2548,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								442,
+								442
+							]
+						],
+						"settings":
+						{
+							"markdonw_live_preview_last_run": 1548355993.18,
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 342.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 2,
+					"file": "include/Application.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9626,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4880,
+								4880
+							]
+						],
+						"settings":
+						{
+							"markdonw_live_preview_last_run": 1548355980.97,
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3268.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		},
+		{
 			"sheets":
 			[
 			]
@@ -419,7 +553,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 24.0
+		"height": 30.0
 	},
 	"input":
 	{
@@ -433,17 +567,31 @@
 				0,
 				0,
 				1,
+				2
+			],
+			[
+				1,
+				0,
+				2,
 				1
+			],
+			[
+				1,
+				1,
+				2,
+				2
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.578208955224,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
+			0.5,
 			1.0
 		]
 	},
@@ -464,7 +612,7 @@
 	"project": "EGAS.sublime-project",
 	"replace":
 	{
-		"height": 44.0
+		"height": 56.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -497,6 +645,27 @@
 	"selected_group": 0,
 	"settings":
 	{
+		"last_automatic_layout":
+		[
+			[
+				0,
+				0,
+				1,
+				2
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			],
+			[
+				1,
+				1,
+				2,
+				2
+			]
+		]
 	},
 	"show_minimap": true,
 	"show_open_files": false,
