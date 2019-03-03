@@ -134,6 +134,7 @@ string Application::selectLibraryFile()
 
     while(selected>=library.getCountFile())
     {
+        cout<<"0) ** Reload files ** "<<endl;
         library.printFiles();
         if(library.isEmpty())
         {
@@ -142,7 +143,12 @@ string Application::selectLibraryFile()
             library.read();
         }
         else
-            selected=readInteger("Select: ")-1;
+        {
+            selected=readInteger("Select: ");
+            if(selected==0)
+                library.read();
+            selected--;
+        }
     }
     return library.getFilePath(selected);
 }
