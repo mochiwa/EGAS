@@ -27,7 +27,7 @@ bool MYSQLTypeDetector::isInteger(Attribute const& attribute) const
 
 bool MYSQLTypeDetector::isDouble(Attribute const& attribute)  const
 {
-    if(!attribute.getType().compare("Double"))
+    if(!attribute.getType().compare("Double") ||  !attribute.getType().compare("Float"))
         return true;
     return false;
 }

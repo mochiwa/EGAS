@@ -151,26 +151,27 @@
 			"file": "src/Application.cpp",
 			"settings":
 			{
-				"buffer_size": 12579,
+				"buffer_size": 12727,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/SQLParser/Writer/SQLWriter.cpp",
 			"settings":
 			{
-				"buffer_size": 2548,
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "include/Application.h",
+			"contents": "Package Control Messages\n========================\n\nDoxyDoxygen\n-----------\n\n  DoxyDoxygen 0.70.2\n  ------------------\n  \n     - Add: Doxygen Mardown list support (https://github.com/20Tauri/DoxyDoxygen/issues/130)\n     - Fix: Doxygen `@todo` doesn't work properly with `doxygen_paragraph_prefix` (https://github.com/20Tauri/DoxyDoxygen/issues/130)\n\n  DoxyDoxygen 0.70.1\n  ------------------\n  \n     - Change: Switch from Super+Shift+Alt+Q to Super+Shift+Alt+K on OS/X (https://github.com/20Tauri/DoxyDoxygen/issues/119)\n     - Add: JavaScript \"new Function\", \"new GeneratorFunction\" support\n     - Fix: @verbatim (https://github.com/20Tauri/DoxyDoxygen/issues/128)\n\n  DoxyDoxygen 0.70.0\n  ------------------\n  \n     - Improve: You can now extend docstyle from the \"doc_styles\" settings\n     - Improve: \"doc_styles\" settings now work with ApiDoc, AsDoc, DoxyDoc, Doxygen, Drupal, JavaDoc, JsDoc, PhpDoc, PhpUnitDoc, SassDoc, Solidity\n     - Fix: Completion may not work properly (ex: '@' then select '@param')\n\n  DoxyDoxygen 0.69.3\n  ------------------\n  \n     - Bug: Updating JSDoc with optional param removes square brackets (https://github.com/20Tauri/DoxyDoxygen/issues/80)\n     - Improvement: Add a \"doc_styles\" settings to easy command overload (https://github.com/20Tauri/DoxyDoxygen/issues/79)\n\n  DoxyDoxygen 0.69.2\n  ------------------\n  \n     - Fix: Do not merge lines and destroy formatting in JSDoc for @example tag (https://github.com/20Tauri/DoxyDoxygen/issues/127)\n",
 			"settings":
 			{
-				"buffer_size": 9626,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"buffer_size": 1479,
+				"line_ending": "Unix",
+				"name": "Package Control Messages",
+				"read_only": true,
+				"scratch": true
 			}
 		}
 	],
@@ -186,11 +187,15 @@
 		"selected_items":
 		[
 			[
-				"shell",
-				"Terminus: List Shells"
+				"ter",
+				"Terminal: Open"
 			],
 			[
-				"ter",
+				"term",
+				"Terminal: Open"
+			],
+			[
+				"shell",
 				"Terminus: List Shells"
 			],
 			[
@@ -216,10 +221,6 @@
 			[
 				"sethtml",
 				"Set Syntax: HTML"
-			],
-			[
-				"term",
-				"Terminus: List Shells"
 			],
 			[
 				"c++",
@@ -286,16 +287,22 @@
 	},
 	"expanded_folders":
 	[
-		"/home/mochiwa/Labs/eci/analyse/EGAS",
-		"/home/mochiwa/Labs/eci/analyse/EGAS/bin",
-		"/home/mochiwa/Labs/eci/analyse/EGAS/bin/input",
-		"/home/mochiwa/Labs/eci/analyse/EGAS/bin/output",
-		"/home/mochiwa/Labs/eci/analyse/EGAS/src",
-		"/home/mochiwa/Labs/eci/analyse/EGAS/src/SQLParser",
-		"/home/mochiwa/Labs/eci/analyse/EGAS/src/SQLParser/Writer"
+		"/home/mochiwa/Labs/programmation/c++/EGAS",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/include",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/include/own_lib",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/src",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/src/own_lib",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/src/SQLParser",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/src/SQLParser/Reader",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/src/SQLParser/Table",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/src/SQLParser/TypeDetector",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/src/SQLParser/Writer"
 	],
 	"file_history":
 	[
+		"/home/mochiwa/Labs/programmation/c++/EGAS/bin/library/fuck_file",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/bin/library/fichier_test",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/bin/input/pap",
 		"/home/mochiwa/Labs/eci/analyse/EGAS/bin/library/wings",
 		"/home/mochiwa/Labs/eci/analyse/EGAS/bin/output/a",
 		"/home/mochiwa/Labs/eci/analyse/EGAS/bin/output/teste",
@@ -416,7 +423,7 @@
 	],
 	"find":
 	{
-		"height": 30.0
+		"height": 24.0
 	},
 	"find_in_files":
 	{
@@ -456,53 +463,53 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 12579,
+						"buffer_size": 12727,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10622,
-								10622
+								1122,
+								1122
 							]
 						],
 						"settings":
 						{
 							"markdonw_live_preview_last_run": 1548355981.0,
-							"syntax": "Packages/C++/C++.sublime-syntax"
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 6800.0,
+						"translation.y": 3009.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "src/SQLParser/Writer/SQLWriter.cpp",
-					"semi_transient": true,
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2548,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								442,
-								442
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"markdonw_live_preview_last_run": 1548355993.18,
-							"syntax": "Packages/C++/C++.sublime-syntax"
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 342.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -511,49 +518,50 @@
 			]
 		},
 		{
+			"sheets":
+			[
+			]
+		},
+		{
 			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 2,
-					"file": "include/Application.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9626,
+						"buffer_size": 1479,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4880,
-								4880
+								1479,
+								1479
 							]
 						],
 						"settings":
 						{
-							"markdonw_live_preview_last_run": 1548355980.97,
-							"syntax": "Packages/C++/C++.sublime-syntax"
+							"auto_indent": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_width": 2,
+							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3268.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				}
-			]
-		},
-		{
-			"sheets":
-			[
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 30.0
+		"height": 24.0
 	},
 	"input":
 	{
@@ -612,7 +620,7 @@
 	"project": "EGAS.sublime-project",
 	"replace":
 	{
-		"height": 56.0
+		"height": 44.0
 	},
 	"save_all_on_build": true,
 	"select_file":
