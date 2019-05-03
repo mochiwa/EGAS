@@ -90,3 +90,10 @@ string PostgresWriter::formatedWord(string const& word)
     }
     return cpy;
 }
+
+void PostgresWriter::writeDrop(std::string const& tableName)
+{
+    query="";
+    query+="DROP TABLE "+tableName+" CASCADE;"+'\n';
+    writeQuerry();   
+}

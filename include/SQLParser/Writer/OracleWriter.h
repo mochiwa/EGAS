@@ -75,6 +75,16 @@ public:
      * @date       07-Jan-2019
      */
     virtual std::string formatedWord(std::string const& word);
+
+    /**
+     * @brief      Writes a drop query.
+     *
+     * @param      tableName  The table name
+     *
+     * @author     mochiwa
+     * @date       02-May-2019
+     */
+    virtual void writeDrop(std::string const& tableName);
 };
 
 #endif

@@ -90,3 +90,10 @@ string MYSQLWriter::formatedWord(string const& word)
     }
     return cpy;
 }
+
+void MYSQLWriter::writeDrop(std::string const& tableName)
+{
+    query="";
+    query+="DROP TABLE "+tableName+" CASCADE;"+'\n';
+    writeQuerry();   
+}

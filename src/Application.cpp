@@ -388,6 +388,7 @@ void Application::run()
 {
 
     string sqlFile="";
+    string sqlOutput="";
 
     showTitle("EGAS");
 
@@ -405,18 +406,29 @@ void Application::run()
     clever.setMinimalId(sgbd);
     loadTables();
 
+
     writer=WriterFactory::getWriter(sgbd);
+
 
     do
     {
         CLEAR();
         showTitle("Output Name");
         cout<<"Output name:";
-        cin>>sqlFile;
-    }while(!sqlFile.size());
-    writer->setFileName((outputdir.getName()+"/"+sqlFile));
+        cin>>sqlOutput;
+    }while(!sqlOutput.size());
+    writer->setFileName((outputdir.getName()+"/"+sqlOutput));
 
     writer->initFile();
+
+
+    for(auto t:tables)
+        writer->writeDrop(t.getName());
+    
+    SQLParser parser(sqlFile);
+    writer->copyFileInto(parser.getTablesToString());
+
+    
     generateLines();
     
     

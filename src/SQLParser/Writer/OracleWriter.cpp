@@ -89,3 +89,11 @@ string OracleWriter::formatedWord(string const& word)
     }
     return cpy;
 }
+
+
+void OracleWriter::writeDrop(std::string const& tableName)
+{
+    query="";
+    query+="DROP TABLE "+tableName+" CASCADE CONSTRAINTS;"+'\n';
+    writeQuerry();   
+}

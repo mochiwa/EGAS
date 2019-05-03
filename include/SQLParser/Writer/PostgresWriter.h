@@ -75,6 +75,8 @@ public:
      */
     virtual std::string formatedWord(std::string const& word);
     
+    virtual void writeDrop(std::string const& tableName);
+
 };
 
 #endif

@@ -74,6 +74,9 @@ public:
      * @date       07-Jan-2019
      */
     virtual std::string formatedWord(std::string const& word);
+
+    virtual void writeDrop(std::string const& tableName);
+
     
 };
 

@@ -7,7 +7,6 @@
 
 #include "Attribute.h"
 
-
 #define RESERVED_CHAR {'\'','"',',','&','?','{','}','\\','(',')', \
                         '[',']','-',';','~','|','$','!','>','*', \
                         '%','_'}
@@ -276,5 +275,29 @@ public:
      * @date       15-Jan-2019
      */
     void setFileName(std::string const& filename);
+
+
+public:
+    /**
+     * @brief      write drop table
+     *
+     * @param      tableName  The table name
+     *
+     * @note       { paragraph }
+     *
+     * @author     mochiwa
+     * @date       03-May-2019
+     */
+    virtual void writeDrop(std::string const& tableName)=0;
+    
+    /**
+     * @brief      copy a file into another
+     *
+     * @param      file  The file
+     * 
+     * @author     mochiwa
+     * @date       03-May-2019
+     */
+    void copyFileInto(std::vector<std::string> tables);
 };
 #endif 

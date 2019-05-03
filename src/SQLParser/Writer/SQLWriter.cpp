@@ -5,10 +5,12 @@ using namespace std;
 
 SQLWriter::SQLWriter()
 {
+    query="";
     filename="RandomName";//TODO
 }
 SQLWriter::SQLWriter(string const& filename)
 {   
+    query="";
     this->filename=filename;
 }
 
@@ -127,4 +129,16 @@ string const& SQLWriter::getQuerry() const
 void SQLWriter::setFileName(string const& filename)
 {
     this->filename=filename;
+}
+
+void SQLWriter::copyFileInto(std::vector<std::string> tables)
+{
+    for(string const& t:tables)
+    {
+        query+="\n------------------------------"+'\n';
+        query+='\n'+t+'\n';
+        query+="\n------------------------------"+'\n';
+    }
+    query+="\n\n\n\n";
+    writeQuerry();
 }
