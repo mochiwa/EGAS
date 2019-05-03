@@ -147,6 +147,33 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "src/Application.cpp",
+			"settings":
+			{
+				"buffer_size": 12727,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Package Control Messages\n========================\n\nDoxyDoxygen\n-----------\n\n  DoxyDoxygen 0.70.2\n  ------------------\n  \n     - Add: Doxygen Mardown list support (https://github.com/20Tauri/DoxyDoxygen/issues/130)\n     - Fix: Doxygen `@todo` doesn't work properly with `doxygen_paragraph_prefix` (https://github.com/20Tauri/DoxyDoxygen/issues/130)\n\n  DoxyDoxygen 0.70.1\n  ------------------\n  \n     - Change: Switch from Super+Shift+Alt+Q to Super+Shift+Alt+K on OS/X (https://github.com/20Tauri/DoxyDoxygen/issues/119)\n     - Add: JavaScript \"new Function\", \"new GeneratorFunction\" support\n     - Fix: @verbatim (https://github.com/20Tauri/DoxyDoxygen/issues/128)\n\n  DoxyDoxygen 0.70.0\n  ------------------\n  \n     - Improve: You can now extend docstyle from the \"doc_styles\" settings\n     - Improve: \"doc_styles\" settings now work with ApiDoc, AsDoc, DoxyDoc, Doxygen, Drupal, JavaDoc, JsDoc, PhpDoc, PhpUnitDoc, SassDoc, Solidity\n     - Fix: Completion may not work properly (ex: '@' then select '@param')\n\n  DoxyDoxygen 0.69.3\n  ------------------\n  \n     - Bug: Updating JSDoc with optional param removes square brackets (https://github.com/20Tauri/DoxyDoxygen/issues/80)\n     - Improvement: Add a \"doc_styles\" settings to easy command overload (https://github.com/20Tauri/DoxyDoxygen/issues/79)\n\n  DoxyDoxygen 0.69.2\n  ------------------\n  \n     - Fix: Do not merge lines and destroy formatting in JSDoc for @example tag (https://github.com/20Tauri/DoxyDoxygen/issues/127)\n",
+			"settings":
+			{
+				"buffer_size": 1479,
+				"line_ending": "Unix",
+				"name": "Package Control Messages",
+				"read_only": true,
+				"scratch": true
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -159,6 +186,18 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"ter",
+				"Terminal: Open"
+			],
+			[
+				"term",
+				"Terminal: Open"
+			],
+			[
+				"shell",
+				"Terminus: List Shells"
+			],
 			[
 				"theme",
 				"UI: Select Theme"
@@ -182,18 +221,6 @@
 			[
 				"sethtml",
 				"Set Syntax: HTML"
-			],
-			[
-				"term",
-				"Terminus: List Shells"
-			],
-			[
-				"shell",
-				"Terminus: List Shells"
-			],
-			[
-				"ter",
-				"Terminus: List Shells"
 			],
 			[
 				"c++",
@@ -260,10 +287,25 @@
 	},
 	"expanded_folders":
 	[
-		"/home/mochiwa/Labs/programming/c++/EGAS"
+		"/home/mochiwa/Labs/programmation/c++/EGAS",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/include",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/include/own_lib",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/src",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/src/own_lib",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/src/SQLParser",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/src/SQLParser/Reader",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/src/SQLParser/Table",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/src/SQLParser/TypeDetector",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/src/SQLParser/Writer"
 	],
 	"file_history":
 	[
+		"/home/mochiwa/Labs/programmation/c++/EGAS/bin/library/fuck_file",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/bin/library/fichier_test",
+		"/home/mochiwa/Labs/programmation/c++/EGAS/bin/input/pap",
+		"/home/mochiwa/Labs/eci/analyse/EGAS/bin/library/wings",
+		"/home/mochiwa/Labs/eci/analyse/EGAS/bin/output/a",
+		"/home/mochiwa/Labs/eci/analyse/EGAS/bin/output/teste",
 		"/home/mochiwa/Labs/programming/html/12-20-2018/chapter_15/exo/style.css",
 		"/home/mochiwa/Labs/programming/html/12-18-2018/chapter_14/index.html",
 		"/home/mochiwa/Labs/programming/html/12-18-2018/chapter_14/exo/style.css",
@@ -412,8 +454,108 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/Application.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12727,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1122,
+								1122
+							]
+						],
+						"settings":
+						{
+							"markdonw_live_preview_last_run": 1548355981.0,
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3009.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1479,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1479,
+								1479
+							]
+						],
+						"settings":
+						{
+							"auto_indent": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_width": 2,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -433,17 +575,31 @@
 				0,
 				0,
 				1,
+				2
+			],
+			[
+				1,
+				0,
+				2,
 				1
+			],
+			[
+				1,
+				1,
+				2,
+				2
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.578208955224,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
+			0.5,
 			1.0
 		]
 	},
@@ -497,6 +653,27 @@
 	"selected_group": 0,
 	"settings":
 	{
+		"last_automatic_layout":
+		[
+			[
+				0,
+				0,
+				1,
+				2
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			],
+			[
+				1,
+				1,
+				2,
+				2
+			]
+		]
 	},
 	"show_minimap": true,
 	"show_open_files": false,

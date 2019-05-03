@@ -174,6 +174,16 @@ private:
      */
     void cleverGeneration(Attribute const& att);
 
+    /**
+     * @brief      Generate data from existing file
+     *
+     * @param      att   The att
+     *
+     * @author     mochiwa
+     * @date       23-Jan-2019
+     */
+    void existingGeneration(Attribute const& att);
+
 
     /**
      * @brief      detecte what will be generated
@@ -294,7 +304,27 @@ private:
      */
     uniqueRelation getUniqueRelation(Table const& table);
 
+    /**
+     * @brief      {check if unique relation already exist
+     *
+     * @param[in]  r   the relation
+     *
+     * @author     mochiwa
+     * @date       23-Jan-2019
+     */
     bool alreadyCreate(uniqueRelation r);
+
+    /**
+     * @brief      Determines if it has attribute.
+     *
+     * @param      att   The att
+     *
+     * @return     True if AttributeFile has, False otherwise.
+     *
+     * @author     mochiwa
+     * @date       23-Jan-2019
+     */
+    bool hasAttribute(Attribute const* att);
 public:
 
     /**
